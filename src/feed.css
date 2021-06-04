@@ -57,7 +57,7 @@
 }
 .sidepanelholder {
   overflow: scroll;
-  height: 1030px;
+  height: 630px;
 }
 .sidepanelholder::-webkit-scrollbar {
   display: none;
@@ -76,4 +76,20 @@
   margin: auto;
   width: 100%;
   justify-content: center;
+}
+.videosidebar {
+  background-color: yellow;
+  display: flex;
+  flex-direction: row;
+}
+.social_controls {
+  padding-top: 6em;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+#iconn {
+  color: #37003c;
+  margin: 0.3em 0;
+  cursor: pointer;
 }
