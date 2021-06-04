@@ -27,10 +27,12 @@ const Video = ({ url }) => {
     }
 
 
+
+
     return (
 
         <div className='videocard'>
-            <video autoplay muted loop src={url} type='video/mp4' onclick={onVidPress} ref={videoRef} >
+            <video loop src={url} type='video/mp4' onclick={onVidPress} ref={videoRef} >
 
             </video>
 

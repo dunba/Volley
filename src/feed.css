@@ -15,7 +15,7 @@
   margin: auto;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  overflow: hidden;
   scroll-snap-type: y mandatory;
   scroll-snap-stop: always;
 }
@@ -34,6 +34,20 @@
 }
 #thumbnail:hover {
   opacity: 50%;
+  transition: 0.5s ease;
+}
+.overlay {
+  background-color: #008cba;
+  width: 150px;
+  top: 40;
+  bottom: 40;
+  left: 20;
+}
+.text {
+  color: white;
+  font-size: 20px;
+
+  text-align: center;
 }
 
 .picholder {
@@ -43,7 +57,7 @@
 }
 .sidepanelholder {
   overflow: scroll;
-  height: 730px;
+  height: 1030px;
 }
 .sidepanelholder::-webkit-scrollbar {
   display: none;
@@ -51,4 +65,15 @@
 .sidepanelholder {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.vid_controls {
+  display: flex;
+  padding: 0.6em;
+  flex-direction: row;
+  height: 20px;
+  background-color: white;
+  margin: auto;
+  width: 100%;
+  justify-content: center;
 }

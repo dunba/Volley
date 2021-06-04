@@ -14,6 +14,10 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ShareIcon from '@material-ui/icons/Share';
 import CommentIcon from '@material-ui/icons/Comment';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import PauseIcon from '@material-ui/icons/Pause';
+import FastRewindIcon from '@material-ui/icons/FastRewind';
+import FastForwardIcon from '@material-ui/icons/FastForward';
 
 
 
@@ -38,17 +42,39 @@ const Feed = () => {
   const bamfordgoal = 'https://firebasestorage.googleapis.com/v0/b/premier-league-809fb.appspot.com/o/Patrick%20Bamford%20breaks%20deadlock%20for%20Leeds%20United%20v%20Southampton%20%20Premier%20League%20%20NBC%20Sports.mp4?alt=media&token=dd615309-4fcc-474a-89da-a2e14284a3f1'
   const pepegoal = 'https://firebasestorage.googleapis.com/v0/b/premier-league-809fb.appspot.com/o/Nicolas%20Pepe%20bags%20brace%20in%20Arsenal%20win%20over%20Crystal%20Palace%20%20Premier%20League%20%20NBC%20Sports_720p.mp4?alt=media&token=99137465-448b-4a01-b323-720bae602cda'
   const goals = [rudigergoal, cavanigoal]
-  const goalvids = [{ active: 'true', team: 'Chelsea', url: rudigergoal, scorer: 'Antonio Rudiger', img: 'https://via.placeholder.com/300.png/09f/fff' }, { active: 'false', team: 'Manchester United', url: cavanigoal, scorer: 'Edinson Cavani', img: 'https://via.placeholder.com/300/12ds5a/808080' }, { active: 'false', team: 'Manchester City', url: torresgoal, scorer: 'Ferran Torres', img: 'https://via.placeholder.com/300.png/0s06dsf/fff' }, { active: 'false', team: 'Tottenham', url: bergwigngoal, scorer: 'Steven Bergwign', img: 'https://via.placeholder.com/300/2200gg/808080' }, { active: 'false', team: 'Leeds', url: bamfordgoal, scorer: 'Patrick Bamford', img: 'https://via.placeholder.com/300/fkh544/808080' }, { active: 'false', team: 'Arsenal', url: pepegoal, scorer: 'Nicolas Pepe', img: 'https://via.placeholder.com/300/ffffff/808080' }]
+  const goalvids = [{ id: 0, active: 'true', team: 'Chelsea', url: rudigergoal, scorer: 'Antonio Rudiger', img: 'https://via.placeholder.com/300.png/09f/fff' }, { id: 1, active: 'false', team: 'Manchester United', url: cavanigoal, scorer: 'Edinson Cavani', img: 'https://via.placeholder.com/300/12ds5a/808080' }, { id: 2, active: 'false', team: 'Manchester City', url: torresgoal, scorer: 'Ferran Torres', img: 'https://via.placeholder.com/300.png/0s06dsf/fff' }, { id: 3, active: 'false', team: 'Tottenham', url: bergwigngoal, scorer: 'Steven Bergwign', img: 'https://via.placeholder.com/300/2200gg/808080' }, { id: 4, active: 'false', team: 'Leeds', url: bamfordgoal, scorer: 'Patrick Bamford', img: 'https://via.placeholder.com/300/fkh544/808080' }, { id: 5, active: 'false', team: 'Arsenal', url: pepegoal, scorer: 'Nicolas Pepe', img: 'https://via.placeholder.com/300/ffffff/808080' }]
 
 
   const [videos, setVideos] = useState(goalvids)
-  const [currentvid, setCurrentVid] = useState(goalvids[0])
+  const pointeroption = { cursor: 'pointer' }
+
+  const [idnumber, setIdnumber] = useState(0);
+  const [currentvid, setCurrentVid] = useState(goalvids[idnumber])
+
+  const onFastforward = () => {
+    setIdnumber(idnumber + 1)
+    console.log('hey!')
+  }
+  //like button state change
+  const [isliked, setIsLiked] = useState(false);
+
+  const likeHandler = () => {
+    if (isliked) {
+      setIsLiked(false);
+      console.log('unliked')
+    } else {
+      setIsLiked(true);
+      console.log('liked')
+    }
+  }
 
   const clickHandler = (e) => {
     console.log(e)
     console.log(videos)
-    console.log(currentvid)
-    setCurrentVid(goalvids[Math.floor(Math.random() * 6)])
+    console.log(e.target.attributes[0].value)
+    setIdnumber(e.target.attributes[0].value)
+    // console.log(currentvid)
+    setCurrentVid(goalvids[idnumber])
   }
   const onVidPress = () => {
     if (playing) {
@@ -68,9 +94,13 @@ const Feed = () => {
       <div className='mediacontainer'>
         <div className='picholder'>
           Playlist<div className='sidepanelholder'>
-            {goalvids.map(pic => (<div className='sidepanel'><img onClick={clickHandler} id='thumbnail' src={pic.img} /></div>
+            {goalvids.map(pic => (<div className='sidepanel'><img onClick={clickHandler} mycustomattribute={pic.id} id='thumbnail' src={pic.img} />
+              <div class="overlay">
+                <div class="text">{pic.scorer}</div>
+              </div></div>
 
             ))}
+
           </div>
         </div>
 
@@ -78,6 +108,13 @@ const Feed = () => {
 
           <div>
             <Video team={currentvid.team} url={currentvid.url} scorer={currentvid.scorer} /></div>
+          <div className='vid_controls'>
+            <FastRewindIcon fontSize='large' />
+            {playing ? <PauseIcon onClick={onVidPress} fontSize='large' /> : <PlayArrowIcon onClick={onVidPress} fontSize='large' />}
+            <FastForwardIcon style={pointeroption} fontSize='large' />
+
+          </div>
+
 
         </div>
         <div className='videosidebar'>
@@ -88,9 +125,11 @@ const Feed = () => {
             <div className='sidebar_icons'>
 
               <div className='social_controls'>
-                <FavoriteBorderIcon fontSize='large' />
+                {isliked ? <FavoriteIcon onClick={likeHandler} fontSize='large' /> : <FavoriteBorderIcon onClick={likeHandler} fontSize='large' />}
+
                 <ShareIcon fontSize='large' />
                 <CommentIcon fontSize='large' />
+                <ExpandMoreIcon onClick={onFastforward} fontSize='large' />
               </div>
 
 
