@@ -1,0 +1,54 @@
+.flexcontainer {
+  display: flex;
+  flex-direction: column;
+}
+.mediacontainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.videoholder {
+  position: relative;
+  background-color: rgb(175, 175, 175);
+  height: 730px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-snap-stop: always;
+}
+
+.videoholder::-webkit-scrollbar {
+  display: none;
+}
+.videoholder {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#thumbnail {
+  width: 150px;
+  margin: 5px;
+}
+#thumbnail:hover {
+  opacity: 50%;
+}
+
+.picholder {
+  height: 730px;
+  margin: auto;
+  overflow: hidden;
+}
+.sidepanelholder {
+  overflow: scroll;
+  height: 730px;
+}
+.sidepanelholder::-webkit-scrollbar {
+  display: none;
+}
+.sidepanelholder {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

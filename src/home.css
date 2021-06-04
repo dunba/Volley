@@ -1,0 +1,47 @@
+.formdiv {
+  background-color: rgba(255, 255, 255);
+  width: 32%;
+  display: block;
+  margin: auto;
+  border-radius: 6%;
+  margin-top: 20em;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding-top: 3em;
+  padding-bottom: 6em;
+}
+
+.formsubmit {
+  background-color: aqua;
+  margin-top: 3em;
+  padding: 0.5em 3em;
+}
+
+.logintext {
+  font-size: 1.5em;
+  padding-bottom: 1.1em;
+  text-align: center;
+  font-style: bold;
+}
+
+.inputtext {
+  margin: 0.7em;
+  padding: 0.7em;
+}
+
+input {
+  width: 80%;
+}
+
+.formbttn {
+  color: red;
+}
+
+.bottomlinks {
+  display: flex;
+  flex-direction: column;
+}

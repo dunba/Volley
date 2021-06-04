@@ -1,0 +1,45 @@
+video {
+  /* width: 1552.29; */
+  height: 670px;
+  border: 1px solid black;
+}
+
+.videocard {
+  position: relative;
+  background-color: white;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  width: 100%;
+  height: 730px;
+  display: flex;
+  flex-direction: column;
+}
+
+.videosidebar {
+  background-color: yellow;
+  display: flex;
+  flex-direction: row;
+}
+
+.sidebar_icons {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.vid_controls {
+  display: flex;
+  padding: 0.6em;
+  flex-direction: row;
+  height: 60px;
+  background-color: white;
+  margin: auto;
+  width: 100%;
+  justify-content: center;
+  border: 1px solid black;
+}
+
+.social_controls {
+  display: flex;
+  flex-direction: column;
+}

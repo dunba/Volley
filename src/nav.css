@@ -1,0 +1,52 @@
+Nav {
+  background: #37003c;
+}
+.rightsidenav {
+  margin-right: 90px;
+}
+
+.navlogo {
+  font-size: 1.3em;
+  top: 0px;
+  line-height: 0.2em;
+  justify-self: flex-start;
+  text-align: start;
+}
+.bootnav {
+  color: rgb(255, 174, 0);
+}
+
+.activetab {
+  color: tomato;
+}
+
+.linkstyle {
+  color: white;
+  list-style: none;
+  padding: 15px;
+  font-size: 1.2em;
+  text-decoration: none;
+  text-shadow: 2px 2px #000000;
+}
+
+.linkstyle:visited {
+  text-decoration: none;
+}
+
+.linkstyle:hover {
+  color: #9a40e9;
+}
+
+.premlogo {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  width: 8em;
+  color: white;
+}
+
+#basic-nav-dropdown {
+  color: white;
+  font-size: 1.2em;
+  text-decoration: none;
+  text-shadow: 2px 2px #000000;
+}

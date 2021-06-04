@@ -1,0 +1,18 @@
+.premtable {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  background-color: beige;
+}
+
+.innertable {
+  margin: auto;
+}
+
+.bgcolor {
+  background-color: black;
+}
+
+table {
+  background-color: #fff;
+}
