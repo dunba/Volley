@@ -15,12 +15,6 @@ video {
   flex-direction: column;
 }
 
-.videosidebar {
-  background-color: yellow;
-  display: flex;
-  flex-direction: row;
-}
-
 .sidebar_icons {
   display: flex;
   flex-direction: column;
@@ -36,9 +30,4 @@ video {
   margin: auto;
   width: 100%;
   justify-content: center;
-}
-
-.social_controls {
-  display: flex;
-  flex-direction: column;
 }

@@ -42,11 +42,12 @@ const Feed = () => {
   const bamfordgoal = 'https://firebasestorage.googleapis.com/v0/b/premier-league-809fb.appspot.com/o/Patrick%20Bamford%20breaks%20deadlock%20for%20Leeds%20United%20v%20Southampton%20%20Premier%20League%20%20NBC%20Sports.mp4?alt=media&token=dd615309-4fcc-474a-89da-a2e14284a3f1'
   const pepegoal = 'https://firebasestorage.googleapis.com/v0/b/premier-league-809fb.appspot.com/o/Nicolas%20Pepe%20bags%20brace%20in%20Arsenal%20win%20over%20Crystal%20Palace%20%20Premier%20League%20%20NBC%20Sports_720p.mp4?alt=media&token=99137465-448b-4a01-b323-720bae602cda'
   const goals = [rudigergoal, cavanigoal]
-  const goalvids = [{ id: 0, active: 'true', team: 'Chelsea', url: rudigergoal, scorer: 'Antonio Rudiger', img: 'https://via.placeholder.com/300.png/09f/fff' }, { id: 1, active: 'false', team: 'Manchester United', url: cavanigoal, scorer: 'Edinson Cavani', img: 'https://via.placeholder.com/300/12ds5a/808080' }, { id: 2, active: 'false', team: 'Manchester City', url: torresgoal, scorer: 'Ferran Torres', img: 'https://via.placeholder.com/300.png/0s06dsf/fff' }, { id: 3, active: 'false', team: 'Tottenham', url: bergwigngoal, scorer: 'Steven Bergwign', img: 'https://via.placeholder.com/300/2200gg/808080' }, { id: 4, active: 'false', team: 'Leeds', url: bamfordgoal, scorer: 'Patrick Bamford', img: 'https://via.placeholder.com/300/fkh544/808080' }, { id: 5, active: 'false', team: 'Arsenal', url: pepegoal, scorer: 'Nicolas Pepe', img: 'https://via.placeholder.com/300/ffffff/808080' }]
+  const goalvids = [{ description: 'Antonio Rudiger gives Chelsea crucial lead over Leicester City ', id: 0, active: 'true', team: 'Chelsea', url: rudigergoal, scorer: 'Antonio Rudiger', img: 'https://via.placeholder.com/300.png/09f/fff' }, { description: 'Edinson Cavani gives Manchester United lead v Fulham in style ', id: 1, active: 'false', team: 'Manchester United', url: cavanigoal, scorer: 'Edinson Cavani', img: 'https://via.placeholder.com/300/12ds5a/808080' }, { description: 'Ferran Torres scorpion kick puts Manchester City ahead of Newcastle', id: 2, active: 'false', team: 'Manchester City', url: torresgoal, scorer: 'Ferran Torres', img: 'https://via.placeholder.com/300.png/0s06dsf/fff' }, { description: 'Steven Bergwijn slams Spurs into the lead v Aston Villa', id: 3, active: 'false', team: 'Tottenham', url: bergwigngoal, scorer: 'Steven Bergwign', img: 'https://via.placeholder.com/300/2200gg/808080' }, { description: '', id: 4, active: 'false', team: 'Leeds', url: bamfordgoal, scorer: 'Patrick Bamford', img: 'https://via.placeholder.com/300/fkh544/808080' }, { description: 'Nicolas Pepe bags brace in Arsenal win over Crystal Palace', id: 5, active: 'false', team: 'Arsenal', url: pepegoal, scorer: 'Nicolas Pepe', img: 'https://via.placeholder.com/300/ffffff/808080' }]
 
 
   const [videos, setVideos] = useState(goalvids)
   const pointeroption = { cursor: 'pointer' }
+
 
   const [idnumber, setIdnumber] = useState(0);
   const [currentvid, setCurrentVid] = useState(goalvids[idnumber])
@@ -55,18 +56,7 @@ const Feed = () => {
     setIdnumber(idnumber + 1)
     console.log('hey!')
   }
-  //like button state change
-  const [isliked, setIsLiked] = useState(false);
 
-  const likeHandler = () => {
-    if (isliked) {
-      setIsLiked(false);
-      console.log('unliked')
-    } else {
-      setIsLiked(true);
-      console.log('liked')
-    }
-  }
 
   const clickHandler = (e) => {
     console.log(e)
@@ -86,11 +76,32 @@ const Feed = () => {
     }
   }
   const [playing, setPlaying] = useState(false)
+  const [likedvids,setLikedVids]=useState(0)
+    //like button state change
+  const [isliked, setIsLiked] = useState(false);
+  const totallikes=[];
+  const [likenum,setLikenum]=useState(null);
+  const likeHandler = () => {
+    if (isliked) {
+      setIsLiked(false);
+      console.log('unliked')
+      setLikedVids(likenum-1)
+    } else {
+      setIsLiked(true);
+      console.log('liked')
+      totallikes.push('1 like')
+      setLikenum(totallikes.length)
+      setLikedVids(likenum)
+      console.log(totallikes)
+      console.log(likenum)
+    }
+  }
 
   const videoRef = useRef(null)
   return (
     <div className='flexcontainer'>
-      <h1><HomeIcon fontSize='large' /> <FavoriteBorderIcon fontSize='large' /></h1>
+      <div className='headercontainer'><h1><HomeIcon fontSize='large' /> <FavoriteBorderIcon fontSize='large' /></h1>{likedvids?<p id='likenumber'>{likedvids}</p>:''} </div>
+      
       <div className='mediacontainer'>
         <div className='picholder'>
           Playlist<div className='sidepanelholder'>
@@ -119,19 +130,21 @@ const Feed = () => {
         </div>
         <div className='videosidebar'>
           <div>
-            <h1>Ticker Description</h1>
-            <h2>{currentvid.scorer}</h2>
-            <h2>{currentvid.team}</h2>
+            <p>{currentvid.description}</p>
+
             <div className='sidebar_icons'>
 
               <div className='social_controls'>
-                {isliked ? <FavoriteIcon onClick={likeHandler} fontSize='large' /> : <FavoriteBorderIcon onClick={likeHandler} fontSize='large' />}
+                {isliked ? <FavoriteIcon id='iconn' onClick={likeHandler} fontSize='large' /> : <FavoriteBorderIcon onClick={likeHandler} id='iconn' fontSize='large' />}
 
-                <ShareIcon fontSize='large' />
-                <CommentIcon fontSize='large' />
-                <ExpandMoreIcon onClick={onFastforward} fontSize='large' />
+                <ShareIcon id='iconn' fontSize='large' />
+                <CommentIcon id='iconn' fontSize='large' />
+                <ExpandMoreIcon id='iconn' onClick={onFastforward} fontSize='large' />
               </div>
-
+            <div>
+                          <h2>{currentvid.scorer}</h2>
+            <h2>{currentvid.team}</h2>
+            </div>
 
             </div>
 

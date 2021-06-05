@@ -41,9 +41,9 @@ const Nav = () => {
                 <ReactBootstrap.Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <ReactBootstrap.Navbar.Collapse id="basic-navbar-nav">
                     <ReactBootstrap.Nav className="ml-auto  rightsidenav">
-                        <ReactBootstrap.Nav.Link href="#"><NavLink className='linkstyle' exact to="/"><OndemandVideo /> </NavLink>Home</ReactBootstrap.Nav.Link>
-                        <ReactBootstrap.Nav.Link href="#"> <NavLink className='linkstyle' to="/stats"><FormatListNumberedIcon /> </NavLink>Stats</ReactBootstrap.Nav.Link>
-                        <ReactBootstrap.Nav.Link href="#"> <NavLink className='linkstyle' to="/table"><TrendingUpIcon /> </NavLink>Rankings</ReactBootstrap.Nav.Link>
+                        <ReactBootstrap.Nav.Link href="#"><NavLink className='linkstyle' exact to="/"><OndemandVideo /> </NavLink></ReactBootstrap.Nav.Link>
+                        <ReactBootstrap.Nav.Link href="#"> <NavLink className='linkstyle' to="/stats"><FormatListNumberedIcon /> </NavLink></ReactBootstrap.Nav.Link>
+                        <ReactBootstrap.Nav.Link href="#"> <NavLink className='linkstyle' to="/table"><TrendingUpIcon /> </NavLink></ReactBootstrap.Nav.Link>
                         {/* this is where the dropdown selection starts */}
                         <ReactBootstrap.NavDropdown title={usericon} id="basic-nav-dropdown" >
                             <ReactBootstrap.NavDropdown.Item href="#action/3.1"><NavLink to="/update-profile">Update Info</NavLink></ReactBootstrap.NavDropdown.Item>
