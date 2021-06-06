@@ -40,7 +40,7 @@ const Feed = ({ goalvids, likedlist, likenum }) => {
         <div className='picholder'> <Picholder goalvids={goalvids} clickHandler={clickHandler} /></div>
         <div className='videoholder'>
 
-          <Video team={currentvid.team} url={currentvid.url} scorer={currentvid.scorer} /></div>
+          <Video currentvid={currentvid} /></div>
         <div className='videosidebar'>
           <Sidebar currentvid={currentvid} />
         </div>

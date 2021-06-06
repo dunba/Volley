@@ -35,19 +35,14 @@
 }
 .overlay {
   background-color: #008cba;
-  width: 150px;
-  top: 40;
-  bottom: 40;
-  left: 20;
 }
 .text {
   color: white;
   font-size: 20px;
-
-  text-align: center;
 }
 
 .picholder {
+  width: 15%;
   height: 735px;
   margin: auto;
   overflow: hidden;
@@ -56,6 +51,8 @@
 .sidepanelholder {
   overflow: scroll;
   height: 630px;
+  display: flex;
+  flex-direction: column;
 }
 .sidepanelholder::-webkit-scrollbar {
   display: none;
@@ -81,6 +78,7 @@
   position: relative;
   flex-direction: row;
   overflow: hidden;
+  width: 25%;
 }
 .social_controls {
   padding-top: 6em;
@@ -105,4 +103,9 @@
   right: 47.5%;
   color: rgb(17, 17, 17);
   font-size: 1.2em;
+}
+
+.descriptionsection {
+  padding: 3em;
+  display: flex;
 }

@@ -1,17 +1,36 @@
 import React from 'react'
 import { useRef } from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './video.css'
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
-import FastRewindIcon from '@material-ui/icons/FastRewind';
-import FastForwardIcon from '@material-ui/icons/FastForward';
+import VolumeUpIcon from '@material-ui/icons/VolumeUp';
+import VolumeMuteIcon from '@material-ui/icons/VolumeMute';
+
+import ClipLoader from 'react-spinners/ClipLoader'
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 
 
 
+const Video = ({ currentvid }) => {
 
-const Video = ({ url }) => {
+    const [ismuted, setIsmuted] = useState(false)
+    const onVolumePress = () => {
+        if (ismuted) {
+            videoRef.current.muted = false;
+            setIsmuted(false)
+            console.log('unmuted!')
+
+        } else {
+            videoRef.current.muted = true;
+            setIsmuted(true)
+
+            console.log('muted!')
+        }
+    }
+
     const [playing, setPlaying] = useState(false)
 
     const videoRef = useRef(null)
@@ -26,21 +45,44 @@ const Video = ({ url }) => {
         }
     }
 
+    //this section handles the like button on the side and top panel
+    const [isliked, setIsLiked] = useState(false);
+    // this function handles the state once the like button is pressed
+    const likeHandler = (e) => {
 
+        if (isliked) {
+            setIsLiked(false);
+            console.log('unliked')
+        } else {
+            setIsLiked(true);
+            console.log(e)
+            console.log('liked')
+        }
+        if (currentvid.liked === false) {
+            currentvid.liked = true;
+        } else {
+            currentvid.liked = false;
+        }
+
+    }
+
+    useEffect(() => {
+        console.log('hey!')
+    }, [isliked])
 
 
     return (
 
         <div className='videocard'>
-            <video loop src={url} type='video/mp4' onclick={onVidPress} ref={videoRef} >
+            <video loop src={currentvid.url} type='video/mp4' onclick={onVidPress} ref={videoRef} >
 
             </video>
 
             <div className='vid_controls'>
-                <FastRewindIcon fontSize='large' />
-                {playing ? <PauseIcon onClick={onVidPress} fontSize='large' /> : <PlayArrowIcon onClick={onVidPress} fontSize='large' />}
-                <FastForwardIcon fontSize='large' />
 
+                {playing ? <PauseIcon id='iconn' onClick={onVidPress} fontSize='large' /> : <PlayArrowIcon id='iconn' onClick={onVidPress} fontSize='large' />}
+                {isliked ? <FavoriteIcon secretdata={currentvid.id} id='iconn' onClick={likeHandler} fontSize='large' /> : <FavoriteBorderIcon secretdata={currentvid.id} onClick={likeHandler} id='iconn' fontSize='large' />}
+                {ismuted ? <VolumeMuteIcon onClick={onVolumePress} id='iconn' fontSize='large' /> : <VolumeUpIcon onClick={onVolumePress} id='iconn' fontSize='large' />}
             </div>
 
         </div>
