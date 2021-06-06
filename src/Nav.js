@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import './nav.css'
-import { NavLink, BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import premLogoWhite from './images/prem logo white.png'
+import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from "./AuthContext";
 import { useHistory } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css'
 import * as ReactBootstrap from 'react-bootstrap'
-import PersonalVideoIcon from '@material-ui/icons/OndemandVideo';
 import { OndemandVideo } from "@material-ui/icons";
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered';
@@ -17,8 +15,8 @@ const usericon = <FontAwesomeIcon icon={faUser} />
 
 const Nav = () => {
 
-    const { currentUser, logout } = useAuth();
-    const [error, setError] = useState();
+    const { logout } = useAuth();
+    const [error, setError] = useState(null);
     const history = useHistory();
 
     async function handleLogout() {
@@ -35,7 +33,7 @@ const Nav = () => {
     return (
 
 
-        <>
+        <>{error && ({ error })}
             <ReactBootstrap.Navbar className='bootnav' bg="default" expand="lg">
                 <ReactBootstrap.Navbar.Brand href="#home"><h1 className='premlogo'>Clips</h1></ReactBootstrap.Navbar.Brand>
                 <ReactBootstrap.Navbar.Toggle aria-controls="basic-navbar-nav" />

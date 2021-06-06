@@ -1,11 +1,7 @@
 import React, { useRef } from 'react'
-import axios from 'axios'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import './home.css'
-import { useForm } from 'react-hook-form'
-import { BrowserRouter as Router, Route, Switch, Link, useHistory } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import app from './firebase'
+import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from './AuthContext'
 
 export default function UpdateProfile() {
@@ -73,13 +69,10 @@ export default function UpdateProfile() {
         <div className='formdiv'>
 
             <form onSubmit={handleSubmit}>
+                {error && ({ error })}
                 <h1 className='logintext'>Update Profile</h1>
                 Email:
                 <input ref={emailRef} className='inputtext' required placeholder='Email' type='email' name='email' defaultValue={currentUser.email} />
-                /*username test*/
-                 Email:
-                <input ref={userNameRef} className='inputtext' required placeholder='Username' type='text' name='username' defaultValue={currentUser.displayName} />
-               //
                 Password:
                 <input ref={passwordRef} className='inputtext' placeholder='Leave blank to keep the same' type='password' name='password' />
                 Confirm Password:

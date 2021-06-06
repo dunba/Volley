@@ -1,7 +1,6 @@
 import axios from "axios";
 import React from "react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
 const Teamdata = ({ match }) => {
@@ -40,7 +39,7 @@ const Teamdata = ({ match }) => {
           <h2>{teamid}</h2>
           <h3>{teamlist.form}</h3>
           <h1>{teamlist.team.name}</h1>
-          <img src={teamlist.team.logo} />
+          <img alt={`A logo of ${teamlist.team.name}`} src={teamlist.team.logo} />
 
           <button onClick={() => history.goBack()}>Back to Table</button>
         </div>

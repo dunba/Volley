@@ -1,13 +1,9 @@
 import React, { useRef } from 'react'
 // import PLBackground from './video/PLBackground.mp4'
 
-import axios from 'axios'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import './home.css'
-import { useForm } from 'react-hook-form'
-import { BrowserRouter as Router, Route, Switch, Link, useHistory } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import app from './firebase'
+import { Link, useHistory } from 'react-router-dom';
 import { Card, Form, Button, Alert } from 'react-bootstrap'
 
 import { useAuth } from './AuthContext'
@@ -21,7 +17,7 @@ const SignUp = () => {
   const passwordConfirmRef = useRef();
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const { signup, currentUser } = useAuth()
+  const { signup } = useAuth()
   const history = useHistory();
   async function handleSubmit(e) {
     e.preventDefault();
@@ -117,12 +113,3 @@ export default SignUp
 
 
 
-{/* <form onSubmit={handleSubmit}>
-        {currentUser && currentUser.email}
-        <h1 className='logintext'>SIGN UP</h1>
-        <input ref={emailRef} className='inputtext' required placeholder='Email' type='email' name='email' />
-        <input ref={passwordRef} className='inputtext' required placeholder='password' type='password' name='password' />
-        <input ref={passwordConfirmRef} className='inputtext' required placeholder='password confirm' type='password' name='password' />
-        <button disabled={loading} className='formbttn'>SIGN UP</button>
-        
-      </form> */}

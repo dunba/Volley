@@ -6,7 +6,6 @@ const Playerdata = ({ match }) => {
   console.log(match);
   console.log(match.params.id);
   const playerid = match.params.id;
-  const totalgoals = match.params;
   const [player, setPlayer] = useState("");
   const playerinfo = {
     method: "GET",
@@ -32,7 +31,7 @@ const Playerdata = ({ match }) => {
     <div>
       {player && (
         <div>
-          <img src={player.photo} />
+          <img alt={`${player.name} portrait`} src={player.photo} />
           <h1>
             {player.firstname} {player.lastname}
           </h1>

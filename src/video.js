@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRef } from 'react'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './video.css'
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';

@@ -19,6 +19,7 @@ const User = () => {
     }
     return (
         <div>
+            {error && ({ error })}
             <h2>WELCOME,{JSON.stringify(currentUser.email)}</h2>
             <h2>your name is {JSON.stringify(currentUser.displayName)}</h2>
 
