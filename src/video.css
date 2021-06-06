@@ -1,18 +1,11 @@
 video {
   /* width: 1552.29; */
-  height: 670px;
+  width: 100%;
   border: 1px solid black;
 }
 
 .videocard {
-  position: relative;
-  background-color: white;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
   width: 100%;
-  height: 730px;
-  display: flex;
-  flex-direction: column;
 }
 
 .sidebar_icons {

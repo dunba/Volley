@@ -10,13 +10,7 @@ const Likes = ({ likenum, likedlist, isliked }) => {
 
             <div>
                 test
-                {likedlist.forEach(element => {
-                <ul>
-                    <li>{element.scorer}</li>
-
-                </ul>
-
-            })};
+                {likedlist[0].scorer}
 
 
             </div>
