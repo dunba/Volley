@@ -71,7 +71,7 @@ function App() {
                             <Route exact path='/stats'>
                                 <Stats />
                             </Route>
-                            <Route exact path='/likes'><Likes likedlist={likedlist} /></Route>
+                            <Route exact path='/likes'><Likes likenum={likenum} likedlist={likedlist} /></Route>
                             <Route path='/stats/:id' component={Playerdata} />
                             <Route path='/table/:id' component={Teamdata} />
                         </div>
