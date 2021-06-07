@@ -26,8 +26,9 @@ const Sidebar = ({ currentvid, onFastforward, goalvids }) => {
                         <ExpandMoreIcon id='iconn' onClick={onFastforward} fontSize='large' />
                     </div>
                     <div>
-                        <h2>{currentvid.scorer}</h2>
-                        <h2>{currentvid.team}</h2>
+                        <h3>{currentvid.scorer}</h3>
+                        <h3>{currentvid.team}</h3>
+                        <p>{currentvid.comments.map(comment => (<p>{comment}</p>))}</p>
                     </div>
 
                 </div>

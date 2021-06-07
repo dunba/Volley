@@ -8,8 +8,6 @@ import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 import VolumeMuteIcon from '@material-ui/icons/VolumeMute';
 
 import ClipLoader from 'react-spinners/ClipLoader'
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 
 
@@ -45,31 +43,6 @@ const Video = ({ currentvid }) => {
         }
     }
 
-    //this section handles the like button on the side and top panel
-    const [isliked, setIsLiked] = useState(false);
-    // this function handles the state once the like button is pressed
-    const likeHandler = (e) => {
-
-        if (isliked) {
-            setIsLiked(false);
-            console.log('unliked')
-        } else {
-            setIsLiked(true);
-            console.log(e)
-            console.log('liked')
-        }
-        if (currentvid.liked === false) {
-            currentvid.liked = true;
-        } else {
-            currentvid.liked = false;
-        }
-
-    }
-
-    useEffect(() => {
-        console.log('hey!')
-    }, [isliked])
-
 
     return (
 
@@ -81,7 +54,6 @@ const Video = ({ currentvid }) => {
             <div className='vid_controls'>
 
                 {playing ? <PauseIcon id='iconn' onClick={onVidPress} fontSize='large' /> : <PlayArrowIcon id='iconn' onClick={onVidPress} fontSize='large' />}
-                {isliked ? <FavoriteIcon secretdata={currentvid.id} id='iconn' onClick={likeHandler} fontSize='large' /> : <FavoriteBorderIcon secretdata={currentvid.id} onClick={likeHandler} id='iconn' fontSize='large' />}
                 {ismuted ? <VolumeMuteIcon onClick={onVolumePress} id='iconn' fontSize='large' /> : <VolumeUpIcon onClick={onVolumePress} id='iconn' fontSize='large' />}
             </div>
 
