@@ -47,9 +47,8 @@ const Video = ({ currentvid }) => {
     return (
 
         <div className='videocard'>
-            <video loop src={currentvid.url} type='video/mp4' onclick={onVidPress} ref={videoRef} >
+            <video loop src={currentvid.url} type='video/mp4' onclick={onVidPress} ref={videoRef} />
 
-            </video>
 
             <div className='vid_controls'>
 

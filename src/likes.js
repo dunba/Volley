@@ -9,8 +9,13 @@ const Likes = ({ likenum, likedlist, isliked }) => {
             <div className='headercontainer'><Nav2 likenum={likenum} /></div>
 
             <div>
-                test
-                {likedlist[0].scorer}
+                {JSON.stringify(likedlist)}
+                {likedlist.map(vid => {
+                    <div>
+                        <video loop src={vid.url} type='video/mp4'>Browser cannot render video</video>
+                    </div>
+                })}
+
 
 
             </div>

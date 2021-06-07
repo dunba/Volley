@@ -77,11 +77,19 @@
   display: flex;
   position: relative;
   flex-direction: row;
-  overflow: hidden;
+  height: 735px;
+
+  overflow: scroll;
   width: 25%;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
+.videosidebar::-webkit-scrollbar {
+  display: none;
+}
+
 .social_controls {
-  padding-top: 6em;
+  padding-top: 1em;
   display: flex;
   flex-direction: column;
   margin: auto;
@@ -91,6 +99,7 @@
   margin: 0.3em 0;
   cursor: pointer;
 }
+
 .headercontainer {
   display: flex;
   justify-content: center;

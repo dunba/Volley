@@ -10,7 +10,7 @@ import Sidebar from './components/sidebar'
 
 
 //this main feed displays video & information from database
-const Feed = ({ goalvids, likedlist, likenum }) => {
+const Feed = ({ goalvids, likedlist, likenum, functiontester }) => {
 
 
 
@@ -27,7 +27,6 @@ const Feed = ({ goalvids, likedlist, likenum }) => {
     console.log(e)
     console.log(e.target.attributes[1].value)
     setIdnumber(e.target.attributes[1].value)
-    // console.log(currentvid)
     setCurrentVid(goalvids[idnumber])
   }
 
@@ -42,7 +41,7 @@ const Feed = ({ goalvids, likedlist, likenum }) => {
 
           <Video currentvid={currentvid} /></div>
         <div className='videosidebar'>
-          <Sidebar currentvid={currentvid} />
+          <Sidebar goalvids={goalvids} currentvid={currentvid} />
         </div>
 
 
