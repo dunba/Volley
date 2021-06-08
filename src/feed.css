@@ -79,7 +79,7 @@
   flex-direction: row;
   height: 735px;
 
-  overflow: scroll;
+  overflow: hidden;
   width: 25%;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -117,4 +117,14 @@
 .descriptionsection {
   padding: 3em;
   display: flex;
+}
+
+.commentssection {
+  height: 200px;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.commentssection::-webkit-scrollbar {
+  display: none;
 }
