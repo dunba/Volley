@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import ShareIcon from '@material-ui/icons/Share';
 import CommentIcon from '@material-ui/icons/Comment';
-
+import { useAuth } from '../AuthContext'
 import '../feed.css'
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
@@ -11,7 +11,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 const Sidebar = ({ currentvid, onFastforward, goalvids }) => {
 
     const commentRef = useRef()
-
+    const currentUser = useAuth();
 
     const [iscommentvisible, setIscommentvisible] = useState(false)
     const commentHandler = () => {
@@ -25,10 +25,11 @@ const Sidebar = ({ currentvid, onFastforward, goalvids }) => {
         }
 
     }
+
     const functiontester = (e) => {
         e.preventDefault();
         console.log(e)
-        goalvids[0].comments.push({ name: 'dan', posting: commentRef.current.value })
+        goalvids[0].comments.push({ name: 'test', posting: commentRef.current.value })
         console.log(commentRef.current.value)
         console.log(goalvids[0].comments)
     }

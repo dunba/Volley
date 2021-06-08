@@ -3,7 +3,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import HomeIcon from '@material-ui/icons/Home';
 import { NavLink } from 'react-router-dom';
 import './feed.css'
-
+import { useAuth } from './AuthContext'
 
 
 
@@ -11,6 +11,9 @@ import './feed.css'
 
 
 const Nav2 = ({ likenum }) => {
+
+    const currentUser = useAuth();
+    console.table(currentUser)
 
     return (
         <div className='headercontainer'>

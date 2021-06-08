@@ -128,3 +128,104 @@
 .commentssection::-webkit-scrollbar {
   display: none;
 }
+
+/*iphone x*/
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+  .flexcontainer {
+    display: flex;
+    flex-direction: column;
+    height: 609px;
+    overflow: scroll;
+  }
+
+  .picholder {
+    width: 100%;
+    background-color: red;
+    height: 200px;
+    margin: auto;
+    position: relative;
+  }
+  .sidepanelholder {
+    width: 100%;
+    overflow: scroll;
+    display: flex;
+    flex-direction: row;
+  }
+  .sidepanelholder::-webkit-scrollbar {
+    display: none;
+  }
+  .sidepanel {
+    height: 60px;
+  }
+  .sidepanelholder {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .mediacontainer {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+
+    width: 100%;
+  }
+
+  .videoholder {
+    position: relative;
+    background-color: rgb(94, 250, 88);
+
+    display: flex;
+    flex-direction: row;
+    order: -1;
+    width: 100%;
+  }
+
+  .videoholder::-webkit-scrollbar {
+    display: none;
+  }
+  .videoholder {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .vid_controls {
+    display: flex;
+    padding: 0.6em;
+    flex-direction: row;
+    height: 20px;
+    background-color: white;
+    margin: auto;
+    width: 100%;
+    justify-content: center;
+  }
+  .videosidebar {
+    background-color: yellow;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    height: 135px;
+
+    overflow: scroll;
+    width: 100%;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .videosidebar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .social_controls {
+    padding-top: 1em;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  }
+  #iconn {
+    color: #37003c;
+    margin: 0.3em 0;
+    cursor: pointer;
+  }
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  /* Styles */
+}

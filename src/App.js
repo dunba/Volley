@@ -15,6 +15,7 @@ import ForgotPassword from './ForgotPassword'
 import UpdateProfile from './UpdateProfile'
 import user from './user'
 import Likes from './likes'
+import Setuserinfo from './setuserinfo'
 
 function App() {
     const rudigergoal = 'https://firebasestorage.googleapis.com/v0/b/premier-league-809fb.appspot.com/o/Antonio%20Rudiger%20gives%20Chelsea%20crucial%20lead%20over%20Leicester%20City%20%20Premier%20League%20%20NBC%20Sports.mp4?alt=media&token=e3f810e0-0e31-4fd9-badc-4a4750fe639a'
@@ -62,7 +63,8 @@ function App() {
                         <div>
 
                             <Nav />
-
+                            <PrivateRoute exact path='/Setuserinfo'>
+                                <Setuserinfo /></PrivateRoute>
                             <PrivateRoute exact path='/'><Feed goalvids={goalvids} likenum={likenum} /></PrivateRoute>
                             <PrivateRoute exact path='/user' component={user} />
                             <PrivateRoute path='/update-profile' component={UpdateProfile} />
@@ -79,7 +81,7 @@ function App() {
                     </Switch>
                 </div>
             </AuthProvider>
-        </Router>
+        </Router >
 
     );
 }
