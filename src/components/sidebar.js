@@ -10,15 +10,16 @@ const Sidebar = ({ currentvid, onFastforward, goalvids }) => {
 
     const commentRef = useRef()
 
-    console.log(currentvid.liked)
-    console.log(currentvid)
 
     const [iscommentvisible, setIscommentvisible] = useState(false)
     const commentHandler = () => {
         if (iscommentvisible === false) {
             setIscommentvisible(true);
+            console.log('comments open')
+            console.table(currentvid.comments)
         } else {
             setIscommentvisible(false);
+            console.log('comments closed');
         }
 
     }
@@ -30,6 +31,11 @@ const Sidebar = ({ currentvid, onFastforward, goalvids }) => {
         console.log(goalvids[0].comments)
     }
 
+    const [islikesvisible, setIslikesvisible] = useState(false);
+    const showLikes = () => {
+        console.log('test')
+    }
+
     return (
         <div>
             <div>
@@ -37,7 +43,8 @@ const Sidebar = ({ currentvid, onFastforward, goalvids }) => {
                 <div>                        <h3>{currentvid.scorer}</h3>
                     <h3>{currentvid.team}</h3>
                     <p>250 Views</p>
-                    <p>250 Likes</p>
+                    <p><strong>{currentvid.likes.likedby.length}</strong> Likes</p>
+                    <p>Liked by <strong>{currentvid.likes.likedby[Math.floor(Math.random() * 8)]}</strong> and <strong>{currentvid.likes.likedby.length}</strong> others </p>
                 </div>
 
                 <div className='sidebar_icons'>
@@ -48,7 +55,7 @@ const Sidebar = ({ currentvid, onFastforward, goalvids }) => {
                         <CommentIcon id='iconn' fontSize='large' onClick={commentHandler} />
                     </div>
                     <div className='commentssection'>
-                        <strong>{currentvid.comments.length}</strong> Comments
+                        <strong><p onClick={() => showLikes}>{currentvid.comments.length}</p></strong> Comments
                         {iscommentvisible ? <p>{currentvid.comments.map(comment => (<p><strong>{comment.name}.      </strong>{comment.posting}<hr />                         </p>
 
                         ))} <div>Add Commment...
