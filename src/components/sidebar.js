@@ -33,7 +33,14 @@ const Sidebar = ({ currentvid, onFastforward, goalvids }) => {
 
     const [islikesvisible, setIslikesvisible] = useState(false);
     const showLikes = () => {
-        console.log('test')
+        if (islikesvisible === false) {
+            setIslikesvisible(true)
+            console.log('showing likes')
+
+        } else {
+            setIslikesvisible(false)
+            console.log('hiding likes')
+        }
     }
 
     return (
@@ -43,8 +50,8 @@ const Sidebar = ({ currentvid, onFastforward, goalvids }) => {
                 <div>                        <h3>{currentvid.scorer}</h3>
                     <h3>{currentvid.team}</h3>
                     <p>250 Views</p>
-                    <p><strong>{currentvid.likes.likedby.length}</strong> Likes</p>
-                    <p>Liked by <strong>{currentvid.likes.likedby[Math.floor(Math.random() * 8)]}</strong> and <strong>{currentvid.likes.likedby.length}</strong> others </p>
+                    <p onClick={showLikes}> <strong>{currentvid.likes.likedby.length}</strong> Likes</p>
+                    {islikesvisible ? <p>Liked by <strong>{currentvid.likes.likedby[Math.floor(Math.random() * 8)]}</strong> and <strong>{currentvid.likes.likedby.length}</strong> others </p> : ''}
                 </div>
 
                 <div className='sidebar_icons'>
@@ -55,7 +62,7 @@ const Sidebar = ({ currentvid, onFastforward, goalvids }) => {
                         <CommentIcon id='iconn' fontSize='large' onClick={commentHandler} />
                     </div>
                     <div className='commentssection'>
-                        <strong><p onClick={() => showLikes}>{currentvid.comments.length}</p></strong> Comments
+                        <strong>{currentvid.comments.length}</strong> Comments
                         {iscommentvisible ? <p>{currentvid.comments.map(comment => (<p><strong>{comment.name}.      </strong>{comment.posting}<hr />                         </p>
 
                         ))} <div>Add Commment...
