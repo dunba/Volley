@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import { useAuth } from './AuthContext'
 import { Card, Form, Button, Alert } from 'react-bootstrap'
 import { BrowserRouter as Router, Link, useHistory } from 'react-router-dom'
+import './setuserinfo.css'
 
 const Setuserinfo = () => {
 
@@ -32,14 +33,14 @@ const Setuserinfo = () => {
     return (
         <div>
             {JSON.stringify({ currentUser })}
-            <Card>
+            <Card className='setusercard'>
                 <Card.Body>
                     <h2 className='text-center mb-4'>Set User Info</h2>
                     {error && <Alert variant='danger'>{error}</Alert>}
                     <Form onSubmit={handleSubmit}>
                         <Form.Group id='displayname'>
                             <Form.Label>Display Name</Form.Label>
-                            <Form.Control type='text' placeholder={currentUser.displayName} ref={displaynameRef} required></Form.Control>
+                            <Form.Control className='forminput' type='text' placeholder={currentUser.displayName} ref={displaynameRef} required></Form.Control>
                         </Form.Group>
 
                         <Button id='submit' type='submit' disabled={loading} className='w-100'>Submit</Button>

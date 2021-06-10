@@ -1,0 +1,11 @@
+.setusercard {
+  margin: auto;
+  display: flex;
+  width: 20%;
+}
+
+.forminput {
+  width: 40%;
+  margin: auto;
+  display: flex;
+}
