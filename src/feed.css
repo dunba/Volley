@@ -1,3 +1,7 @@
+.secondlinkstyle {
+  color: #37003c;
+}
+
 .flexcontainer {
   display: flex;
   flex-direction: column;

@@ -16,8 +16,8 @@ const Nav2 = ({ likenum }) => {
 
     return (
         <div className='headercontainer'>
-            <NavLink exact to="/"><h1><HomeIcon fontSize='large' /></h1> </NavLink>
-            <h1><NavLink exact to="/likes"><FavoriteBorderIcon fontSize='large' /></NavLink></h1>{likenum && (<p id='likenumber'>{likenum}</p>)}
+            <NavLink className='secondlinkstyle' exact to="/"><h1><HomeIcon fontSize='large' /></h1> </NavLink>
+            <h1><NavLink className='secondlinkstyle' exact to="/likes"><FavoriteBorderIcon fontSize='large' /></NavLink></h1>{likenum && (<p id='likenumber'>{likenum}</p>)}
         </div>
     )
 }

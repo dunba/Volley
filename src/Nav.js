@@ -35,7 +35,7 @@ const Nav = () => {
 
         <>{error && ({ error })}
             <ReactBootstrap.Navbar className='bootnav' bg="default" expand="lg">
-                <ReactBootstrap.Navbar.Brand href="#home"><h1 className='premlogo'>Volley</h1></ReactBootstrap.Navbar.Brand>
+                <ReactBootstrap.Navbar.Brand ><h1 className='premlogo'>Volley</h1></ReactBootstrap.Navbar.Brand>
                 <ReactBootstrap.Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <ReactBootstrap.Navbar.Collapse id="basic-navbar-nav">
                     <ReactBootstrap.Nav className="ml-auto  rightsidenav">

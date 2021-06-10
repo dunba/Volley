@@ -22,32 +22,16 @@ function App() {
     const [vids, setVids] = useState([]);
     const ref = firebase.firestore().collection('volley')
 
-    const fetchVids = () => {
+    const fetchDocs = () => {
         console.log(ref)
-        ref.onSnapshot((querySnapshot) => {
-            const items = [];
-            querySnapshot.forEach((doc) => {
-                items.push(doc.data());
-            });
-            setVids(items);
-            console.log(vids)
+        ref.get().then((item) => {
+            const items = items.docs.map((doc) => doc.data());
         })
-
-
-
-
-
-
-
-
-
-
-        console.log(vids)
     }
 
 
     useEffect(() => {
-        fetchVids();
+        fetchDocs();
     }, [])
 
 
