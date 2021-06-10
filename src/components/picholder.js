@@ -2,17 +2,19 @@ import React, { useState, useEffect } from 'react'
 import '../feed.css'
 
 
-const Picholder = ({ goalvids, clickHandler, currentvid }) => {
+const Picholder = ({ goalvids, clickHandler }) => {
 
     return (
         <div>
 
             Playlist<div className='sidepanelholder'>
-                <img alt={currentvid.description} onClick={clickHandler} mycustomattribute={currentvid.id} id='thumbnail' src={currentvid.thumbnail} />
-                <div class="overlay">
-                    <div class="text">{currentvid.scorer}</div>
+                {goalvids.map(pic => (<div className='sidepanel'><img alt={pic.description} onClick={clickHandler} mycustomattribute={pic.id} id='thumbnail' src={pic.img} />
+                    <div class="overlay">
+                        <div class="text">{pic.scorer}</div>
 
-                </div>
+                    </div></div>
+
+                ))}
 
             </div>
         </div>
