@@ -3,6 +3,7 @@ import { useAuth } from './AuthContext'
 import { Card, Form, Button, Alert } from 'react-bootstrap'
 import { BrowserRouter as Router, Link, useHistory } from 'react-router-dom'
 import './setuserinfo.css'
+import { firestore, createUserDocument } from './firebase'
 
 const Setuserinfo = () => {
 
@@ -11,23 +12,31 @@ const Setuserinfo = () => {
     const teamRef = useRef();
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
-    const { updateProfile, currentUser } = useAuth()
+    const { currentUser } = useAuth()
     const history = useHistory();
+    const currentusermail = currentUser.email
 
     async function handleSubmit(e) {
         e.preventDefault();
         try {
             setError('')
             setLoading(true)
-            Alert('Updated User!')
-            await updateProfile(displaynameRef.current.value)
-            history.push('/')
+            await setTimeout(consolelogthis(currentusermail, displaynameRef.current.value), 3000).then(console.log('hey!!!!'))
+            //await createUserDocument(currentusermail, displaynameRef.current.value);
+            // history.push('/')
         } catch {
-            setError('Failed To Update User')
+            setError('Failed To Set User Data')
         }
 
         setLoading(false);
     }
+
+    const consolelogthis = (x, y) => {
+        console.log(x);
+        console.log(y)
+    }
+
+
 
 
     return (

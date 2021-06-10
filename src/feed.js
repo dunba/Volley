@@ -14,8 +14,7 @@ const Feed = ({ goalvids, likedlist, likenum, functiontester }) => {
 
 
 
-  const [idnumber, setIdnumber] = useState(0);
-  const [currentvid, setCurrentVid] = useState(goalvids[idnumber])
+  const [currentvid, setCurrentVid] = useState(goalvids[0])
 
 
 
@@ -23,11 +22,7 @@ const Feed = ({ goalvids, likedlist, likenum, functiontester }) => {
 
   //this handles the playlist picture gallery, retrieves info from the DOM
   const clickHandler = (e) => {
-
     console.log(e)
-    console.log(e.target.attributes[1].value)
-    setIdnumber(e.target.attributes[1].value)
-    setCurrentVid(goalvids[idnumber])
   }
 
   return (
@@ -36,7 +31,7 @@ const Feed = ({ goalvids, likedlist, likenum, functiontester }) => {
       <div className='mediacontainer'>
 
 
-        <div className='picholder'> <Picholder goalvids={goalvids} clickHandler={clickHandler} /></div>
+        <div className='picholder'> <Picholder currentvid={currentvid} goalvids={goalvids} clickHandler={clickHandler} /></div>
         <div className='videoholder'>
 
           <Video currentvid={currentvid} /></div>

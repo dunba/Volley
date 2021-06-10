@@ -13,7 +13,6 @@ import { useAuth } from './AuthContext'
 const Nav2 = ({ likenum }) => {
 
     const currentUser = useAuth();
-    console.table(currentUser)
 
     return (
         <div className='headercontainer'>

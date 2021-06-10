@@ -16,9 +16,49 @@ import UpdateProfile from './UpdateProfile'
 import user from './user'
 import Likes from './likes'
 import Setuserinfo from './setuserinfo'
+import firebase from './firebase'
 
 function App() {
-    const rudigergoal = 'https://firebasestorage.googleapis.com/v0/b/premier-league-809fb.appspot.com/o/Antonio%20Rudiger%20gives%20Chelsea%20crucial%20lead%20over%20Leicester%20City%20%20Premier%20League%20%20NBC%20Sports.mp4?alt=media&token=e3f810e0-0e31-4fd9-badc-4a4750fe639a'
+    const [vids, setVids] = useState([]);
+    const ref = firebase.firestore().collection('volley')
+
+    const fetchVids = () => {
+        console.log(ref)
+        ref.onSnapshot((querySnapshot) => {
+            const items = [];
+            querySnapshot.forEach((doc) => {
+                items.push(doc.data());
+            });
+            setVids(items);
+            console.log(vids)
+        })
+
+
+
+
+
+
+
+
+
+
+        console.log(vids)
+    }
+
+
+    useEffect(() => {
+        fetchVids();
+    }, [])
+
+
+
+
+
+
+
+
+
+    const rudigergoal = 'https://youtu.be/A2mBMlUa2yI'
     const cavanigoal = 'https://firebasestorage.googleapis.com/v0/b/premier-league-809fb.appspot.com/o/Edinson%20Cavani%20gives%20Manchester%20United%20lead%20v%20Fulham%20in%20style%20%20Premier%20League%20%20NBC%20Sports.mp4?alt=media&token=6b5c4466-be28-42cc-b33f-9830c8b84002'
     const torresgoal = 'https://firebasestorage.googleapis.com/v0/b/premier-league-809fb.appspot.com/o/Ferran%20Torres%20scorpion%20kick%20puts%20Manchester%20City%20ahead%20of%20Newcastle%20%20Premier%20League%20%20NBC%20Sports.mp4?alt=media&token=67e40cbd-71ae-4d38-b2e1-329bdaeab913'
     const bergwigngoal = 'https://firebasestorage.googleapis.com/v0/b/premier-league-809fb.appspot.com/o/Steven%20Bergwijn%20slams%20Spurs%20into%20the%20lead%20v%20Aston%20Villa%20%20Premier%20League%20%20NBC%20Sports_720p.mp4?alt=media&token=02e67788-6afa-4100-8307-876fbfe631de'
@@ -38,7 +78,6 @@ function App() {
     useEffect(() => {
         setLikenum(likedlist.length)
     }, [likedlist])
-
 
 
 
@@ -65,7 +104,7 @@ function App() {
                             <Nav />
                             <PrivateRoute exact path='/Setuserinfo'>
                                 <Setuserinfo /></PrivateRoute>
-                            <PrivateRoute exact path='/'><Feed goalvids={goalvids} likenum={likenum} /></PrivateRoute>
+                            <PrivateRoute exact path='/'><Feed vids={vids} goalvids={goalvids} likenum={likenum} /></PrivateRoute>
                             <PrivateRoute exact path='/user' component={user} />
                             <PrivateRoute path='/update-profile' component={UpdateProfile} />
                             <Route exact path='/table'>
