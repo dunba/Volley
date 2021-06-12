@@ -12,7 +12,7 @@ const Setuserinfo = () => {
     const teamRef = useRef();
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
-    const { currentUser } = useAuth()
+    const currentUser = useAuth()
     const history = useHistory();
     const currentusermail = currentUser.email
 

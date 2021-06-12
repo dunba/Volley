@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useAuth } from "./AuthContext";
 
 import './feed.css'
 import Nav2 from './Nav2'
@@ -10,7 +11,7 @@ import Sidebar from './components/sidebar'
 
 
 //this main feed displays video & information from database
-const Feed = ({ goalvids, likedlist, likenum, functiontester }) => {
+const Feed = ({ goalvids, likedlist, functiontester }) => {
 
 
 
@@ -24,10 +25,12 @@ const Feed = ({ goalvids, likedlist, likenum, functiontester }) => {
   const clickHandler = (e) => {
     console.log(e)
   }
+  const currentUser = useAuth();
+  //const loggedInUser = { email: currentUser.currentUser.email, likedvids: [] };
 
   return (
     <div className='flexcontainer'>
-      <Nav2 likenum={likenum} />
+      <Nav2 />
       <div className='mediacontainer'>
 
 
