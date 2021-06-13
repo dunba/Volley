@@ -30,7 +30,7 @@ const SignUp = () => {
       setError('')
       setLoading(true)
       await signup(emailRef.current.value, passwordRef.current.value)
-      history.push('/')
+      history.push('/setuserinfo')
     } catch {
       setError('Failed to create an account')
     }
