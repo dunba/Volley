@@ -41,7 +41,6 @@ const Teamdata = ({ match }) => {
           <h1>{teamlist.team.name}</h1>
           <img alt={`A logo of ${teamlist.team.name}`} src={teamlist.team.logo} />
 
-          <button onClick={() => history.goBack()}>Back to Table</button>
         </div>
       )}
     </div>

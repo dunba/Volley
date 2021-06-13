@@ -75,18 +75,18 @@ const Sidebar = ({ currentvid, onFastforward, goalvids, loggedInUser, setLikeNum
             {" "}
             <h3>{currentvid.scorer}</h3>
             <h3>{currentvid.team}</h3>
-            <p>250 Views</p>
+            <p>{currentvid.views.length} Views</p>
             <p onClick={showLikes}>
               {" "}
-              <strong>0</strong> Likes
+              <strong>{currentvid.likes.length}</strong> Likes
             </p>
             {islikesvisible ? (
               <p>
                 Liked by{" "}
                 <strong>
-                  {currentvid.likes.likedby[Math.floor(Math.random() * 8)]}
+                  {currentvid.likes[Math.floor(Math.random() * currentvid.likes.length)].user}
                 </strong>{" "}
-                and <strong>{currentvid.likes.likedby.length - 1}</strong> others{" "}
+                and <strong>{currentvid.likes.length - 1}</strong> others{" "}
               </p>
             ) : (
               ""

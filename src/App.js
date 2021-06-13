@@ -17,6 +17,9 @@ import Likes from "./likes";
 import Setuserinfo from "./setuserinfo";
 import firebase from "./firebase";
 import user from "./user";
+import Watch from "./watch"
+import VideoWatch from './videowatch'
+import Video from "./video";
 
 function App() {
   const rudigergoal =
@@ -156,7 +159,6 @@ function App() {
       setServerVideos(items);
       setLoading(false);
       console.log(servervideos)
-      console.log('hey')
     });
   };
 
@@ -190,7 +192,9 @@ function App() {
 
             <div>
               <Nav />
-
+              <PrivateRoute exact path="/watch">
+                <Watch servervideos={servervideos} goalvids={goalvids} likenum={likenum} />
+              </PrivateRoute>
               <PrivateRoute exact path="/Setuserinfo">
                 <Setuserinfo />
               </PrivateRoute>
@@ -210,6 +214,7 @@ function App() {
               </Route>
               <Route path="/stats/:id" component={Playerdata} />
               <Route path="/table/:id" component={Teamdata} />
+              <Route path='/watch/:id' component={VideoWatch} />
             </div>
           </Switch>
         </div>

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "./AuthContext";
 import ClipLoader from 'react-spinners/ClipLoader'
+import { Link } from 'react-router-dom';
+
 
 import './feed.css'
 import Nav2 from './Nav2'
@@ -46,15 +48,15 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos }) => {
       <Nav2 likenum={likenum} setLikeNum={setLikeNum} />
 
       <div className='mediacontainer'>
-        <div className='picholder'> <Picholder servervideos={servervideos} currentvid={currentvid} goalvids={goalvids} clickHandler={clickHandler} /></div>
-        <div className='videoholder'>
-          <Video servervideos={servervideos} currentvid={currentvid} />
-        </div>
-        <div className='videosidebar'>
-          <Sidebar likenum={likenum} setLikeNum={setLikeNum} goalvids={goalvids} currentvid={currentvid} />
-        </div>
+        FEED GOES HERE
+        {servervideos.map(pic => (<div>
+          <Link to={`/watch/${pic.id}`}><img alt={pic.description} id='thumbnail' src={pic.thumbnail} /></Link>
+          <div>
+            <div>{pic.description}</div>
 
+          </div></div>
 
+        ))}
       </div>
 
     </div>
