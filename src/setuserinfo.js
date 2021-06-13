@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { useAuth } from './AuthContext'
 import { Card, Form, Button, Alert } from 'react-bootstrap'
 import { BrowserRouter as Router, Link, useHistory } from 'react-router-dom'
@@ -20,7 +20,7 @@ const Setuserinfo = () => {
     const usersRef = firebase.firestore().collection("users");
 
 
-
+    // this function will create a document in firebase if a record of the user does not exist yet.
     const createUserDocument = async (user, displayName, timecreated) => {
         if (!user) return;
         const userRef = usersRef.doc(`/${user.uid}`);
@@ -41,23 +41,37 @@ const Setuserinfo = () => {
                 setError('Error to Set User Info')
             }
         }
-
-
-
-
-
-
-
-
-
     }
 
+    //this runs to validate userdata everytime the page is visited. on the first time, it will prompt user to enter info.
+    const fetchUserData = async (user) => {
+        console.log('fetching user data')
+        const userRef = usersRef.doc(`/${user.uid}`);
+        const snapshot = await userRef.get()
+        if (snapshot.exists) {
+            setError(`Welcome ${userRef.displayName}`)
+            history.push('/')
+        }
+        else {
+
+            setError('Please Enter User Data')
+
+        }
+    }
+    //this will run everytime the page loads to fetch user data
+    useEffect(() => {
+        fetchUserData(currentUser.currentUser);
+    }, [])
+
+
+
+
+    // this runs when the submit button is entered.
     const handleSubmit = async (e) => {
         e.preventDefault();
         await createUserDocument(currentUser.currentUser, currentusermail, displaynameRef.current.value)
         console.log('submit')
     }
-
 
 
 
