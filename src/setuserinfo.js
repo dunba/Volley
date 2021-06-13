@@ -3,7 +3,7 @@ import { useAuth } from './AuthContext'
 import { Card, Form, Button, Alert } from 'react-bootstrap'
 import { BrowserRouter as Router, Link, useHistory } from 'react-router-dom'
 import './setuserinfo.css'
-import { firestore, createUserDocument } from './firebase'
+import firebase from './firebase'
 
 const Setuserinfo = () => {
 
@@ -12,29 +12,53 @@ const Setuserinfo = () => {
     const teamRef = useRef();
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
+    const [success, setSuccess] = useState('');
     const currentUser = useAuth()
     const history = useHistory();
-    const currentusermail = currentUser.email
+    const currentusermail = currentUser.currentUser.email
+    const currentUserId = currentUser.currentUser.uid
+    const usersRef = firebase.firestore().collection("users");
 
-    async function handleSubmit(e) {
-        e.preventDefault();
-        try {
-            setError('')
-            setLoading(true)
-            await setTimeout(consolelogthis(currentusermail, displaynameRef.current.value), 3000).then(console.log('hey!!!!'))
-            //await createUserDocument(currentusermail, displaynameRef.current.value);
-            // history.push('/')
-        } catch {
-            setError('Failed To Set User Data')
+
+
+    const createUserDocument = async (user, displayName, timecreated) => {
+        if (!user) return;
+        const userRef = usersRef.doc(`/${user.uid}`);
+        const snapshot = await userRef.get()
+        if (snapshot.exists) {
+            setError('your username already exists')
+        }
+        else {
+            try {
+                userRef.set({
+                    email: currentusermail,
+                    timecreated: new Date(),
+                    displayName: displaynameRef.current.value
+                })
+                setSuccess('UserInfo Successfully Set')
+                history.push('/')
+            } catch {
+                setError('Error to Set User Info')
+            }
         }
 
-        setLoading(false);
+
+
+
+
+
+
+
+
     }
 
-    const consolelogthis = (x, y) => {
-        console.log(x);
-        console.log(y)
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await createUserDocument(currentUser.currentUser, currentusermail, displaynameRef.current.value)
+        console.log('submit')
     }
+
+
 
 
 
@@ -46,10 +70,11 @@ const Setuserinfo = () => {
                 <Card.Body>
                     <h2 className='text-center mb-4'>Set User Info</h2>
                     {error && <Alert variant='danger'>{error}</Alert>}
+                    {success && <Alert variant='success'>{success}</Alert>}
                     <Form onSubmit={handleSubmit}>
                         <Form.Group id='displayname'>
                             <Form.Label>Display Name</Form.Label>
-                            <Form.Control className='forminput' type='text' placeholder={currentUser.displayName} ref={displaynameRef} required></Form.Control>
+                            <Form.Control className='forminput' type='text' placeholder={currentUser.currentUser.uid} ref={displaynameRef} required></Form.Control>
                         </Form.Group>
 
                         <Button id='submit' type='submit' disabled={loading} className='w-100'>Submit</Button>

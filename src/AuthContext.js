@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { auth } from './firebase'
+import firebase from "./firebase";
+
 
 export const AuthContext = React.createContext();
 
 export function useAuth() {
     return useContext(AuthContext)
 }
+
 
 export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
@@ -35,21 +38,7 @@ export const AuthProvider = ({ children }) => {
     }
     function updatePassword(password) {
         return currentUser.updatePassword(password);
-
-
-        //this is  for the username    
     }
-    function updateProfile(userName) {
-        return currentUser.updateProfile({ displayName: userName });
-    }
-
-
-
-
-
-
-
-
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             setCurrentUser(user)
@@ -58,7 +47,7 @@ export const AuthProvider = ({ children }) => {
         return unsubscribe
     }, []);
 
-    const value = { currentUser, signup, login, logout, resetPassword, updateEmail, updatePassword, updateProfile, }
+    const value = { currentUser, signup, login, logout, resetPassword, updateEmail, updatePassword }
     return (
         <AuthContext.Provider
             value={value}>

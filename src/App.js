@@ -151,9 +151,9 @@ function App() {
   const fetchDocs = () => {
     console.log(videosRef);
     setLoading(true);
-    videosRef.onSnapshot(querySnapshot => {
+    videosRef.onSnapshot(snapshot => {
       const items = [];
-      querySnapshot.forEach(doc => {
+      snapshot.forEach(doc => {
         items.push(doc.data());
       });
       setServerVideos(items);
@@ -192,7 +192,7 @@ function App() {
 
             <div>
               <Nav />
-              <PrivateRoute exact path="/watch">
+              <PrivateRoute servervideos={servervideos} exact path="/watch">
                 <Watch servervideos={servervideos} goalvids={goalvids} likenum={likenum} />
               </PrivateRoute>
               <PrivateRoute exact path="/Setuserinfo">
@@ -214,7 +214,7 @@ function App() {
               </Route>
               <Route path="/stats/:id" component={Playerdata} />
               <Route path="/table/:id" component={Teamdata} />
-              <Route path='/watch/:id' component={VideoWatch} />
+              <Route servervideos={servervideos} path='/watch/:id' component={VideoWatch} />
             </div>
           </Switch>
         </div>
