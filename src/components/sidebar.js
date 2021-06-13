@@ -5,6 +5,7 @@ import { useAuth } from "../AuthContext";
 import "../feed.css";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import ClipLoader from 'react-spinners/ClipLoader'
 
 const Sidebar = ({ currentvid, onFastforward, goalvids, loggedInUser, setLikeNum, likenum }) => {
   const commentRef = useRef();
@@ -59,72 +60,78 @@ const Sidebar = ({ currentvid, onFastforward, goalvids, loggedInUser, setLikeNum
     }
   };
 
+  const [loading, setLoading] = useState(false);
+
+
+  if (loading) return <ClipLoader />
+
   return (
     <div>
-      <div>
-        <div className="descriptionsection">{currentvid.description}</div>
-        <div>{currentUser.email}</div>
+      {currentvid ?
         <div>
-          {" "}
-          <h3>{currentvid.scorer}</h3>
-          <h3>{currentvid.team}</h3>
-          <p>250 Views</p>
-          <p onClick={showLikes}>
+          <div className="descriptionsection">{currentvid.description}</div>
+          <div>{currentUser.email}</div>
+          <div>
             {" "}
-            <strong>{currentvid.likes.likedby.length}</strong> Likes
-          </p>
-          {islikesvisible ? (
-            <p>
-              Liked by{" "}
-              <strong>
-                {currentvid.likes.likedby[Math.floor(Math.random() * 8)]}
-              </strong>{" "}
-              and <strong>{currentvid.likes.likedby.length - 1}</strong> others{" "}
+            <h3>{currentvid.scorer}</h3>
+            <h3>{currentvid.team}</h3>
+            <p>250 Views</p>
+            <p onClick={showLikes}>
+              {" "}
+              <strong>0</strong> Likes
             </p>
-          ) : (
-            ""
-          )}
-        </div>
-
-        <div className="sidebar_icons">
-          <div className="social_controls">
-            {isliked ? (
-              <FavoriteIcon id="iconn" onClick={likeHandler} fontSize="large" />
-            ) : (
-              <FavoriteBorderIcon
-                onClick={likeHandler}
-                id="iconn"
-                fontSize="large"
-              />
-            )}
-            <ShareIcon id="iconn" fontSize="large" />
-            <CommentIcon id="iconn" fontSize="large" onClick={commentHandler} />
-          </div>
-          <div className="commentssection">
-            <strong>{currentvid.comments.length}</strong> Comments
-            {iscommentvisible ? (
+            {islikesvisible ? (
               <p>
-                {currentvid.comments.map(comment => (
-                  <div className="comments">
-                    <p>
-                      <strong>{comment.name}. </strong>
-                      {comment.posting}
-                      <hr />{" "}
-                    </p>
-                  </div>
-                ))}{" "}
-                <div>
-                  Add Commment...
-                  <input ref={commentRef} type="text"></input>
-                  <button onClick={functiontester}>Post</button>
-                </div>
+                Liked by{" "}
+                <strong>
+                  {currentvid.likes.likedby[Math.floor(Math.random() * 8)]}
+                </strong>{" "}
+                and <strong>{currentvid.likes.likedby.length - 1}</strong> others{" "}
               </p>
             ) : (
               ""
             )}
           </div>
-        </div>
-      </div>
+
+          <div className="sidebar_icons">
+            <div className="social_controls">
+              {isliked ? (
+                <FavoriteIcon id="iconn" onClick={likeHandler} fontSize="large" />
+              ) : (
+                <FavoriteBorderIcon
+                  onClick={likeHandler}
+                  id="iconn"
+                  fontSize="large"
+                />
+              )}
+              <ShareIcon id="iconn" fontSize="large" />
+              <CommentIcon id="iconn" fontSize="large" onClick={commentHandler} />
+            </div>
+            <div className="commentssection">
+              <strong>{currentvid.comments.length}</strong> Comments
+              {iscommentvisible ? (
+                <p>
+                  {currentvid.comments.map(comment => (
+                    <div className="comments">
+                      <p>
+                        <strong>{comment.name}. </strong>
+                        {comment.posting}
+                        <hr />{" "}
+                      </p>
+                    </div>
+                  ))}{" "}
+                  <div>
+                    Add Commment...
+                    <input ref={commentRef} type="text"></input>
+                    <button onClick={functiontester}>Post</button>
+                  </div>
+                </p>
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
+        </div> : <ClipLoader />}
     </div>
   );
 };

@@ -141,35 +141,37 @@ function App() {
   //     setLikenum(likedlist.length);
   //   }, [likedlist]);
 
-  const [vids, setVids] = useState([]);
+  const [servervideos, setServerVideos] = useState([]);
   const [loading, setLoading] = useState(false);
   const videosRef = firebase.firestore().collection("videos");
 
-  //   const fetchDocs = () => {
-  //     console.log(videosRef);
-  //     setLoading(true);
-  //     videosRef.onSnapshot(querySnapshot => {
-  //       const items = [];
-  //       querySnapshot.forEach(doc => {
-  //         items.push(doc.data());
-  //       });
-  //       setVids(items);
-  //       setLoading(false);
-  //     });
-  //   };
-
-  const fetchDocs2 = () => {
+  const fetchDocs = () => {
+    console.log(videosRef);
     setLoading(true);
-    videosRef.get().then(item => {
-      const items = items.docs.map(doc => doc.data());
-      console.log(items);
-      setVids(items);
+    videosRef.onSnapshot(querySnapshot => {
+      const items = [];
+      querySnapshot.forEach(doc => {
+        items.push(doc.data());
+      });
+      setServerVideos(items);
       setLoading(false);
+      console.log(servervideos)
+      console.log('hey')
     });
   };
 
+  // const fetchDocs2 = () => {
+  //   setLoading(true);
+  //   videosRef.get().then(item => {
+  //     const items = items.docs.map(doc => doc.data());
+  //     console.log(items);
+  //     setVids(items);
+  //     setLoading(false);
+  //   });
+  // };
+
   useEffect(() => {
-    fetchDocs2();
+    fetchDocs();
   }, []);
 
   return (
@@ -193,7 +195,7 @@ function App() {
                 <Setuserinfo />
               </PrivateRoute>
               <PrivateRoute exact path="/">
-                <Feed vids={vids} goalvids={goalvids} likenum={likenum} />
+                <Feed servervideos={servervideos} goalvids={goalvids} likenum={likenum} />
               </PrivateRoute>
               <PrivateRoute exact path="/user" component={user} />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />

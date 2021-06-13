@@ -11,7 +11,7 @@ import ClipLoader from 'react-spinners/ClipLoader'
 
 
 
-const Video = ({ currentvid }) => {
+const Video = ({ currentvid, servervideos }) => {
 
     const [ismuted, setIsmuted] = useState(false)
     const onVolumePress = () => {
@@ -45,7 +45,8 @@ const Video = ({ currentvid }) => {
     return (
 
         <div className='videocard'>
-            <video loop src={currentvid.url} type='video/mp4' onclick={onVidPress} ref={videoRef} />
+            {currentvid ?
+                <video loop src={currentvid.url} type='video/mp4' onclick={onVidPress} ref={videoRef} /> : <ClipLoader />}
 
 
             <div className='vid_controls'>
