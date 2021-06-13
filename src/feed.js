@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "./AuthContext";
+import ClipLoader from 'react-spinners/ClipLoader'
 
 import './feed.css'
 import Nav2 from './Nav2'
@@ -17,29 +18,37 @@ const Feed = ({ goalvids, likedlist, functiontester }) => {
 
   const [currentvid, setCurrentVid] = useState(goalvids[0])
 
+  const [idnumber, setIdnumber] = useState(0);
 
 
 
 
   //this handles the playlist picture gallery, retrieves info from the DOM
   const clickHandler = (e) => {
-    console.log(e)
+    setLoading(true)
+    //console.log(e)
+    //console.log(e.target.attributes[1].value)
+    setIdnumber(e.target.attributes[1].value)
+    setCurrentVid(goalvids[idnumber])
+    setLoading(false)
   }
   const currentUser = useAuth();
-  //const loggedInUser = { email: currentUser.currentUser.email, likedvids: [] };
+  const [loading, setLoading] = useState(false)
+
+  const [likenum, setLikeNum] = useState(0)
+
 
   return (
     <div className='flexcontainer'>
-      <Nav2 />
+      <Nav2 likenum={likenum} setLikeNum={setLikeNum} />
+
       <div className='mediacontainer'>
-
-
         <div className='picholder'> <Picholder currentvid={currentvid} goalvids={goalvids} clickHandler={clickHandler} /></div>
         <div className='videoholder'>
-
-          <Video currentvid={currentvid} /></div>
+          {loading ? <ClipLoader /> : <Video currentvid={currentvid} />}
+        </div>
         <div className='videosidebar'>
-          <Sidebar goalvids={goalvids} currentvid={currentvid} />
+          <Sidebar likenum={likenum} setLikeNum={setLikeNum} goalvids={goalvids} currentvid={currentvid} />
         </div>
 
 

@@ -6,7 +6,7 @@ import "../feed.css";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 
-const Sidebar = ({ currentvid, onFastforward, goalvids, loggedInUser }) => {
+const Sidebar = ({ currentvid, onFastforward, goalvids, loggedInUser, setLikeNum, likenum }) => {
   const commentRef = useRef();
   const currentUser = useAuth();
 
@@ -50,13 +50,12 @@ const Sidebar = ({ currentvid, onFastforward, goalvids, loggedInUser }) => {
     if (isliked) {
       setIsLiked(false);
       console.log("unliked");
-      loggedInUser.likedvids.pop();
-      console.log(loggedInUser);
+      setLikeNum(likenum - 1)
+
     } else {
       setIsLiked(true);
       console.log("liked");
-      loggedInUser.likedvids.push(currentvid);
-      console.log(loggedInUser);
+      setLikeNum(likenum + 1)
     }
   };
 

@@ -42,7 +42,6 @@ const Video = ({ currentvid }) => {
         }
     }
 
-
     return (
 
         <div className='videocard'>
