@@ -46,7 +46,7 @@ const Video = ({ currentvid, servervideos }) => {
 
         <div className='videocard'>
             {currentvid ?
-                <video loop src={currentvid.url} type='video/mp4' onclick={onVidPress} ref={videoRef} /> : <ClipLoader />}
+                <video src={currentvid.url} type='video/mp4' loop onclick={onVidPress} ref={videoRef} /> : <ClipLoader />}
 
 
             <div className='vid_controls'>

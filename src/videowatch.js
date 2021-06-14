@@ -43,6 +43,15 @@ const VideoWatch = ({ match }) => {
             setLoading(false);
         });
     };
+
+    //this will run everytime the page loads to fetch user data
+    useEffect(() => {
+        fetchDocs();
+        console.log(currentvid)
+        fetchUserData(currentUser.currentUser);
+    }, [])
+
+
     const currentvid = servervideos.filter(video => video.id == videoId)
 
 
@@ -71,12 +80,6 @@ const VideoWatch = ({ match }) => {
         }
     }
 
-    //this will run everytime the page loads to fetch user data
-    useEffect(() => {
-        fetchDocs();
-        console.log(currentvid)
-        fetchUserData(currentUser.currentUser);
-    }, [])
 
 
 
@@ -132,25 +135,20 @@ const VideoWatch = ({ match }) => {
     return (
         <div className='flexcontainer'>
             <Nav2 likenum={likenum} setLikeNum={setLikeNum} />
-            {videoId}
-            <hr />
-
-            <hr />
-            <button onClick={() => history.push('/')}>Back</button>
+            <button className='backbutton' onClick={() => history.push('/')}>Back</button>
 
             <div className='mediacontainer'>
                 <div className='picholder'> <Picholder servervideos={servervideos} currentvid={currentvid} clickHandler={clickHandler} /></div>
                 <div className='videoholder'>
-                    {/* <Video servervideos={servervideos} currentvid={currentvid} /> */}
-                    <div className='videocard'>
-                        <video loop src={currentvid.url} type='video/mp4' onclick={onVidPress} ref={videoRef} />
-                        <div className='vid_controls'>
+                    {currentvid[0] ?
+                        <video src={currentvid[0].url} loop onclick={onVidPress} ref={videoRef}>Cannot Render Video</video> : <ClipLoader />}
 
-                            {playing ? <PauseIcon id='iconn' onClick={onVidPress} fontSize='large' /> : <PlayArrowIcon id='iconn' onClick={onVidPress} fontSize='large' />}
-                            {ismuted ? <VolumeMuteIcon onClick={onVolumePress} id='iconn' fontSize='large' /> : <VolumeUpIcon onClick={onVolumePress} id='iconn' fontSize='large' />}
-                        </div>
+                    <div className='vid_controls'>
 
+                        {playing ? <PauseIcon id='iconn' onClick={onVidPress} fontSize='large' /> : <PlayArrowIcon id='iconn' onClick={onVidPress} fontSize='large' />}
+                        {ismuted ? <VolumeMuteIcon onClick={onVolumePress} id='iconn' fontSize='large' /> : <VolumeUpIcon onClick={onVolumePress} id='iconn' fontSize='large' />}
                     </div>
+
                 </div>
 
                 <div className='videosidebar'>
