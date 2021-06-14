@@ -11,18 +11,16 @@ import Video from './video'
 
 import Picholder from './components/picholder'
 import Sidebar from './components/sidebar'
-
+import firebase from './firebase'
 
 //this main feed displays video & information from database
 const Feed = ({ goalvids, likedlist, functiontester, servervideos }) => {
 
-
   const filteredvid = servervideos.filter(video => video.active)
-  console.log(filteredvid)
+
   const [currentvid, setCurrentVid] = useState(filteredvid[0])
 
   const [idnumber, setIdnumber] = useState(0);
-
 
 
 
@@ -37,10 +35,41 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos }) => {
   }
   const currentUser = useAuth();
   const [loading, setLoading] = useState(false)
-
-
-
   const [likenum, setLikeNum] = useState(0)
+
+  const usersRef = firebase.firestore().collection("users");
+  const [userinfo, setUserInfo] = useState(null)
+
+  //this runs to validate userdata everytime the page is visited. on the first time, it will prompt user to enter info.
+  const fetchUserData = async (user) => {
+    console.log('fetching user data')
+    const userRef = usersRef.doc(`/${user.uid}`);
+    const snapshot = await userRef.get()
+    if (snapshot.exists) {
+      console.log('snapshot')
+    }
+    else {
+
+      console.log('Please Enter User Data')
+
+    }
+  }
+  //this will run everytime the page loads to fetch user data
+
+  useEffect(() => {
+    fetchUserData(currentUser.currentUser);
+
+  }, [])
+
+
+
+
+
+
+
+
+
+
 
 
   return (
@@ -50,7 +79,7 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos }) => {
       <div className='mediacontainer'>
         FEED GOES HERE
         {servervideos.map(pic => (<div>
-          <Link to={`/watch/${pic.id}`}><img alt={pic.description} id='thumbnail' src={pic.thumbnail} /></Link>
+          <Link to={`/watch/${pic.id}`}><img key={pic.id} alt={pic.description} id='thumbnail' src={pic.thumbnail} /></Link>
           <div>
             <div>{pic.description}</div>
 
