@@ -56,26 +56,26 @@ const Sidebar = ({ currentvid }) => {
 
   return (
     <div>
-      {currentvid ?
+      {currentvid[0] ?
         <div>
           <div className="descriptionsection"> {currentvid[0] && (currentvid[0].description)}</div>
           <div>{currentUser.email}</div>
           <div>
             {" "}
-            <h3>{currentvid.scorer}</h3>
-            <h3>{currentvid.team}</h3>
-            <p> Views</p>
+            <h3>{currentvid[0].scorer}</h3>
+            <h3>{currentvid[0].team}</h3>
+            <p> {currentvid[0].views.length} Views</p>
             <p onClick={showLikes}>
               {" "}
-              <strong>222</strong> Likes
+              <strong>{currentvid[0].likes.length}</strong> Likes
             </p>
             {islikesvisible ? (
               <p>
                 Liked by{" "}
                 <strong>
-                  {currentvid.likes[Math.floor(Math.random() * currentvid.likes.length)].user}
+                  {currentvid[0].likes[Math.floor(Math.random() * currentvid[0].likes.length)].user}
                 </strong>{" "}
-                and <strong>{currentvid.likes.length - 1}</strong> others{" "}
+                and <strong>{currentvid[0].likes.length - 1}</strong> others{" "}
               </p>
             ) : (
               ""
@@ -97,10 +97,10 @@ const Sidebar = ({ currentvid }) => {
               <CommentIcon id="iconn" fontSize="large" onClick={commentHandler} />
             </div>
             <div className="commentssection">
-              <strong>5454</strong> Comments
+              <strong>{currentvid[0].comments.length}</strong> Comments
               {iscommentvisible ? (
                 <p>
-                  {currentvid.comments.map(comment => (
+                  {currentvid[0].comments.map(comment => (
                     <div className="comments">
                       <p>
                         <strong>{comment.name}. </strong>

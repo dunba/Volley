@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import ClipLoader from 'react-spinners/ClipLoader'
 import firebase from './firebase'
@@ -11,6 +11,11 @@ import Video from './video'
 
 import Picholder from './components/picholder'
 import Sidebar from './components/sidebar'
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import PauseIcon from '@material-ui/icons/Pause';
+import VolumeUpIcon from '@material-ui/icons/VolumeUp';
+import VolumeMuteIcon from '@material-ui/icons/VolumeMute';
+
 
 
 //this main feed displays video & information from database
@@ -93,6 +98,35 @@ const VideoWatch = ({ match }) => {
     const [likenum, setLikeNum] = useState(0)
 
 
+    ///video stuff
+    const [ismuted, setIsmuted] = useState(false)
+    const onVolumePress = () => {
+        if (ismuted) {
+            videoRef.current.muted = false;
+            setIsmuted(false)
+            console.log('unmuted!')
+
+        } else {
+            videoRef.current.muted = true;
+            setIsmuted(true)
+
+            console.log('muted!')
+        }
+    }
+
+    const [playing, setPlaying] = useState(false)
+
+    const videoRef = useRef(null)
+
+    const onVidPress = () => {
+        if (playing) {
+            videoRef.current.pause();
+            setPlaying(false);
+        } else {
+            videoRef.current.play();
+            setPlaying(true);
+        }
+    }
 
 
     return (
@@ -107,7 +141,16 @@ const VideoWatch = ({ match }) => {
             <div className='mediacontainer'>
                 <div className='picholder'> <Picholder servervideos={servervideos} currentvid={currentvid} clickHandler={clickHandler} /></div>
                 <div className='videoholder'>
-                    <Video servervideos={servervideos} currentvid={currentvid} />
+                    {/* <Video servervideos={servervideos} currentvid={currentvid} /> */}
+                    <div className='videocard'>
+                        <video loop src={currentvid.url} type='video/mp4' onclick={onVidPress} ref={videoRef} />
+                        <div className='vid_controls'>
+
+                            {playing ? <PauseIcon id='iconn' onClick={onVidPress} fontSize='large' /> : <PlayArrowIcon id='iconn' onClick={onVidPress} fontSize='large' />}
+                            {ismuted ? <VolumeMuteIcon onClick={onVolumePress} id='iconn' fontSize='large' /> : <VolumeUpIcon onClick={onVolumePress} id='iconn' fontSize='large' />}
+                        </div>
+
+                    </div>
                 </div>
 
                 <div className='videosidebar'>
