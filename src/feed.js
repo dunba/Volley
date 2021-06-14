@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from "./AuthContext";
 import ClipLoader from 'react-spinners/ClipLoader'
 import { Link } from 'react-router-dom';
-
-
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ChatIcon from '@material-ui/icons/Chat';
 import './feed.css'
 import Nav2 from './Nav2'
 
@@ -73,15 +75,19 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos }) => {
 
 
   return (
-    <div className='flexcontainer'>
+    <div>
       <Nav2 likenum={likenum} setLikeNum={setLikeNum} />
 
-      <div className='mediacontainer'>
+      <div>
         FEED GOES HERE
         {servervideos.map(pic => (<div>
           <Link to={`/watch/${pic.id}`}><img key={pic.id} alt={pic.description} id='thumbnail' src={pic.thumbnail} /></Link>
           <div>
             <div>{pic.description}</div>
+            <div>
+              <VisibilityIcon />{pic.views.length}
+              <FavoriteBorderIcon />{pic.likes.length}
+              <ChatIcon />{pic.comments.length}</div>
 
           </div></div>
 

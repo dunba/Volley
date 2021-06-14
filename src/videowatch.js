@@ -90,6 +90,10 @@ const VideoWatch = ({ match }) => {
     //this handles the playlist picture gallery, retrieves info from the DOM
     const clickHandler = (e) => {
         console.log(e)
+        videoRef.current.pause();
+        setPlaying(false);
+
+
         //console.log(e.target.attributes[1].value)
         //setIdnumber(e.target.attributes[1].value)
         // setCurrentVid(goalvids[idnumber])
