@@ -51,6 +51,14 @@ const Sidebar = ({ currentvid }) => {
 
   const [loading, setLoading] = useState(false);
 
+  const shareHandler = () => {
+    let urlbase = 'localhost:300/watch/'
+    let fullurl = urlbase + currentvid[0].id
+    console.log('sharing video')
+    console.log(fullurl)
+    alert(fullurl)
+  }
+
 
   if (loading) return <ClipLoader />
 
@@ -93,7 +101,7 @@ const Sidebar = ({ currentvid }) => {
                   fontSize="large"
                 />
               )}
-              <ShareIcon id="iconn" fontSize="large" />
+              <ShareIcon id="iconn" fontSize="large" onClick={shareHandler} />
               <CommentIcon id="iconn" fontSize="large" onClick={commentHandler} />
             </div>
             <div className="commentssection">

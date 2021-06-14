@@ -22,7 +22,7 @@
 
 .videoholder {
   position: relative;
-  background-color: white;
+  background-color: black;
   margin: auto;
   display: flex;
   flex-direction: column;

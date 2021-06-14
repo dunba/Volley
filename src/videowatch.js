@@ -134,7 +134,7 @@ const VideoWatch = ({ match }) => {
             setPlaying(true);
         }
     }
-
+    if (loading) return <ClipLoader />
 
     return (
         <div className='flexcontainer'>
