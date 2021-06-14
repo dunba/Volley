@@ -101,7 +101,7 @@ const VideoWatch = ({ match }) => {
             <Nav2 likenum={likenum} setLikeNum={setLikeNum} />
             {videoId}
             <hr />
-            <button onClick={() => history.goBack()}>Back</button>
+            <button onClick={() => history.push('/')}>Back</button>
 
             <div className='mediacontainer'>
                 <div className='picholder'> <Picholder servervideos={servervideos} currentvid={currentvid} clickHandler={clickHandler} /></div>
