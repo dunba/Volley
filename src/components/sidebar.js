@@ -7,7 +7,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import ClipLoader from 'react-spinners/ClipLoader'
 
-const Sidebar = ({ currentvid, onFastforward, goalvids, loggedInUser, setLikeNum, likenum }) => {
+const Sidebar = ({ currentvid }) => {
   const commentRef = useRef();
   const currentUser = useAuth();
 
@@ -23,16 +23,7 @@ const Sidebar = ({ currentvid, onFastforward, goalvids, loggedInUser, setLikeNum
     }
   };
 
-  const functiontester = e => {
-    e.preventDefault();
-    console.log(e);
-    goalvids[0].comments.push({
-      name: "test",
-      posting: commentRef.current.value,
-    });
-    console.log(commentRef.current.value);
-    console.log(goalvids[0].comments);
-  };
+
 
   const [islikesvisible, setIslikesvisible] = useState(false);
   const showLikes = () => {
@@ -51,12 +42,10 @@ const Sidebar = ({ currentvid, onFastforward, goalvids, loggedInUser, setLikeNum
     if (isliked) {
       setIsLiked(false);
       console.log("unliked");
-      setLikeNum(likenum - 1)
 
     } else {
       setIsLiked(true);
       console.log("liked");
-      setLikeNum(likenum + 1)
     }
   };
 
@@ -69,16 +58,16 @@ const Sidebar = ({ currentvid, onFastforward, goalvids, loggedInUser, setLikeNum
     <div>
       {currentvid ?
         <div>
-          <div className="descriptionsection">{currentvid.description}</div>
+          <div className="descriptionsection"> {currentvid[0] && (currentvid[0].description)}</div>
           <div>{currentUser.email}</div>
           <div>
             {" "}
             <h3>{currentvid.scorer}</h3>
             <h3>{currentvid.team}</h3>
-            <p>{currentvid.views.length} Views</p>
+            <p> Views</p>
             <p onClick={showLikes}>
               {" "}
-              <strong>{currentvid.likes.length}</strong> Likes
+              <strong>222</strong> Likes
             </p>
             {islikesvisible ? (
               <p>
@@ -108,7 +97,7 @@ const Sidebar = ({ currentvid, onFastforward, goalvids, loggedInUser, setLikeNum
               <CommentIcon id="iconn" fontSize="large" onClick={commentHandler} />
             </div>
             <div className="commentssection">
-              <strong>{currentvid.comments.length}</strong> Comments
+              <strong>5454</strong> Comments
               {iscommentvisible ? (
                 <p>
                   {currentvid.comments.map(comment => (
@@ -123,7 +112,7 @@ const Sidebar = ({ currentvid, onFastforward, goalvids, loggedInUser, setLikeNum
                   <div>
                     Add Commment...
                     <input ref={commentRef} type="text"></input>
-                    <button onClick={functiontester}>Post</button>
+                    <button>Post</button>
                   </div>
                 </p>
               ) : (

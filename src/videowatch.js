@@ -81,12 +81,11 @@ const VideoWatch = ({ match }) => {
 
     //this handles the playlist picture gallery, retrieves info from the DOM
     const clickHandler = (e) => {
-        setLoading(true)
         console.log(e)
         //console.log(e.target.attributes[1].value)
         //setIdnumber(e.target.attributes[1].value)
         // setCurrentVid(goalvids[idnumber])
-        setLoading(false)
+
     }
 
 
@@ -101,6 +100,8 @@ const VideoWatch = ({ match }) => {
             <Nav2 likenum={likenum} setLikeNum={setLikeNum} />
             {videoId}
             <hr />
+
+            <hr />
             <button onClick={() => history.push('/')}>Back</button>
 
             <div className='mediacontainer'>
@@ -108,12 +109,12 @@ const VideoWatch = ({ match }) => {
                 <div className='videoholder'>
                     <Video servervideos={servervideos} currentvid={currentvid} />
                 </div>
-                {/*
-                <div className='videosidebar'>
-                    <Sidebar likenum={likenum} setLikeNum={setLikeNum} goalvids={goalvids} currentvid={currentvid} /> 
-        </div>
 
-*/}
+                <div className='videosidebar'>
+                    <Sidebar currentvid={currentvid} />
+                </div>
+
+
             </div >
 
 
