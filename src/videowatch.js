@@ -6,7 +6,7 @@ import { useAuth } from './AuthContext'
 
 import './feed.css'
 import Nav2 from './Nav2'
-
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Video from './video'
 
 import Picholder from './components/picholder'
@@ -139,7 +139,8 @@ const VideoWatch = ({ match }) => {
     return (
         <div className='flexcontainer'>
             <Nav2 likenum={likenum} setLikeNum={setLikeNum} />
-            <button className='backbutton' onClick={() => history.push('/')}>Back</button>
+            {/* <button className='backbutton' >Back</button> */}
+            <div onClick={() => history.push('/')} className='backbutton'> <ArrowBackIcon />BACK</div>
 
             <div className='mediacontainer'>
                 <div className='picholder'> <Picholder servervideos={servervideos} currentvid={currentvid} clickHandler={clickHandler} /></div>

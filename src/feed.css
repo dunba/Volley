@@ -1,8 +1,10 @@
 .backbutton {
-  width: 3em;
   position: absolute;
+  top: 10.7em;
+  display: flex;
+  flex-direction: row;
   left: 15%;
-  top: 12.2em;
+  cursor: pointer;
 }
 .secondlinkstyle {
   color: #37003c;
