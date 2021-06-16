@@ -6,6 +6,7 @@ import "../feed.css";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import ClipLoader from 'react-spinners/ClipLoader'
+import CloseIcon from '@material-ui/icons/Close';
 
 const Sidebar = ({ currentvid }) => {
   const commentRef = useRef();
@@ -16,10 +17,8 @@ const Sidebar = ({ currentvid }) => {
     if (iscommentvisible === false) {
       setIscommentvisible(true);
       console.log("comments open");
-      console.table(currentvid.comments);
     } else {
       setIscommentvisible(false);
-      console.log("comments closed");
     }
   };
 
@@ -58,7 +57,6 @@ const Sidebar = ({ currentvid }) => {
     console.log(fullurl)
     alert(fullurl)
   }
-
 
   if (loading) return <ClipLoader />
 
@@ -103,11 +101,14 @@ const Sidebar = ({ currentvid }) => {
               )}
               <ShareIcon id="iconn" fontSize="large" onClick={shareHandler} />
               <CommentIcon id="iconn" fontSize="large" onClick={commentHandler} />
+              <strong>{currentvid[0].comments.length}</strong> Comments
             </div>
             <div className="commentssection">
-              <strong>{currentvid[0].comments.length}</strong> Comments
               {iscommentvisible ? (
                 <p>
+                  <h1>Comments</h1><CloseIcon fontSize='large' onClick={() => setIscommentvisible(false)} />
+                  {currentvid[0].comments.length == 0 ? '0 Comments' : 'Comments'}
+
                   {currentvid[0].comments.map(comment => (
                     <div className="comments">
                       <p>

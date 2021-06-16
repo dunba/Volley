@@ -87,7 +87,7 @@
   justify-content: center;
 }
 .videosidebar {
-  background-color: yellow;
+  background-color: white;
   display: flex;
   position: relative;
   flex-direction: row;
@@ -134,7 +134,10 @@
 }
 
 .commentssection {
-  height: 200px;
+  width: 100%;
+  top: 0em;
+  position: absolute;
+  background-color: yellow;
   overflow: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;

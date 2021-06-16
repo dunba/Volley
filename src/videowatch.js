@@ -17,7 +17,6 @@ import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 import VolumeMuteIcon from '@material-ui/icons/VolumeMute';
 
 
-
 //this main feed displays video & information from database
 const VideoWatch = ({ match }) => {
     const history = useHistory();
@@ -92,7 +91,6 @@ const VideoWatch = ({ match }) => {
         console.log(e)
         videoRef.current.pause();
         setPlaying(false);
-
 
         //console.log(e.target.attributes[1].value)
         //setIdnumber(e.target.attributes[1].value)

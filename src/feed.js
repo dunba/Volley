@@ -8,9 +8,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ChatIcon from '@material-ui/icons/Chat';
 import './feed.css'
 import Nav2 from './Nav2'
-
 import Video from './video'
-
 import Picholder from './components/picholder'
 import Sidebar from './components/sidebar'
 import firebase from './firebase'
