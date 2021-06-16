@@ -65,19 +65,27 @@ const VideoWatch = ({ match }) => {
 
 
     //this runs to validate userdata everytime the page is visited. on the first time, it will prompt user to enter info.
+    const [userDisplayName, setUserDisplayName] = useState('')
+
     const fetchUserData = async (user) => {
         console.log('fetching user data')
         const userRef = usersRef.doc(`/${user.uid}`);
         const snapshot = await userRef.get()
         if (snapshot.exists) {
-            console.log(`Welcome ${userRef.displayName}`)
+            console.log(snapshot.data().displayName)
+            setUserDisplayName(snapshot.data().displayName)
+            //  history.push('/')
         }
         else {
 
-            console.log('Please Enter User Data')
 
         }
     }
+    //this will run everytime the page loads to fetch user data
+    useEffect(() => {
+        fetchUserData(currentUser.currentUser);
+    }, [])
+
 
 
 
@@ -155,7 +163,7 @@ const VideoWatch = ({ match }) => {
                 </div>
 
                 <div className='videosidebar'>
-                    <Sidebar currentvid={currentvid} />
+                    <Sidebar videoId={videoId} videosRef={videosRef} userDisplayName={userDisplayName} currentvid={currentvid} />
                 </div>
 
 

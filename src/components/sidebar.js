@@ -8,10 +8,12 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import ClipLoader from 'react-spinners/ClipLoader'
 import CloseIcon from '@material-ui/icons/Close';
 
-const Sidebar = ({ currentvid }) => {
+const Sidebar = ({ currentvid, userDisplayName, videosRef, videoId }) => {
   const commentRef = useRef();
   const currentUser = useAuth();
 
+
+  //this handles the visibility of the comments section
   const [iscommentvisible, setIscommentvisible] = useState(false);
   const commentHandler = () => {
     if (iscommentvisible === false) {
@@ -19,11 +21,13 @@ const Sidebar = ({ currentvid }) => {
       console.log("comments open");
     } else {
       setIscommentvisible(false);
+      console.log("comments closed");
+
     }
   };
 
 
-
+  //This deals with showing who likes the video
   const [islikesvisible, setIslikesvisible] = useState(false);
   const showLikes = () => {
     if (islikesvisible === false) {
@@ -34,8 +38,12 @@ const Sidebar = ({ currentvid }) => {
       console.log("hiding likes");
     }
   };
+
+
   //this section handles the like button on the side and top panel
   const [isliked, setIsLiked] = useState(false);
+
+
   // this function handles the state once the like button is pressed
   const likeHandler = () => {
     if (isliked) {
@@ -56,6 +64,27 @@ const Sidebar = ({ currentvid }) => {
     console.log('sharing video')
     console.log(fullurl)
     alert(fullurl)
+  }
+
+
+  // this function will post a comment in firebase in a video's comments section.
+  const createLikeRecord = async (video, name, timeliked) => {
+    if (!video) return;
+    const likeRef = videosRef.doc(`/${videoId}`);
+    const likerecord = await likeRef.get()
+    if (likerecord.exists) {
+      console.log(likerecord.data())
+
+    }
+
+  }
+  //this function posts comments to the page
+  const postComment = (e) => {
+    e.preventDefault();
+    console.log(`Comment by ${userDisplayName} reads: ${commentRef.current.value}`)
+    console.log(currentvid[0].comments)
+    console.log(videosRef)
+    createLikeRecord(videoId, userDisplayName)
   }
 
   if (loading) return <ClipLoader />
@@ -122,7 +151,7 @@ const Sidebar = ({ currentvid }) => {
                   <div>
                     Add Commment...
                     <input ref={commentRef} type="text"></input>
-                    <button>Post</button>
+                    <button onClick={postComment}>Post</button>
                   </div>
                 </p>
               ) : (

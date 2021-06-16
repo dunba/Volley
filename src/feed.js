@@ -72,7 +72,6 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos }) => {
 
 
 
-
   return (
     <div>
       <Nav2 likenum={likenum} setLikeNum={setLikeNum} />
