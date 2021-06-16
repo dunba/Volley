@@ -79,6 +79,7 @@ const Sidebar = ({ currentvid }) => {
               <p>
                 Liked by{" "}
                 <strong>
+
                   {currentvid[0].likes[Math.floor(Math.random() * currentvid[0].likes.length)].user}
                 </strong>{" "}
                 and <strong>{currentvid[0].likes.length - 1}</strong> others{" "}
