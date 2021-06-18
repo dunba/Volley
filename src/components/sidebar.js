@@ -15,13 +15,22 @@ const Sidebar = ({ currentvid, userDisplayName, videosRef, videoId }) => {
 
   //this handles the visibility of the comments section
   const [iscommentvisible, setIscommentvisible] = useState(false);
-  const commentHandler = () => {
+
+
+  function consoleLogger() {
+    console.log('toggle')
+  }
+
+  async function commentHandler() {
     if (iscommentvisible === false) {
-      setIscommentvisible(true);
-      console.log("comments open");
+      await setTimeout(() => setIscommentvisible(true), 2000);
+      consoleLogger();
+      // consoleLogger("comments open")
+
     } else {
-      setIscommentvisible(false);
-      console.log("comments closed");
+      await setTimeout(() => setIscommentvisible(false), 2000);
+      // consoleLogger("comments closed")
+      consoleLogger();
 
     }
   };

@@ -77,7 +77,7 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos }) => {
       <Nav2 likenum={likenum} setLikeNum={setLikeNum} />
 
       <div>
-        WELCOME {userDisplayName}
+        {userDisplayName && (`Welcome ${userDisplayName}`)}
         {servervideos.map(pic => (<div>
           <Link to={`/watch/${pic.id}`}><img key={pic.id} alt={pic.description} id='thumbnail' src={pic.thumbnail} /></Link>
           <div>
