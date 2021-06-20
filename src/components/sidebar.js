@@ -17,20 +17,19 @@ const Sidebar = ({ currentvid, userDisplayName, videosRef, videoId }) => {
   const [iscommentvisible, setIscommentvisible] = useState(false);
 
 
-  function consoleLogger() {
-    console.log('toggle')
+  function consoleLogger(comment) {
+    console.log(comment)
   }
 
   async function commentHandler() {
     if (iscommentvisible === false) {
-      await setTimeout(() => setIscommentvisible(true), 2000);
-      consoleLogger();
-      // consoleLogger("comments open")
+      setIscommentvisible(true)
+
+      consoleLogger("comments open")
 
     } else {
-      await setTimeout(() => setIscommentvisible(false), 2000);
-      // consoleLogger("comments closed")
-      consoleLogger();
+      setIscommentvisible(false)
+      consoleLogger("comments closed")
 
     }
   };

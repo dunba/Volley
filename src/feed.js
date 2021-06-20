@@ -44,11 +44,10 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos }) => {
   const [userDisplayName, setUserDisplayName] = useState('')
 
   const fetchUserData = async (user) => {
-    console.log('fetching user data')
     const userRef = usersRef.doc(`/${user.uid}`);
     const snapshot = await userRef.get()
     if (snapshot.exists) {
-      console.log(snapshot.data().displayName)
+      // console.log(snapshot.data().displayName)
       setUserDisplayName(snapshot.data().displayName)
       //  history.push('/')
     }
@@ -60,6 +59,7 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos }) => {
   //this will run everytime the page loads to fetch user data
   useEffect(() => {
     fetchUserData(currentUser.currentUser);
+
   }, [])
 
 
@@ -69,18 +69,21 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos }) => {
 
 
 
+  const date = new Date();
+  const todaysTimeHours = date.getHours()
+  const todaysDate = date.getMonth();
 
-
-
+  console.log(todaysDate)
   return (
     <div>
       <Nav2 likenum={likenum} setLikeNum={setLikeNum} />
 
       <div>
         {userDisplayName && (`Welcome ${userDisplayName}`)}
-        {servervideos.map(pic => (<div>
-          <Link to={`/watch/${pic.id}`}><img key={pic.id} alt={pic.description} id='thumbnail' src={pic.thumbnail} /></Link>
-          <div>
+
+        {servervideos.map(pic => (<div className='vidposting'>
+          <Link to={`/watch/${pic.id}`}><img key={pic.id} alt={pic.description} id='thumbnailonfeed' src={pic.thumbnail} /></Link>
+          <div >
             <div>{pic.description}</div>
             <div>
               <VisibilityIcon />{pic.views.length}
