@@ -1,3 +1,8 @@
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
 .backbutton {
   position: absolute;
   top: 10.7em;
@@ -49,20 +54,35 @@
 }
 
 #thumbnailonfeed {
-  width: 50em;
-  margin: 5px;
+  width: 20em;
+  margin: 0.4em;
+  -webkit-box-shadow: 0px 7px 6px -4px #000000;
+  box-shadow: 0px 7px 6px -4px #000000;
 }
 #thumbnailonfeed:hover {
   opacity: 50%;
   transition: 0.5s ease;
 }
 .vidposting {
-  box-shadow: 8px 9px 9px -8px rgba(0, 0, 0, 1);
-  -webkit-box-shadow: 8px 9px 9px -8px rgba(0, 0, 0, 1);
-  -moz-box-shadow: 8px 9px 9px -8px rgba(0, 0, 0, 1);
-  width: 50%;
   margin: auto;
 }
+.videodescription {
+  display: none;
+}
+.videosection {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+}
+.reelholder {
+  display: flex;
+  overflow: scroll;
+}
+.reelholder::-webkit-scrollbar {
+  display: none;
+}
+
 .overlay {
   background-color: #008cba;
 }
