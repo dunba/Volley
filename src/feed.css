@@ -1,6 +1,16 @@
-.main {
+main {
   display: flex;
   flex-direction: column;
+  background-color: white;
+}
+
+section {
+  margin: 4em 0;
+  display: flex;
+}
+
+section h4 {
+  justify-self: flex-start;
 }
 
 .backbutton {
@@ -54,7 +64,7 @@
 }
 
 #thumbnailonfeed {
-  width: 20em;
+  width: 22em;
   margin: 0.4em;
   -webkit-box-shadow: 0px 7px 6px -4px #000000;
   box-shadow: 0px 7px 6px -4px #000000;
@@ -72,7 +82,7 @@
 .videosection {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 90%;
   margin: auto;
 }
 .reelholder {
@@ -154,6 +164,7 @@
   display: flex;
   justify-content: center;
   flex-direction: row;
+  background: transparent;
 }
 
 #likenumber {

@@ -66,29 +66,28 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos }) => {
       <Nav2 likenum={likenum} setLikeNum={setLikeNum} />
 
       <main>
-        <section>{userDisplayName && `Welcome ${userDisplayName}`}</section>
+        <p>{userDisplayName && `Welcome ${userDisplayName}`}</p>
         <section>
-          Latest Videos
+          <h5> Latest Videos</h5>
           <Videosection servervideos={servervideos} />
         </section>
 
         <section>
-          Recommended Videos
+          <h5>Recommended Videos</h5>
           <Videosection servervideos={servervideos} />
         </section>
 
         <section>
-          Liked Videos
+          <h5>Interviews</h5>
           <Videosection servervideos={servervideos} />
         </section>
 
         <section>
-          Interviews
+          <h5>Trending</h5>
           <Videosection servervideos={servervideos} />
         </section>
-
         <section>
-          Latest Videos
+          <h5>Liked Videos</h5>
           <Videosection servervideos={servervideos} />
         </section>
       </main>
