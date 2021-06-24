@@ -56,11 +56,13 @@ const Sidebar = ({ currentvid, userDisplayName, videosRef, videoId }) => {
   const likeHandler = () => {
     if (isliked) {
       setIsLiked(false);
-      console.log("unliked");
+      console.log("unliked")
+      console.log(videoId);
 
     } else {
       setIsLiked(true);
       console.log("liked");
+      console.log(videoId);
     }
   };
 

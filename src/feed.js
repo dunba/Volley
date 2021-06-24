@@ -42,6 +42,7 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos }) => {
 
   //this runs to validate userdata everytime the page is visited. on the first time, it will prompt user to enter info.
   const [userDisplayName, setUserDisplayName] = useState("");
+  const [userLikes, setUserLikes] = useState(null);
 
   const fetchUserData = async user => {
     const userRef = usersRef.doc(`/${user.uid}`);
@@ -49,6 +50,7 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos }) => {
     if (snapshot.exists) {
       // console.log(snapshot.data().displayName)
       setUserDisplayName(snapshot.data().displayName);
+      setUserLikes(snapshot.data().userlikes.length);
       //  history.push('/')
     } else {
     }
@@ -65,7 +67,7 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos }) => {
   console.log(todaysDate);
   return (
     <>
-      <Nav2 likenum={likenum} setLikeNum={setLikeNum} />
+      <Nav2 likenum={userLikes} setLikeNum={setLikeNum} />
 
       <main>
         <p>{userDisplayName ? `Welcome ${userDisplayName}` : <ClipLoader />}</p>

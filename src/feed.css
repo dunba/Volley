@@ -2,6 +2,7 @@ main {
   display: flex;
   flex-direction: column;
   background-color: white;
+  margin-bottom: 10em;
 }
 
 section {

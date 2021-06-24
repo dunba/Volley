@@ -33,7 +33,8 @@ const Setuserinfo = () => {
                 userRef.set({
                     email: currentusermail,
                     timecreated: new Date(),
-                    displayName: displaynameRef.current.value
+                    displayName: displaynameRef.current.value,
+                    userlikes: []
                 })
                 setSuccess('UserInfo Successfully Set')
                 history.push('/')
