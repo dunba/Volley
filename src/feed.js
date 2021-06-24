@@ -22,6 +22,8 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos }) => {
 
   const [idnumber, setIdnumber] = useState(0);
 
+  const [userLikedVideos, setUserLikedVideos] = useState([]);
+
   //this handles the playlist picture gallery, retrieves info from the DOM
   const clickHandler = e => {
     setLoading(true);
@@ -66,15 +68,22 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos }) => {
       <Nav2 likenum={likenum} setLikeNum={setLikeNum} />
 
       <main>
-        <p>{userDisplayName && `Welcome ${userDisplayName}`}</p>
-        <section>
-          <Videosection servervideos={servervideos} sectiontitle={"Latest"} />
-        </section>
-
+        <p>{userDisplayName ? `Welcome ${userDisplayName}` : <ClipLoader />}</p>
         <section>
           <Videosection
             servervideos={servervideos}
             sectiontitle={"Recommended"}
+          />
+        </section>
+
+        <section>
+          <Videosection servervideos={servervideos} sectiontitle={"Club"} />
+        </section>
+
+        <section>
+          <Videosection
+            sectiontitle={"International"}
+            servervideos={servervideos}
           />
         </section>
 
@@ -84,12 +93,8 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos }) => {
             servervideos={servervideos}
           />
         </section>
-
         <section>
-          <Videosection sectiontitle={"Trending"} servervideos={servervideos} />
-        </section>
-        <section>
-          <Videosection sectiontitle={"Liked"} servervideos={servervideos} />
+          <Videosection sectiontitle={"Liked"} servervideos={userLikedVideos} />
         </section>
       </main>
 

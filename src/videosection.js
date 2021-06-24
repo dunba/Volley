@@ -8,12 +8,25 @@ import ChatIcon from "@material-ui/icons/Chat";
 import "./feed.css";
 
 const Videosection = ({ servervideos, sectiontitle }) => {
+
+if(!servervideos) return <ClipLoader/>
+
+else if(servervideos.length===0)  return (
+     <>
+      <div className="videosection">
+        <h6>{sectiontitle}</h6>
+
+        <span>No {sectiontitle} Videos </span>
+      </div>
+    </>
+)
+
   return (
     <>
       <div className="videosection">
         <h6>{sectiontitle}</h6>
 
-        {servervideos ? (
+        
           <div className="reelholder">
             {servervideos.map(pic => (
               <div className="vidposting">
@@ -29,9 +42,9 @@ const Videosection = ({ servervideos, sectiontitle }) => {
               </div>
             ))}{" "}
           </div>
-        ) : (
-          <ClipLoader />
-        )}
+        
+         
+        
       </div>
     </>
   );
