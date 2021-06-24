@@ -5,12 +5,16 @@ main {
 }
 
 section {
-  margin: 2em 0;
+  margin: 1em 0;
   display: flex;
+  flex-direction: column;
 }
 
-section h4 {
-  justify-self: flex-start;
+h6 {
+  color: black;
+  position: relative;
+  text-align: left;
+  left: 2.5%;
 }
 
 .backbutton {
@@ -65,20 +69,30 @@ section h4 {
 
 #thumbnailonfeed {
   transition: all 0.2s ease-in-out;
-  width: 22em;
+  width: 20em;
   margin: 0.4em;
   -webkit-box-shadow: 0px 7px 6px -4px #000000;
   box-shadow: 0px 7px 6px -4px #000000;
 }
 #thumbnailonfeed:hover {
-  transform: scale(1.1);
-  transition: 0.6s ease;
 }
+
 .vidposting {
   margin: auto;
+  padding: 2em;
+  transition: all 0.2s ease-in-out;
+}
+
+.vidposting:hover {
+  transform: scale(1.25);
+  transition: 0.6s ease;
 }
 .videodescription {
-  display: none;
+  visibility: visible;
+  position: relative;
+  bottom: 10em;
+  background-color: yellow;
+  width: 100%;
 }
 .videosection {
   display: flex;
@@ -89,11 +103,8 @@ section h4 {
 .reelholder {
   display: flex;
   overflow: scroll;
-  height: 17em;
-  padding-left: 3em;
-}
-.reelholder::-webkit-scrollbar {
-  display: none;
+  overflow-y: hidden;
+  height: 100%;
 }
 
 .overlay {

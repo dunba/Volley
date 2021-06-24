@@ -68,27 +68,28 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos }) => {
       <main>
         <p>{userDisplayName && `Welcome ${userDisplayName}`}</p>
         <section>
-          <h5> Latest Videos</h5>
-          <Videosection servervideos={servervideos} />
+          <Videosection servervideos={servervideos} sectiontitle={"Latest"} />
         </section>
 
         <section>
-          <h5>Recommended Videos</h5>
-          <Videosection servervideos={servervideos} />
+          <Videosection
+            servervideos={servervideos}
+            sectiontitle={"Recommended"}
+          />
         </section>
 
         <section>
-          <h5>Interviews</h5>
-          <Videosection servervideos={servervideos} />
+          <Videosection
+            sectiontitle={"Interviews"}
+            servervideos={servervideos}
+          />
         </section>
 
         <section>
-          <h5>Trending</h5>
-          <Videosection servervideos={servervideos} />
+          <Videosection sectiontitle={"Trending"} servervideos={servervideos} />
         </section>
         <section>
-          <h5>Liked Videos</h5>
-          <Videosection servervideos={servervideos} />
+          <Videosection sectiontitle={"Liked"} servervideos={servervideos} />
         </section>
       </main>
 
