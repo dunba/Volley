@@ -9,8 +9,9 @@ import { useAuth } from './AuthContext'
 
 
 
+const Nav2 = ({ loggedInUser }) => {
 
-const Nav2 = ({ loggedInUser, likenum, setLikeNum }) => {
+    const likenum = 3;
 
     const currentUser = useAuth();
 

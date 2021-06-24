@@ -13,21 +13,25 @@ const Videosection = ({ servervideos, sectiontitle }) => {
       <div className="videosection">
         <h6>{sectiontitle}</h6>
 
-        <div className="reelholder">
-          {servervideos.map(pic => (
-            <div className="vidposting">
-              <Link to={`/watch/${pic.id}`}>
-                <img
-                  key={pic.id}
-                  alt={pic.description}
-                  id="thumbnailonfeed"
-                  src={pic.thumbnail}
-                />
-              </Link>
-              <div className="videodescription">{pic.description}</div>
-            </div>
-          ))}{" "}
-        </div>
+        {servervideos ? (
+          <div className="reelholder">
+            {servervideos.map(pic => (
+              <div className="vidposting">
+                <Link to={`/watch/${pic.id}`}>
+                  <img
+                    key={pic.id}
+                    alt={pic.description}
+                    id="thumbnailonfeed"
+                    src={pic.thumbnail}
+                  />
+                </Link>
+                <div className="videodescription">{pic.description}</div>
+              </div>
+            ))}{" "}
+          </div>
+        ) : (
+          <ClipLoader />
+        )}
       </div>
     </>
   );
