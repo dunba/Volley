@@ -23,6 +23,11 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos }) => {
   const [idnumber, setIdnumber] = useState(0);
 
   const [userLikedVideos, setUserLikedVideos] = useState([]);
+  const clubVideos = servervideos.filter(videos => videos.club);
+  const internationalVideos = servervideos.filter(
+    videos => videos.international
+  );
+  const interviewVideos = servervideos.filter(videos => videos.interview);
 
   //this handles the playlist picture gallery, retrieves info from the DOM
   const clickHandler = e => {
@@ -79,20 +84,20 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos }) => {
         </section>
 
         <section>
-          <Videosection servervideos={servervideos} sectiontitle={"Club"} />
+          <Videosection servervideos={clubVideos} sectiontitle={"Club"} />
         </section>
 
         <section>
           <Videosection
             sectiontitle={"International"}
-            servervideos={servervideos}
+            servervideos={internationalVideos}
           />
         </section>
 
         <section>
           <Videosection
             sectiontitle={"Interviews"}
-            servervideos={servervideos}
+            servervideos={interviewVideos}
           />
         </section>
         <section>

@@ -71,13 +71,11 @@ h6 {
 #thumbnailonfeed {
   transition: all 0.2s ease-in-out;
   width: 20em;
-  margin: 0.1em;
   -webkit-box-shadow: 0px 7px 6px -4px #000000;
   box-shadow: 0px 7px 6px -4px #000000;
 }
 
 .vidposting {
-  margin: auto;
   padding: 0.3em;
   transition: all 0.2s ease-in-out;
 }
