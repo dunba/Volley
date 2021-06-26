@@ -1,1 +1,1 @@
-This is my Premier League portal prototype.
+A fullstack media streaming web application built on React, and Firebase.

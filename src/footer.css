@@ -1,0 +1,18 @@
+.sitenav {
+  list-style: none;
+}
+
+.sectionholder {
+  color: brown;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.copyright {
+  text-align: left;
+}
+
+footer {
+  padding: 3em 5%;
+}

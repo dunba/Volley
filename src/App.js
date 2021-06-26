@@ -20,124 +20,14 @@ import user from "./user";
 import Watch from "./watch"
 import VideoWatch from './videowatch'
 import Video from "./video";
+import Footer from './footer'
 
 function App() {
-  const rudigergoal =
-    "https://firebasestorage.googleapis.com/v0/b/premier-league-809fb.appspot.com/o/Antonio%20Rudiger%20gives%20Chelsea%20crucial%20lead%20over%20Leicester%20City%20%20Premier%20League%20%20NBC%20Sports.mp4?alt=media&token=e3f810e0-0e31-4fd9-badc-4a4750fe639a";
-  const cavanigoal =
-    "https://firebasestorage.googleapis.com/v0/b/premier-league-809fb.appspot.com/o/Edinson%20Cavani%20gives%20Manchester%20United%20lead%20v%20Fulham%20in%20style%20%20Premier%20League%20%20NBC%20Sports.mp4?alt=media&token=6b5c4466-be28-42cc-b33f-9830c8b84002";
-  const torresgoal =
-    "https://firebasestorage.googleapis.com/v0/b/premier-league-809fb.appspot.com/o/Ferran%20Torres%20scorpion%20kick%20puts%20Manchester%20City%20ahead%20of%20Newcastle%20%20Premier%20League%20%20NBC%20Sports.mp4?alt=media&token=67e40cbd-71ae-4d38-b2e1-329bdaeab913";
-  const bergwigngoal =
-    "https://firebasestorage.googleapis.com/v0/b/premier-league-809fb.appspot.com/o/Steven%20Bergwijn%20slams%20Spurs%20into%20the%20lead%20v%20Aston%20Villa%20%20Premier%20League%20%20NBC%20Sports_720p.mp4?alt=media&token=02e67788-6afa-4100-8307-876fbfe631de";
 
-  const bamfordgoal =
-    "https://firebasestorage.googleapis.com/v0/b/premier-league-809fb.appspot.com/o/Patrick%20Bamford%20breaks%20deadlock%20for%20Leeds%20United%20v%20Southampton%20%20Premier%20League%20%20NBC%20Sports.mp4?alt=media&token=dd615309-4fcc-474a-89da-a2e14284a3f1";
-  const pepegoal =
-    "https://firebasestorage.googleapis.com/v0/b/premier-league-809fb.appspot.com/o/Nicolas%20Pepe%20bags%20brace%20in%20Arsenal%20win%20over%20Crystal%20Palace%20%20Premier%20League%20%20NBC%20Sports_720p.mp4?alt=media&token=99137465-448b-4a01-b323-720bae602cda";
-  const goalvids = [
-    {
-      liked: true,
-      description:
-        "Antonio Rudiger gives Chelsea crucial lead over Leicester City ",
-      id: 0,
-      active: "true",
-      team: "Chelsea",
-      url: rudigergoal,
-      scorer: "Antonio Rudiger",
-      img: "https://via.placeholder.com/300.png/09f/fff",
-      comments: [
-        { name: "bob", posting: "first comment" },
-        { name: "brad", posting: "second comment" },
-        { name: "brad", posting: "third comment" },
-        { name: "dunba", posting: "4th comment" },
-        { name: "tester", posting: "fifth comment" },
-        { name: "steve", posting: "6th comment" },
-      ],
-      likes: {
-        numberoflikes: 670,
-        likedby: [
-          "dunba",
-          "steve",
-          "martin",
-          "tina",
-          "malik",
-          "josiah",
-          "caleb",
-          "gabriel",
-        ],
-      },
-    },
-    {
-      liked: true,
-      description:
-        "Edinson Cavani gives Manchester United lead v Fulham in style ",
-      id: 1,
-      active: "false",
-      team: "Manchester United",
-      url: cavanigoal,
-      scorer: "Edinson Cavani",
-      img: "https://via.placeholder.com/300/12ds5a/808080",
-      comments: [],
-      likes: { numberoflikes: 0, likedby: [] },
-    },
-    {
-      liked: false,
-      description:
-        "Ferran Torres scorpion kick puts Manchester City ahead of Newcastle",
-      id: 2,
-      active: "false",
-      team: "Manchester City",
-      url: torresgoal,
-      scorer: "Ferran Torres",
-      img: "https://via.placeholder.com/300.png/0s06dsf/fff",
-      comments: [],
-      likes: { numberoflikes: 0, likedby: [] },
-    },
-    {
-      liked: false,
-      description: "Steven Bergwijn slams Spurs into the lead v Aston Villa",
-      id: 3,
-      active: "false",
-      team: "Tottenham",
-      url: bergwigngoal,
-      scorer: "Steven Bergwign",
-      img: "https://via.placeholder.com/300/2200gg/808080",
-      comments: [],
-      likes: { numberoflikes: 0, likedby: [] },
-    },
-    {
-      liked: false,
-      description:
-        "Patrick Bamford breaks deadlock for Leeds United v Southampton",
-      id: 4,
-      active: "false",
-      team: "Leeds",
-      url: bamfordgoal,
-      scorer: "Patrick Bamford",
-      img: "https://via.placeholder.com/300/fkh544/808080",
-      comments: [],
-      likes: { numberoflikes: 0, likedby: [] },
-    },
-    {
-      liked: true,
-      description: "Nicolas Pepe bags brace in Arsenal win over Crystal Palace",
-      id: 5,
-      active: "false",
-      team: "Arsenal",
-      url: pepegoal,
-      scorer: "Nicolas Pepe",
-      img: "https://via.placeholder.com/300/ffffff/808080",
-      comments: [],
-      likes: { numberoflikes: 0, likedby: [] },
-    },
-  ];
 
   const [likenum, setLikenum] = useState(null);
 
-  //this loops through an array of videos, and returns the one who's like property = true
 
-  let likedlist = goalvids.filter(item => item.liked);
 
   //this gives a notification of the number of likes = true based on the database
   //   useEffect(() => {
@@ -193,13 +83,13 @@ function App() {
             <div>
               <Nav />
               <PrivateRoute servervideos={servervideos} exact path="/watch">
-                <Watch servervideos={servervideos} goalvids={goalvids} likenum={likenum} />
+                <Watch servervideos={servervideos} likenum={likenum} />
               </PrivateRoute>
               <PrivateRoute exact path="/Setuserinfo">
                 <Setuserinfo />
               </PrivateRoute>
               <PrivateRoute exact path="/">
-                <Feed servervideos={servervideos} goalvids={goalvids} likenum={likenum} />
+                <Feed servervideos={servervideos} likenum={likenum} />
               </PrivateRoute>
               <PrivateRoute exact path="/user" component={user} />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
@@ -210,11 +100,12 @@ function App() {
                 <Stats />
               </Route>
               <Route exact path="/likes">
-                <Likes likenum={likenum} likedlist={likedlist} />
+                <Likes likenum={likenum} />
               </Route>
               <Route path="/stats/:id" component={Playerdata} />
               <Route path="/table/:id" component={Teamdata} />
               <Route servervideos={servervideos} path='/watch/:id' component={VideoWatch} />
+              <Footer />
             </div>
           </Switch>
         </div>

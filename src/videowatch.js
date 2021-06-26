@@ -29,6 +29,28 @@ const VideoWatch = ({ match }) => {
     const videosRef = firebase.firestore().collection("videos");
 
 
+
+
+
+    const currentvid = servervideos.filter(video => video.id == videoId)
+    const [currenttype, setCurrentType] = useState(null);
+    const fetchCurrentType = (video) => {
+        if (video.club === true) {
+            // return 'club'
+            console.log('club')
+        } else if (video.international) {
+            //  return 'international'
+            console.log('international')
+        } else if (video.interview) {
+            //  return 'interview'
+            console.log('interview')
+        }
+    }
+
+
+
+
+
     //this will fetch videos from the server
     const fetchDocs = () => {
         console.log(videosRef);
@@ -43,15 +65,6 @@ const VideoWatch = ({ match }) => {
         });
     };
 
-    //this will run everytime the page loads to fetch user data
-    useEffect(() => {
-        fetchDocs();
-        console.log(currentvid)
-        fetchUserData(currentUser.currentUser);
-    }, [])
-
-
-    const currentvid = servervideos.filter(video => video.id == videoId)
 
 
 
@@ -83,7 +96,10 @@ const VideoWatch = ({ match }) => {
     }
     //this will run everytime the page loads to fetch user data
     useEffect(() => {
+        fetchDocs();
         fetchUserData(currentUser.currentUser);
+        console.log(currentvid)
+
     }, [])
 
 

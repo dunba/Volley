@@ -79,7 +79,7 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos }) => {
         <section>
           <Videosection
             servervideos={servervideos}
-            sectiontitle={"Recommended"}
+            sectiontitle={"Latest"}
           />
         </section>
 
@@ -105,17 +105,7 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos }) => {
         </section>
       </main>
 
-      <footer>
-        <section>
-          <h2>Site Navigation</h2>
-          <ul>
-            <li>Home</li>
-            <li>Stats</li>
-            <li>Table</li>
-            <li>User Account</li>
-          </ul>
-        </section>
-      </footer>
+
     </>
   );
 };

@@ -6,7 +6,7 @@ import { useAuth } from "./AuthContext";
 
 
 
-const Likes = ({ likenum, likedlist, isliked }) => {
+const Likes = ({ likenum }) => {
     const usersRef = firebase.firestore().collection("users");
 
     const currentUser = useAuth();
@@ -28,18 +28,17 @@ const Likes = ({ likenum, likedlist, isliked }) => {
         fetchUserData(currentUser.currentUser);
     }, []);
 
-    console.log(likedlist)
     return (
         <div className='flexcontainer'>
             <div className='headercontainer'><Nav2 likenum={userLikes} /></div>
 
             <div>
-                {JSON.stringify(likedlist)}
-                {likedlist.map(vid => {
-                    <div>
-                        <video loop src={vid.url} type='video/mp4'>Browser cannot render video</video>
-                    </div>
-                })}
+
+
+                <div>
+                    video goes here
+                </div>
+
 
 
 

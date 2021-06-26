@@ -7,10 +7,11 @@ import ClipLoader from 'react-spinners/ClipLoader'
 
 const Picholder = ({ goalvids, clickHandler, servervideos }) => {
 
+
     return (
         <div>
 
-            Playlist<div className='sidepanelholder'>
+            Recommended<div className='sidepanelholder'>
                 {servervideos ?
 
                     servervideos.map(pic => (<div className='sidepanel'><Link to={`/watch/${pic.id}`}><img alt={pic.description} onClick={clickHandler} mycustomattribute={pic.id} id='thumbnail' src={pic.thumbnail} /></Link>
