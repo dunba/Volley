@@ -21,6 +21,7 @@ import Watch from "./watch"
 import VideoWatch from './videowatch'
 import Video from "./video";
 import Footer from './footer'
+import Search from './search'
 
 function App() {
 
@@ -105,6 +106,7 @@ function App() {
               <Route path="/stats/:id" component={Playerdata} />
               <Route path="/table/:id" component={Teamdata} />
               <Route servervideos={servervideos} path='/watch/:id' component={VideoWatch} />
+              <Route exact path='/search' component={Search} />
               <Footer />
             </div>
           </Switch>

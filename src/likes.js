@@ -36,7 +36,7 @@ const Likes = ({ likenum }) => {
 
 
                 <div>
-                    video goes here
+                    liked videos go here
                 </div>
 
 

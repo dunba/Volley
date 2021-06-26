@@ -28,6 +28,8 @@ h6 {
 }
 .secondlinkstyle {
   color: #37003c;
+  font: 3em sans-serif;
+  display: flex;
 }
 
 .flexcontainer {
@@ -182,10 +184,8 @@ h6 {
 
 #likenumber {
   transition: 0.5s ease;
-  position: absolute;
-  right: 47.5%;
   color: rgb(17, 17, 17);
-  font-size: 1.2em;
+  font-size: 0.4em;
 }
 
 .descriptionsection {
