@@ -32,7 +32,7 @@ const Stats = () => {
     }, []);
 
     return (
-        <div className='bgcolor'>
+        <div className='flexcontainer'>
             {topscorers && (
                 <div className='tablecontainer'>
                     <div>Select League</div>

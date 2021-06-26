@@ -34,7 +34,7 @@ const PremTable = () => {
       .catch(err => console.error(err));
   }, []);
   return (
-    <div className='bgcolor' >
+    <div className='flexcontainer' >
 
       <div className='premtable' >
         <Modal show={show} onHide={handleClose}>
@@ -45,10 +45,10 @@ const PremTable = () => {
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close
-          </Button>
+            </Button>
             <Button variant="primary" onClick={handleClose}>
               Save Changes
-          </Button>
+            </Button>
           </Modal.Footer>
         </Modal>
         {table && (

@@ -1,18 +1,43 @@
 .sitenav {
   list-style: none;
+  text-align: left;
+  padding: 0;
+}
+.sitenav2 {
+  list-style: none;
+  text-align: left;
+  padding: 0;
+}
+.sitenav2 li {
+  display: inline;
+  margin: 0 0.2em;
 }
 
 .sectionholder {
-  color: brown;
   display: flex;
   flex-direction: row;
+  padding: 1.3em 0;
   justify-content: space-between;
 }
 
 .copyright {
   text-align: left;
+  padding: 0.7em 0;
+}
+
+section ul li {
+  font-size: 1em;
+}
+
+.footerdivs {
+  text-align: left;
 }
 
 footer {
   padding: 3em 5%;
+  bottom: 0;
+}
+
+#navleader {
+  font-weight: bold;
 }
