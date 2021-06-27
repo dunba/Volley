@@ -9,42 +9,69 @@ import "./feed.css";
 
 const Videosection = ({ servervideos, sectiontitle }) => {
 
-if(!servervideos) return <ClipLoader/>
+  if (!servervideos) return <ClipLoader />
 
-else if(servervideos.length===0)  return (
-     <>
+  else if (servervideos.length === 0) return (
+    <>
       <div className="videosection">
         <h6>{sectiontitle}</h6>
 
         <span>No {sectiontitle} Videos </span>
       </div>
     </>
-)
+  )
+  else if (sectiontitle === 'Liked') return (
+    <div className="videosection">
+      <h6>{sectiontitle}</h6>
+
+
+      <div className="reelholder">
+        {servervideos.map(pic => (
+          <div className="vidposting">
+            {servervideos.length} liked video in server
+            {/* <Link to={`/watch/${pic.id}`}>
+              <img
+                key={pic.id}
+                alt={pic.description}
+                id="thumbnailonfeed"
+                src={pic.thumbnail}
+              />
+            </Link> */}
+            <div className="videodescription">{pic.description}</div>
+          </div>
+        ))}{" "}
+      </div>
+
+
+
+    </div>
+
+  )
 
   return (
     <>
       <div className="videosection">
         <h6>{sectiontitle}</h6>
 
-        
-          <div className="reelholder">
-            {servervideos.map(pic => (
-              <div className="vidposting">
-                <Link to={`/watch/${pic.id}`}>
-                  <img
-                    key={pic.id}
-                    alt={pic.description}
-                    id="thumbnailonfeed"
-                    src={pic.thumbnail}
-                  />
-                </Link>
-                <div className="videodescription">{pic.description}</div>
-              </div>
-            ))}{" "}
-          </div>
-        
-         
-        
+
+        <div className="reelholder">
+          {servervideos.map(pic => (
+            <div className="vidposting">
+              <Link to={`/watch/${pic.id}`}>
+                <img
+                  key={pic.id}
+                  alt={pic.description}
+                  id="thumbnailonfeed"
+                  src={pic.thumbnail}
+                />
+              </Link>
+              <div className="videodescription">{pic.description}</div>
+            </div>
+          ))}{" "}
+        </div>
+
+
+
       </div>
     </>
   );

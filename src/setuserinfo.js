@@ -13,10 +13,11 @@ const Setuserinfo = () => {
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const [success, setSuccess] = useState('');
-    const currentUser = useAuth()
+
     const history = useHistory();
     const currentusermail = currentUser.currentUser.email
     const currentUserId = currentUser.currentUser.uid
+    const currentUser = useAuth()
     const usersRef = firebase.firestore().collection("users");
 
 

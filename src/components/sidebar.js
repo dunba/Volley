@@ -3,15 +3,19 @@ import ShareIcon from "@material-ui/icons/Share";
 import CommentIcon from "@material-ui/icons/Comment";
 import { useAuth } from "../AuthContext";
 import "../feed.css";
+import { Card, Form, Button, Alert } from 'react-bootstrap'
+
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import ClipLoader from 'react-spinners/ClipLoader'
 import CloseIcon from '@material-ui/icons/Close';
+import firebase from '../firebase'
+import { useHistory } from 'react-router-dom'
 
 const Sidebar = ({ currentvid, userDisplayName, videosRef, videoId }) => {
   const commentRef = useRef();
   const currentUser = useAuth();
-
+  const history = useHistory()
 
   //this handles the visibility of the comments section
   const [iscommentvisible, setIscommentvisible] = useState(false);
@@ -58,15 +62,93 @@ const Sidebar = ({ currentvid, userDisplayName, videosRef, videoId }) => {
       setIsLiked(false);
       console.log("unliked")
       console.log(videoId);
+      serverUnlike(currentUser.currentUser, videoId)
 
     } else {
       setIsLiked(true);
       console.log("liked");
       console.log(videoId);
+      serverLike(currentUser.currentUser, videoId)
+
     }
   };
+  const currentusermail = currentUser.currentUser.email
+  const currentUserId = currentUser.currentUser.uid
+  const usersRef = firebase.firestore().collection("users");
+
+
+  // this function will create a document in firebase if a record of the user does not exist yet.
+  const serverLike = async (user, videoId) => {
+    if (!user) return;
+    const userRef = usersRef.doc(`/${user.uid}`);
+    const snapshot = await userRef.get()
+    if (snapshot.exists) {
+      try {
+        userRef.update({
+          userlikes: firebase.firestore.FieldValue.arrayUnion(videoId),
+        })
+        setSuccess('videoliked')
+      } catch {
+        setError('Error to Like video')
+      }
+    }
+
+  }
+
+  const serverUnlike = async (user, videoId) => {
+    if (!user) return;
+    const userRef = usersRef.doc(`/${user.uid}`);
+    const snapshot = await userRef.get()
+    if (snapshot.exists) {
+      try {
+        userRef.update({
+          userlikes: firebase.firestore.FieldValue.arrayRemove(videoId),
+        })
+        setSuccess('videounliked')
+      } catch {
+        setError('Error to unLike video')
+      }
+    }
+
+  }
+
+
+  const fetchUserData = async user => {
+    const userRef = usersRef.doc(`/${user.uid}`);
+    const snapshot = await userRef.get();
+    if (snapshot.exists) {
+      if (snapshot.data().userlikes.includes(videoId)) {
+        setIsLiked(true)
+      }
+
+    }
+  };
+  //this will run everytime the page loads to fetch user data
+  useEffect(() => {
+    fetchUserData(currentUser.currentUser);
+  }, []);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('')
+  const [success, setSuccess] = useState('');
 
   const shareHandler = () => {
     let urlbase = 'localhost:300/watch/'
@@ -141,6 +223,8 @@ const Sidebar = ({ currentvid, userDisplayName, videosRef, videoId }) => {
               )}
               <ShareIcon id="iconn" fontSize="large" onClick={shareHandler} />
               <CommentIcon id="iconn" fontSize="large" onClick={commentHandler} />
+              {error && <Alert variant='danger'>{error}</Alert>}
+              {success && <Alert variant='success'>{success}</Alert>}
               <strong>{currentvid[0].comments.length}</strong> Comments
             </div>
             <div className="commentssection">

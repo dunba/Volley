@@ -56,6 +56,8 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos, serverpics })
       // console.log(snapshot.data().displayName)
       setUserDisplayName(snapshot.data().displayName);
       setUserLikes(snapshot.data().userlikes.length);
+      setUserLikedVideos(snapshot.data().userlikes)
+      console.log(userLikedVideos)
       //  history.push('/')
     } else {
     }
