@@ -72,29 +72,32 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos, serverpics })
   console.log(todaysDate);
   console.log(serverpics)
   const [numholder, setNumHolder] = useState(0);
+
+
   return (
     <>
-      <Nav2 likenum={userLikes} setLikeNum={setLikeNum} />
+
       <header className='feedheader'>
-        <div className='topsection'> <p>{userDisplayName ? `HELLO ${userDisplayName}` : <ClipLoader />}</p>
-        {serverpics[numholder]?
-        <div>
-          <img id='headerimage' src={serverpics[numholder].header} />
-          <button onClick={() => setNumHolder(numholder + 1)}>Click</button>
-          <div>{serverpics[numholder].headline}</div>
-         <Link to={`/watch/${serverpics[numholder].id}`}><button>Watch Now</button></Link> 
-          </div>
-:<ClipLoader/>}
-        </div></header>
-
-      <main>
-
+        <div className='headerholder'>
+          <Nav2 likenum={userLikes} setLikeNum={setLikeNum} />
+          <p>{userDisplayName ? `HELLO ${userDisplayName}` : <ClipLoader />}</p>
+          {serverpics[0] ?
+            <div>{serverpics[0].headline}  <Link to={`/watch/${serverpics[0].id}`}><button>Watch Now</button></Link></div>
+            : ''}
+        </div>
         <section>
           <Videosection
             servervideos={servervideos}
             sectiontitle={"Latest"}
           />
         </section>
+      </header>
+
+      <main>
+
+
+
+
 
         <section>
           <Videosection servervideos={clubVideos} sectiontitle={"Club"} />

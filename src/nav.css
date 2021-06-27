@@ -1,23 +1,21 @@
-Nav {
-  background: #37003c;
+nav {
+  background: transparent;
+  width: 100vw;
+  position: absolute;
 }
-.rightsidenav {
-  margin-right: 90px;
-}
-
-.navlogo {
-  font-size: 1.3em;
-  top: 0px;
-  line-height: 0.2em;
-  justify-self: flex-start;
-  text-align: start;
-}
-.bootnav {
-  color: rgb(255, 174, 0);
+.navholder {
+  display: flex;
+  flex-direction: row;
+  padding: 1em 5em;
+  justify-content: space-between;
 }
 
 .activetab {
   color: tomato;
+}
+.navdiv {
+  display: flex;
+  align-self: center;
 }
 
 .linkstyle {
@@ -35,6 +33,9 @@ Nav {
 
 .linkstyle:hover {
   color: #9a40e9;
+}
+.navlist li {
+  display: inline;
 }
 
 .premlogo {

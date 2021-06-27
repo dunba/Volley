@@ -10,8 +10,7 @@ import * as ReactBootstrap from 'react-bootstrap'
 import { OndemandVideo } from "@material-ui/icons";
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered';
-
-const usericon = <FontAwesomeIcon icon={faUser} />
+import PersonIcon from '@material-ui/icons/Person';
 
 const Nav = () => {
 
@@ -34,7 +33,7 @@ const Nav = () => {
 
 
         <>{error && ({ error })}
-            <ReactBootstrap.Navbar className='bootnav' bg="default" expand="lg">
+            {/* <ReactBootstrap.Navbar className='bootnav' bg="default" expand="lg">
                 <ReactBootstrap.Navbar.Brand ><h1 className='premlogo'>Volley</h1></ReactBootstrap.Navbar.Brand>
                 <ReactBootstrap.Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <ReactBootstrap.Navbar.Collapse id="basic-navbar-nav">
@@ -42,7 +41,7 @@ const Nav = () => {
                         <ReactBootstrap.Nav.Link href="#"><NavLink className='linkstyle' exact to="/"><OndemandVideo /> </NavLink></ReactBootstrap.Nav.Link>
                         <ReactBootstrap.Nav.Link href="#"> <NavLink className='linkstyle' to="/stats"><FormatListNumberedIcon /> </NavLink></ReactBootstrap.Nav.Link>
                         <ReactBootstrap.Nav.Link href="#"> <NavLink className='linkstyle' to="/table"><TrendingUpIcon /> </NavLink></ReactBootstrap.Nav.Link>
-                        {/* this is where the dropdown selection starts */}
+                   
                         <ReactBootstrap.NavDropdown title={usericon} id="basic-nav-dropdown" >
                             <ReactBootstrap.NavDropdown.Item href="#action/3.1"><NavLink to="/update-profile">Update Info</NavLink></ReactBootstrap.NavDropdown.Item>
                             <ReactBootstrap.NavDropdown.Item href="#action/3.3"><ReactBootstrap.Button variant="primary" onClick={handleLogout}>Log Out</ReactBootstrap.Button></ReactBootstrap.NavDropdown.Item>
@@ -50,8 +49,21 @@ const Nav = () => {
                         </ReactBootstrap.NavDropdown>
                     </ReactBootstrap.Nav>
                 </ReactBootstrap.Navbar.Collapse>
-            </ReactBootstrap.Navbar>
+            </ReactBootstrap.Navbar> */}
+            <nav>
+                <div className='navholder'>
 
+
+                    <div className='linkstyle'>Volley</div>
+                    <div className='navdiv'>
+                        <ul className='navlist'>    <li><NavLink className='linkstyle' exact to="/"><OndemandVideo /> </NavLink></li>
+                            <li><NavLink className='linkstyle' to="/stats"><FormatListNumberedIcon /> </NavLink></li>
+                            <li><NavLink className='linkstyle' to="/table"><TrendingUpIcon /> </NavLink></li>
+                            <li><NavLink className='linkstyle' to="/update-profile"><PersonIcon /> </NavLink></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         </ >
     )
 }
