@@ -3,6 +3,7 @@ import { useState } from 'react'
 import './home.css'
 import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from './AuthContext'
+import Nav from './Nav'
 
 export default function UpdateProfile() {
     const emailRef = useRef();
@@ -64,7 +65,6 @@ export default function UpdateProfile() {
 
 
     return (<div>
-
 
         <div className='formdiv'>
 

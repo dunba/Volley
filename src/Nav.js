@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import './nav.css'
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -29,6 +29,23 @@ const Nav = () => {
             console.log("Failed to logout");
         }
     }
+
+    const [isNavExpanded, setIsNavExpanded] = useState(false);
+    const expandNav = () => {
+        setIsNavExpanded(true);
+    }
+    const closeNav=()=>{
+         setTimeout(()=>setIsNavExpanded(false),4000) 
+    }
+
+    useEffect(()=>{
+        setIsNavExpanded(false);
+    },[])
+
+const humanicon=document.getElementById('iconlistener')
+
+
+
     return (
 
 
@@ -54,15 +71,26 @@ const Nav = () => {
                 <div className='navholder'>
 
 
-                    <div className='linkstyle'>Volley</div>
+                    <div className='linkstyle'><NavLink className='linkstyle' exact to="/">Volley </NavLink></div>
                     <div className='navdiv'>
                         <ul className='navlist'>    <li><NavLink className='linkstyle' exact to="/"><OndemandVideo /> </NavLink></li>
                             <li><NavLink className='linkstyle' to="/stats"><FormatListNumberedIcon /> </NavLink></li>
                             <li><NavLink className='linkstyle' to="/table"><TrendingUpIcon /> </NavLink></li>
-                            <li><NavLink className='linkstyle' to="/update-profile"><PersonIcon /> </NavLink></li>
+                            <li className='linkstyle'><PersonIcon id='iconlistener' onMouseOver={expandNav} onMouseOut={closeNav} /></li>
                         </ul>
+
                     </div>
+                    
                 </div>
+                {isNavExpanded?                <div  className='account'>
+                       <ul >
+                            <li  ><NavLink exact to="/update-profile" >Account</NavLink></li>
+                            <li onClick={handleLogout}><a href='#'>Sign Out</a></li>
+                        </ul>
+                    
+                </div>:''}
+
+                         
             </nav>
         </ >
     )

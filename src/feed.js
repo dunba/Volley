@@ -78,9 +78,15 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos, serverpics })
     <>
 
       <header className='feedheader'>
+        <p style={{ color: 'white' }}>{userDisplayName ? `HELLO ${userDisplayName}` : <ClipLoader />}</p>
+
+      </header>
+
+      <main>
+
         <div className='headerholder'>
           <Nav2 likenum={userLikes} setLikeNum={setLikeNum} />
-          <p>{userDisplayName ? `HELLO ${userDisplayName}` : <ClipLoader />}</p>
+
           {serverpics[0] ?
             <div>{serverpics[0].headline}  <Link to={`/watch/${serverpics[0].id}`}><button>Watch Now</button></Link></div>
             : ''}
@@ -91,11 +97,6 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos, serverpics })
             sectiontitle={"Latest"}
           />
         </section>
-      </header>
-
-      <main>
-
-
 
 
 

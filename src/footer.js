@@ -17,7 +17,7 @@ const Footer = () => {
                             <li><NavLink exact to="/">Home</NavLink></li>
                             <li><NavLink exact to="/stats">Stats</NavLink></li>
                             <li><NavLink exact to="/table">Table</NavLink></li>
-                            <li><NavLink exact to="/user">User Account</NavLink></li>
+                            <li><NavLink exact to="/update-profile">User Account</NavLink></li>
                         </ul>
                     </div>
 
