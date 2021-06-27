@@ -67,6 +67,8 @@ function App() {
     fetchDocs();
   }, []);
 
+  const serverpics = servervideos.filter(video => video.headline)
+
   return (
     <Router>
       <AuthProvider>
@@ -90,7 +92,7 @@ function App() {
                 <Setuserinfo />
               </PrivateRoute>
               <PrivateRoute exact path="/">
-                <Feed servervideos={servervideos} likenum={likenum} />
+                <Feed servervideos={servervideos} likenum={likenum} serverpics={serverpics} />
               </PrivateRoute>
               <PrivateRoute exact path="/user" component={user} />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />

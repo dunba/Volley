@@ -15,7 +15,7 @@ import firebase from "./firebase";
 import Videosection from "./videosection";
 
 //this main feed displays video & information from database
-const Feed = ({ goalvids, likedlist, functiontester, servervideos }) => {
+const Feed = ({ goalvids, likedlist, functiontester, servervideos, serverpics }) => {
   const filteredvid = servervideos.filter(video => video.active);
 
   const [currentvid, setCurrentVid] = useState(filteredvid[0]);
@@ -70,12 +70,25 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos }) => {
   const todaysDate = date.getMonth();
 
   console.log(todaysDate);
+  console.log(serverpics)
+  const [numholder, setNumHolder] = useState(0);
   return (
     <>
       <Nav2 likenum={userLikes} setLikeNum={setLikeNum} />
+      <header className='feedheader'>
+        <div className='topsection'> <p>{userDisplayName ? `HELLO ${userDisplayName}` : <ClipLoader />}</p>
+        {serverpics[numholder]?
+        <div>
+          <img id='headerimage' src={serverpics[numholder].header} />
+          <button onClick={() => setNumHolder(numholder + 1)}>Click</button>
+          <div>{serverpics[numholder].headline}</div>
+         <Link to={`/watch/${serverpics[numholder].id}`}><button>Watch Now</button></Link> 
+          </div>
+:<ClipLoader/>}
+        </div></header>
 
       <main>
-        <p>{userDisplayName ? `Welcome ${userDisplayName}` : <ClipLoader />}</p>
+
         <section>
           <Videosection
             servervideos={servervideos}

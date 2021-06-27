@@ -10,12 +10,19 @@ section {
   display: flex;
   flex-direction: column;
 }
+#headerimage {
+  width: 60%;
+}
 
 h6 {
   color: #37003c;
   position: relative;
   text-align: left;
   left: 2.5%;
+}
+
+.feedheader {
+  max-width: 90vw;
 }
 
 .backbutton {
@@ -83,7 +90,7 @@ h6 {
 }
 
 .vidposting:hover {
-  transform: scale(1.2);
+  transform: scale(1.15);
   transition: 0.3s ease;
 }
 

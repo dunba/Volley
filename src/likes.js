@@ -28,6 +28,23 @@ const Likes = ({ likenum }) => {
         fetchUserData(currentUser.currentUser);
     }, []);
 
+
+    if (userLikes <= 0) return (<div className='flexcontainer'>
+        <div className='headercontainer'><Nav2 likenum={userLikes} /></div>
+
+        <div>
+
+
+            <div>
+                No Liked Videos
+            </div>
+
+
+
+
+        </div>
+    </div>)
+
     return (
         <div className='flexcontainer'>
             <div className='headercontainer'><Nav2 likenum={userLikes} /></div>
