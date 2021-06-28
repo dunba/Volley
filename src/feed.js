@@ -14,8 +14,9 @@ import Sidebar from "./components/sidebar";
 import firebase from "./firebase";
 import Videosection from "./videosection";
 
+
 //this main feed displays video & information from database
-const Feed = ({ goalvids, likedlist, functiontester, servervideos, serverpics }) => {
+const Feed = ({ functiontester, servervideos, serverpics }) => {
   const filteredvid = servervideos.filter(video => video.active);
 
   const [currentvid, setCurrentVid] = useState(filteredvid[0]);
@@ -32,7 +33,6 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos, serverpics })
   //this handles the playlist picture gallery, retrieves info from the DOM
   const clickHandler = e => {
     setLoading(true);
-    console.log(e);
     //console.log(e.target.attributes[1].value)
     //setIdnumber(e.target.attributes[1].value)
     // setCurrentVid(goalvids[idnumber])
@@ -40,10 +40,8 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos, serverpics })
   };
   const currentUser = useAuth();
   const [loading, setLoading] = useState(false);
-  const [likenum, setLikeNum] = useState(0);
 
   const usersRef = firebase.firestore().collection("users");
-  const [userinfo, setUserInfo] = useState(null);
 
   //this runs to validate userdata everytime the page is visited. on the first time, it will prompt user to enter info.
   const [userDisplayName, setUserDisplayName] = useState("");
@@ -57,7 +55,6 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos, serverpics })
       setUserDisplayName(snapshot.data().displayName);
       setUserLikes(snapshot.data().userlikes.length);
       setUserLikedVideos(snapshot.data().userlikes)
-      console.log(userLikedVideos)
       //  history.push('/')
     } else {
     }
@@ -67,12 +64,14 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos, serverpics })
     fetchUserData(currentUser.currentUser);
   }, []);
 
-  const date = new Date();
-  const todaysTimeHours = date.getHours();
-  const todaysDate = date.getMonth();
 
-  console.log(todaysDate);
-  console.log(serverpics)
+
+  // console.log(todaysDate);
+  // console.log(servervideos)
+  // console.log(userLikedVideos)
+  const likedplaylist = servervideos.filter(video => video.id.includes(userLikedVideos))
+  // console.log(likedplaylist)
+
   const [numholder, setNumHolder] = useState(0);
 
 
@@ -87,7 +86,6 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos, serverpics })
       <main>
 
         <div className='headerholder'>
-          <Nav2 likenum={userLikes} setLikeNum={setLikeNum} />
 
           {serverpics[0] ?
             <div>{serverpics[0].headline}  <Link to={`/watch/${serverpics[0].id}`}><button>Watch Now</button></Link></div>
@@ -120,7 +118,7 @@ const Feed = ({ goalvids, likedlist, functiontester, servervideos, serverpics })
           />
         </section>
         <section>
-          <Videosection sectiontitle={"Liked"} servervideos={userLikedVideos} />
+          <Videosection sectiontitle={"Likes"} servervideos={likedplaylist} />
         </section>
       </main>
 

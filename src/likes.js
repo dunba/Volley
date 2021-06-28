@@ -47,7 +47,7 @@ const Likes = ({ likenum }) => {
 
     return (
         <div className='flexcontainer'>
-            <div className='headercontainer'><Nav2 likenum={userLikes} /></div>
+            <div className='headercontainer'></div>
 
             <div>
 

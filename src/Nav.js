@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import './nav.css'
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -11,8 +11,11 @@ import { OndemandVideo } from "@material-ui/icons";
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered';
 import PersonIcon from '@material-ui/icons/Person';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import HomeIcon from '@material-ui/icons/Home';
+import SearchIcon from '@material-ui/icons/Search';
 
-const Nav = () => {
+const Nav = ({ likenum }) => {
 
     const { logout } = useAuth();
     const [error, setError] = useState(null);
@@ -34,15 +37,15 @@ const Nav = () => {
     const expandNav = () => {
         setIsNavExpanded(true);
     }
-    const closeNav=()=>{
-         setTimeout(()=>setIsNavExpanded(false),4000) 
+    const closeNav = () => {
+        setTimeout(() => setIsNavExpanded(false), 4000)
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         setIsNavExpanded(false);
-    },[])
+    }, [])
 
-const humanicon=document.getElementById('iconlistener')
+    const humanicon = document.getElementById('iconlistener')
 
 
 
@@ -72,6 +75,12 @@ const humanicon=document.getElementById('iconlistener')
 
 
                     <div className='linkstyle'><NavLink className='linkstyle' exact to="/">Volley </NavLink></div>
+                    <div className='headercontainer'>
+                        <div className='secondlinkstyle'><NavLink exact to="/"><HomeIcon fontSize='large' /></NavLink></div>
+                        <div className='secondlinkstyle'> <NavLink exact to="/likes"><FavoriteBorderIcon fontSize='large' /></NavLink><p id='likenumber'>{likenum}</p></div>
+                        <div className='secondlinkstyle'><NavLink fontSize='large' exact to='/search'><SearchIcon /></NavLink></div>
+
+                    </div>
                     <div className='navdiv'>
                         <ul className='navlist'>    <li><NavLink className='linkstyle' exact to="/"><OndemandVideo /> </NavLink></li>
                             <li><NavLink className='linkstyle' to="/stats"><FormatListNumberedIcon /> </NavLink></li>
@@ -80,17 +89,17 @@ const humanicon=document.getElementById('iconlistener')
                         </ul>
 
                     </div>
-                    
-                </div>
-                {isNavExpanded?                <div  className='account'>
-                       <ul >
-                            <li  ><NavLink exact to="/update-profile" >Account</NavLink></li>
-                            <li onClick={handleLogout}><a href='#'>Sign Out</a></li>
-                        </ul>
-                    
-                </div>:''}
 
-                         
+                </div>
+                {isNavExpanded ? <div className='account'>
+                    <ul >
+                        <li  ><NavLink exact to="/update-profile" >Account</NavLink></li>
+                        <li onClick={handleLogout}><a href='#'>Sign Out</a></li>
+                    </ul>
+
+                </div> : ''}
+
+
             </nav>
         </ >
     )

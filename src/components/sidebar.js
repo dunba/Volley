@@ -4,7 +4,6 @@ import CommentIcon from "@material-ui/icons/Comment";
 import { useAuth } from "../AuthContext";
 import "../feed.css";
 import { Card, Form, Button, Alert } from 'react-bootstrap'
-
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import ClipLoader from 'react-spinners/ClipLoader'
@@ -51,7 +50,6 @@ const Sidebar = ({ currentvid, userDisplayName, videosRef, videoId }) => {
     }
   };
 
-
   //this section handles the like button on the side and top panel
   const [isliked, setIsLiked] = useState(false);
 
@@ -62,13 +60,13 @@ const Sidebar = ({ currentvid, userDisplayName, videosRef, videoId }) => {
       setIsLiked(false);
       console.log("unliked")
       console.log(videoId);
-      serverUnlike(currentUser.currentUser, videoId)
+      serverUnlike(currentUser.currentUser, videoId, currentvid)
 
     } else {
       setIsLiked(true);
       console.log("liked");
       console.log(videoId);
-      serverLike(currentUser.currentUser, videoId)
+      serverLike(currentUser.currentUser, videoId, currentvid)
 
     }
   };
@@ -191,7 +189,7 @@ const Sidebar = ({ currentvid, userDisplayName, videosRef, videoId }) => {
             {" "}
             <h3>{currentvid[0].scorer}</h3>
             <h3>{currentvid[0].team}</h3>
-            <p> {currentvid[0].views.length} Views</p>
+            <p> {currentvid[0].views} Views</p>
             <p onClick={showLikes}>
               {" "}
               <strong>{currentvid[0].likes.length}</strong> Likes
@@ -212,6 +210,9 @@ const Sidebar = ({ currentvid, userDisplayName, videosRef, videoId }) => {
 
           <div className="sidebar_icons">
             <div className="social_controls">
+              <div className='alerts'>  {error && <Alert variant='danger'>{error}</Alert>}
+                {success && <Alert variant='success'>{success}</Alert>}</div>
+
               {isliked ? (
                 <FavoriteIcon id="iconn" onClick={likeHandler} fontSize="large" />
               ) : (
@@ -223,8 +224,7 @@ const Sidebar = ({ currentvid, userDisplayName, videosRef, videoId }) => {
               )}
               <ShareIcon id="iconn" fontSize="large" onClick={shareHandler} />
               <CommentIcon id="iconn" fontSize="large" onClick={commentHandler} />
-              {error && <Alert variant='danger'>{error}</Alert>}
-              {success && <Alert variant='success'>{success}</Alert>}
+
               <strong>{currentvid[0].comments.length}</strong> Comments
             </div>
             <div className="commentssection">

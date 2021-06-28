@@ -32,7 +32,6 @@ const Search = () => {
 
     return (
         <div className='flexcontainer'>
-            <Nav2 likenum={userLikes} />
 
             <div onClick={() => history.push('/')} className='backbutton'> <ArrowBackIcon />BACK</div>
             <hr />

@@ -16,7 +16,7 @@ import UpdateProfile from "./UpdateProfile";
 import Likes from "./likes";
 import Setuserinfo from "./setuserinfo";
 import firebase from "./firebase";
-import user from "./user";
+import User from "./user";
 import Watch from "./watch"
 import VideoWatch from './videowatch'
 import Video from "./video";
@@ -24,7 +24,11 @@ import Footer from './footer'
 import Search from './search'
 
 function App() {
-
+  const currentUser = useAuth();
+  const usersRef = firebase.firestore().collection("users");
+  const [userLikedVideos, setUserLikedVideos] = useState([]);
+  const [userLikes, setUserLikes] = useState(null);
+  const [userDisplayName, setUserDisplayName] = useState("");
 
   const [likenum, setLikenum] = useState(null);
 
@@ -40,7 +44,6 @@ function App() {
   const videosRef = firebase.firestore().collection("videos");
 
   const fetchDocs = () => {
-    console.log(videosRef);
     setLoading(true);
     videosRef.onSnapshot(snapshot => {
       const items = [];
@@ -49,8 +52,19 @@ function App() {
       });
       setServerVideos(items);
       setLoading(false);
-      console.log(servervideos)
     });
+  };
+  const fetchUserData = async user => {
+    const userRef = usersRef.doc(`/${user.uid}`);
+    const snapshot = await userRef.get();
+    if (snapshot.exists) {
+      // console.log(snapshot.data().displayName)
+      setUserDisplayName(snapshot.data().displayName);
+      setUserLikes(snapshot.data().userlikes.length);
+      setUserLikedVideos(snapshot.data().userlikes)
+      //  history.push('/')
+    } else {
+    }
   };
 
   // const fetchDocs2 = () => {
@@ -65,6 +79,8 @@ function App() {
 
   useEffect(() => {
     fetchDocs();
+
+
   }, []);
 
   const serverpics = servervideos.filter(video => video.headline)
@@ -82,19 +98,20 @@ function App() {
               <Login />
             </Route>
             {/* this separate div prevents the nav bar from showing up on the login / logout pages */}
+            <PrivateRoute exact path="/Setuserinfo">
+              <Setuserinfo />
+            </PrivateRoute>
 
             <div>
-              <Nav />
+              <Nav likenum={userLikes} />
               <PrivateRoute servervideos={servervideos} exact path="/watch">
-                <Watch servervideos={servervideos} likenum={likenum} />
+                <Watch servervideos={servervideos} />
               </PrivateRoute>
-              <PrivateRoute exact path="/Setuserinfo">
-                <Setuserinfo />
-              </PrivateRoute>
+
               <PrivateRoute exact path="/">
-                <Feed servervideos={servervideos} likenum={likenum} serverpics={serverpics} />
+                <Feed servervideos={servervideos} serverpics={serverpics} />
               </PrivateRoute>
-              <PrivateRoute exact path="/user" component={user} />
+              <PrivateRoute exact path="/user" ><User /></PrivateRoute>
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
               <Route exact path="/table">
                 <PremTable />
@@ -103,7 +120,7 @@ function App() {
                 <Stats />
               </Route>
               <Route exact path="/likes">
-                <Likes likenum={likenum} />
+                <Likes />
               </Route>
               <Route path="/stats/:id" component={Playerdata} />
               <Route path="/table/:id" component={Teamdata} />
@@ -114,7 +131,7 @@ function App() {
           </Switch>
         </div>
       </AuthProvider>
-    </Router>
+    </Router >
   );
 }
 

@@ -64,7 +64,7 @@ export default function UpdateProfile() {
 
 
 
-    return (<div>
+    return (<div className='flexcontainer'>
 
         <div className='formdiv'>
 

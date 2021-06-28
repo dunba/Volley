@@ -7,6 +7,12 @@ main {
   z-index: 1;
 }
 
+.alerts {
+  position: absolute;
+  top: 20em;
+  right: 6em;
+}
+
 section {
   margin: 0.6em 0;
   display: flex;
@@ -50,10 +56,29 @@ h6 {
 
 .flexcontainer {
   display: flex;
+  min-height: 100vh;
+
   width: 100vw;
-  background-image: url(https://firebasestorage.googleapis.com/v0/b/premier-league-809fb.appspot.com/o/thumbnails%2F30SOCCER-01-mobileMasterAt3x.jpg?alt=media&token=a17e7257-b23e-463e-a6ea-706196c31c32);
   flex-direction: column;
   padding-top: 10em;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#3f4c6b+0,3f4c6b+100;Blue+Grey+Flat */
+  background: rgb(63, 76, 107); /* Old browsers */
+  background: -moz-linear-gradient(
+    top,
+    rgba(63, 76, 107, 1) 0%,
+    rgba(63, 76, 107, 1) 100%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    top,
+    rgba(63, 76, 107, 1) 0%,
+    rgba(63, 76, 107, 1) 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    rgba(63, 76, 107, 1) 0%,
+    rgba(63, 76, 107, 1) 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f4c6b', endColorstr='#3f4c6b',GradientType=0 ); /* IE6-9 */
 }
 .mediacontainer {
   display: flex;
@@ -67,7 +92,7 @@ h6 {
   margin: auto;
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 70%;
 }
 
 .videoholder::-webkit-scrollbar {
@@ -101,7 +126,7 @@ h6 {
 
 .vidposting:hover {
   transform: scale(1.15);
-  transition: 0.3s ease;
+  transition: 0.3s cubic-bezier();
 }
 
 .videodescription {

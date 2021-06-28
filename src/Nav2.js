@@ -1,10 +1,11 @@
 import React from 'react'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import HomeIcon from '@material-ui/icons/Home';
+import SearchIcon from '@material-ui/icons/Search';
+
 import { NavLink } from 'react-router-dom';
 import './feed.css'
 import { useAuth } from './AuthContext'
-import SearchIcon from '@material-ui/icons/Search';
 
 
 

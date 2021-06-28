@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import ClipLoader from 'react-spinners/ClipLoader'
 import firebase from './firebase'
 import { useAuth } from './AuthContext'
-
 import './feed.css'
 import Nav2 from './Nav2'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
@@ -33,6 +32,7 @@ const VideoWatch = ({ match }) => {
 
 
     const currentvid = servervideos.filter(video => video.id == videoId)
+
     const [currenttype, setCurrentType] = useState(null);
     const fetchCurrentType = (video) => {
         if (video.club === true) {
@@ -87,6 +87,7 @@ const VideoWatch = ({ match }) => {
         if (snapshot.exists) {
             console.log(snapshot.data().displayName)
             setUserDisplayName(snapshot.data().displayName)
+            setLikeNum(snapshot.data().userlikes.length)
             //  history.push('/')
         }
         else {
@@ -159,13 +160,13 @@ const VideoWatch = ({ match }) => {
     if (loading) return <ClipLoader />
 
     return (
+
         <div className='flexcontainer'>
-            <Nav2 likenum={likenum} setLikeNum={setLikeNum} />
+            <div onClick={() => history.push('/')} > <ArrowBackIcon />BACK</div>
+
             {/* <button className='backbutton' >Back</button> */}
-            <div onClick={() => history.push('/')} className='backbutton'> <ArrowBackIcon />BACK</div>
 
             <div className='mediacontainer'>
-                <div className='picholder'> <Picholder servervideos={servervideos} currentvid={currentvid} clickHandler={clickHandler} /></div>
                 <div className='videoholder'>
                     {currentvid[0] ?
                         <video src={currentvid[0].url} loop onclick={onVidPress} ref={videoRef}>Cannot Render Video</video> : <ClipLoader />}
@@ -185,7 +186,7 @@ const VideoWatch = ({ match }) => {
 
             </div >
 
-
+            <div className='picholder'> <Picholder servervideos={servervideos} currentvid={currentvid} clickHandler={clickHandler} /></div>
         </div >
 
 
