@@ -7,7 +7,32 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ChatIcon from "@material-ui/icons/Chat";
 import "./feed.css";
 
-const Videosection = ({ servervideos, sectiontitle }) => {
+const Videosection = ({ type, servervideos, sectiontitle }) => {
+
+
+  if (type == 'Recommended') return (<>
+    <h6>{type}</h6>
+
+
+    <div className="videosection2">
+      {servervideos.map(pic => (
+        <div className="vidposting2">
+          <Link to={`/watch/${pic.id}`}>
+            <img
+              key={pic.id}
+              alt={pic.description}
+              id="thumbnailonfeed"
+              src={pic.thumbnail}
+            />
+          </Link>
+          <div className="videodescription">{pic.description}</div>
+        </div>
+      ))}{" "}
+    </div>
+
+
+
+  </>)
 
   if (!servervideos) return <ClipLoader />
 

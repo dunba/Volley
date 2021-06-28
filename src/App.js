@@ -24,7 +24,6 @@ import Footer from './footer'
 import Search from './search'
 
 function App() {
-  const currentUser = useAuth();
   const usersRef = firebase.firestore().collection("users");
   const [userLikedVideos, setUserLikedVideos] = useState([]);
   const [userLikes, setUserLikes] = useState(null);
@@ -76,14 +75,16 @@ function App() {
   //     setLoading(false);
   //   });
   // };
+  const serverpics = servervideos.filter(video => video.headline)
 
   useEffect(() => {
+
     fetchDocs();
+    //fetchUserData(currentUser.currentUser.uid);
 
 
   }, []);
 
-  const serverpics = servervideos.filter(video => video.headline)
 
   return (
     <Router>

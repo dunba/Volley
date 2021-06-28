@@ -7,7 +7,7 @@ import './feed.css'
 import Nav2 from './Nav2'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Video from './video'
-
+import Videosection from './videosection'
 import Picholder from './components/picholder'
 import Sidebar from './components/sidebar'
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
@@ -186,8 +186,10 @@ const VideoWatch = ({ match }) => {
 
             </div >
 
-            <div className='picholder'> <Picholder servervideos={servervideos} currentvid={currentvid} clickHandler={clickHandler} /></div>
-        </div >
+            <Videosection type={'Recommended'}
+                sectiontitle={"International"}
+                servervideos={servervideos}
+            />        </div >
 
 
     )

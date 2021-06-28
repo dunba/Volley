@@ -190,24 +190,7 @@ const Sidebar = ({ currentvid, userDisplayName, videosRef, videoId }) => {
             <h3>{currentvid[0].scorer}</h3>
             <h3>{currentvid[0].team}</h3>
             <p> {currentvid[0].views} Views</p>
-            <p onClick={showLikes}>
-              {" "}
-              <strong>{currentvid[0].likes.length}</strong> Likes
-            </p>
-            {islikesvisible ? (
-              <p>
-                Liked by{" "}
-                <strong>
-
-                  {currentvid[0].likes[Math.floor(Math.random() * currentvid[0].likes.length)].user}
-                </strong>{" "}
-                and <strong>{currentvid[0].likes.length - 1}</strong> others{" "}
-              </p>
-            ) : (
-              ""
-            )}
           </div>
-
           <div className="sidebar_icons">
             <div className="social_controls">
               <div className='alerts'>  {error && <Alert variant='danger'>{error}</Alert>}

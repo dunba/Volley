@@ -80,6 +80,7 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
 
       <header className='feedheader'>
         <p style={{ color: 'white' }}>{userDisplayName ? `HELLO ${userDisplayName}` : <ClipLoader />}</p>
+        <Nav2 likenum={userLikes} />
 
       </header>
 

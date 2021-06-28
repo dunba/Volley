@@ -75,12 +75,12 @@ const Nav = ({ likenum }) => {
 
 
                     <div className='linkstyle'><NavLink className='linkstyle' exact to="/">Volley </NavLink></div>
-                    <div className='headercontainer'>
+                    {/* <div className='headercontainer'>
                         <div className='secondlinkstyle'><NavLink exact to="/"><HomeIcon fontSize='large' /></NavLink></div>
                         <div className='secondlinkstyle'> <NavLink exact to="/likes"><FavoriteBorderIcon fontSize='large' /></NavLink><p id='likenumber'>{likenum}</p></div>
                         <div className='secondlinkstyle'><NavLink fontSize='large' exact to='/search'><SearchIcon /></NavLink></div>
 
-                    </div>
+                    </div> */}
                     <div className='navdiv'>
                         <ul className='navlist'>    <li><NavLink className='linkstyle' exact to="/"><OndemandVideo /> </NavLink></li>
                             <li><NavLink className='linkstyle' to="/stats"><FormatListNumberedIcon /> </NavLink></li>

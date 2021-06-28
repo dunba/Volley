@@ -124,6 +124,10 @@ h6 {
   transition: all 0.2s ease-in-out;
 }
 
+.vidposting2 {
+  display: grid;
+}
+
 .vidposting:hover {
   transform: scale(1.15);
   transition: 0.3s cubic-bezier();
@@ -140,6 +144,12 @@ h6 {
 .videosection {
   display: flex;
   flex-direction: column;
+  width: 90%;
+  margin: auto;
+}
+.videosection2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   width: 90%;
   margin: auto;
 }
@@ -194,10 +204,8 @@ h6 {
   display: flex;
   position: relative;
   flex-direction: row;
-  height: 735px;
-
-  overflow: hidden;
-  width: 25%;
+  overflow: scroll;
+  width: 20%;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
