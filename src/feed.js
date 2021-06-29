@@ -13,6 +13,7 @@ import Picholder from "./components/picholder";
 import Sidebar from "./components/sidebar";
 import firebase from "./firebase";
 import Videosection from "./videosection";
+import { Carousel } from 'react-bootstrap'
 
 
 //this main feed displays video & information from database
@@ -74,26 +75,31 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
 
   const [numholder, setNumHolder] = useState(0);
 
-
+  console.log(serverpics)
   return (
     <>
 
       <header className='feedheader'>
+
+
         <p style={{ color: 'white' }}>{userDisplayName ? `HELLO ${userDisplayName}` : <ClipLoader />}</p>
         <Nav2 likenum={userLikes} />
+
+
 
       </header>
 
       <main>
 
+
         <div className='headerholder'>
 
           {serverpics[0] ?
-            <div>{serverpics[0].headline}  <Link to={`/watch/${serverpics[0].id}`}><button>Watch Now</button></Link></div>
+            <div>{serverpics[0].headline} </div>
             : ''}
         </div>
         <section>
-          <Videosection
+          <Videosection serverpics={serverpics}
             servervideos={servervideos}
             sectiontitle={"Latest"}
           />
@@ -102,24 +108,24 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
 
 
         <section>
-          <Videosection servervideos={clubVideos} sectiontitle={"Club"} />
+          <Videosection serverpics={serverpics} servervideos={clubVideos} sectiontitle={"Club"} />
         </section>
 
         <section>
-          <Videosection
+          <Videosection serverpics={serverpics}
             sectiontitle={"International"}
             servervideos={internationalVideos}
           />
         </section>
 
         <section>
-          <Videosection
+          <Videosection serverpics={serverpics}
             sectiontitle={"Interviews"}
             servervideos={interviewVideos}
           />
         </section>
         <section>
-          <Videosection sectiontitle={"Likes"} servervideos={likedplaylist} />
+          <Videosection serverpics={serverpics} sectiontitle={"Likes"} servervideos={likedplaylist} />
         </section>
       </main>
 

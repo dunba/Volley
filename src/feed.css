@@ -37,7 +37,7 @@ h6 {
   padding-top: 10em;
   height: 100vh;
   max-width: 100vw;
-  background-image: url(https://firebasestorage.googleapis.com/v0/b/premier-league-809fb.appspot.com/o/thumbnails%2Fjames2.jpg?alt=media&token=9c8f77c8-23e8-4cf1-b7dd-e4373efc20bc);
+  background-color: black;
 }
 
 .backbutton {
@@ -155,9 +155,7 @@ h6 {
 }
 .reelholder {
   display: flex;
-  overflow-x: hidden;
   height: 100%;
-  padding: 2em;
 }
 
 .overlay {
