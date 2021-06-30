@@ -2,18 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from "./AuthContext";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Link } from "react-router-dom";
-import VisibilityIcon from "@material-ui/icons/Visibility";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import ChatIcon from "@material-ui/icons/Chat";
 import "./feed.css";
 import Nav2 from "./Nav2";
-import Video from "./video";
-import Picholder from "./components/picholder";
-import Sidebar from "./components/sidebar";
 import firebase from "./firebase";
 import Videosection from "./videosection";
-import { Carousel } from 'react-bootstrap'
 
 
 //this main feed displays video & information from database

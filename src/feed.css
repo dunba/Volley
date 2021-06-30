@@ -6,7 +6,15 @@ main {
   margin-bottom: 10em;
   z-index: 1;
 }
-
+/*THESE ARE CONTROLS FOR THE VIDEO CAROUSEL*/
+.rec.rec-arrow:disabled {
+  visibility: hidden;
+}
+.rec.rec-arrow {
+  background: transparent;
+  border-color: transparent;
+}
+/*THESE ARE CONTROLS FOR THE VIDEO CAROUSEL*/
 .alerts {
   position: absolute;
   top: 20em;

@@ -9,7 +9,7 @@ import { useAnimation } from "framer-motion";
 
 const Videosection = ({ type, servervideos, sectiontitle, serverpics }) => {
 
-  const { ref, inView } = useInView({ threshold: 0.15 });
+  const { ref, inView } = useInView({ threshold: 0.5 });
   const animation = useAnimation();
   // if (type == 'Recommended') return (<>
   //   <h6>{type}</h6>
@@ -104,7 +104,7 @@ const Videosection = ({ type, servervideos, sectiontitle, serverpics }) => {
         <h6>{sectiontitle}</h6>
         <motion.div className="reelholder" animate={animation} >
 
-          <Carousel breakPoints={breakPoints}>
+          <Carousel breakPoints={breakPoints} >
             {servervideos.map(pic => (
 
               <div className="vidposting">
