@@ -1,13 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Button } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Link } from "react-router-dom";
 import "./feed.css";
-import Carousel from "react-elastic-carousel"
+import Carousel, { consts } from "react-elastic-carousel"
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
-
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 const Videosection = ({ type, servervideos, sectiontitle, serverpics }) => {
+
+  const nextarrow = <NavigateNextIcon />
+  const backarrrow = <NavigateBeforeIcon />
+
+
 
   const { ref, inView } = useInView({ threshold: 0.5 });
   const animation = useAnimation();
@@ -104,7 +110,7 @@ const Videosection = ({ type, servervideos, sectiontitle, serverpics }) => {
         <h6>{sectiontitle}</h6>
         <motion.div className="reelholder" animate={animation} >
 
-          <Carousel breakPoints={breakPoints} >
+          <Carousel breakPoints={breakPoints} itemsToScroll={3} >
             {servervideos.map(pic => (
 
               <div className="vidposting">

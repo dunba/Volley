@@ -5,6 +5,7 @@ main {
   padding-top: 5em;
   margin-bottom: 10em;
   z-index: 1;
+  background-color: #fff;
 }
 /*THESE ARE CONTROLS FOR THE VIDEO CAROUSEL*/
 .rec.rec-arrow:disabled {
@@ -13,6 +14,9 @@ main {
 .rec.rec-arrow {
   background: transparent;
   border-color: transparent;
+}
+.rec-dot {
+  display: none;
 }
 /*THESE ARE CONTROLS FOR THE VIDEO CAROUSEL*/
 .alerts {
