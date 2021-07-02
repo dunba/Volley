@@ -15,7 +15,7 @@ const Videosection = ({ type, servervideos, sectiontitle, serverpics }) => {
 
 
 
-  const { ref, inView } = useInView({ threshold: 0.5 });
+  const { ref, inView } = useInView({ threshold: 0.3 });
   const animation = useAnimation();
   // if (type == 'Recommended') return (<>
   //   <h6>{type}</h6>
@@ -90,7 +90,7 @@ const Videosection = ({ type, servervideos, sectiontitle, serverpics }) => {
       })
     }
     if (!inView) {
-      animation.start({ opacity: 0.3 })
+      animation.start({ opacity: 0.5 })
     }
   }, [inView])
 
@@ -113,7 +113,7 @@ const Videosection = ({ type, servervideos, sectiontitle, serverpics }) => {
           <Carousel breakPoints={breakPoints} itemsToScroll={3} >
             {servervideos.map(pic => (
 
-              <div className="vidposting">
+              <div className="vidposting" >
                 <Link to={`/watch/${pic.id}`}>
                   <img
                     key={pic.id}

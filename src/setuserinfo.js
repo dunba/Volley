@@ -76,6 +76,22 @@ const Setuserinfo = () => {
     console.log("submit");
   };
 
+  if (userDisplayName) return (
+    <div className="flexcontainer">
+      Welcome {userDisplayName}
+    </div>
+
+  )
+
+
+
+
+
+
+
+
+
+
   return (
     <div className="flexcontainer">
       <div>WELCOME {userDisplayName}</div>

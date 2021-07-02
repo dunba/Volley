@@ -68,12 +68,11 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
   const [numholder, setNumHolder] = useState(0);
 
   console.log(serverpics)
+  const headerstyle = {}
   return (
     <>
 
-      <header className='feedheader'>
-
-
+      <header className='feedheader' >
         <p style={{ color: 'white' }}>{userDisplayName ? `HELLO ${userDisplayName}` : <ClipLoader />}</p>
         <Nav2 likenum={userLikes} />
 
