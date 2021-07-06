@@ -6,6 +6,7 @@ import "./feed.css";
 import Nav2 from "./Nav2";
 import firebase from "./firebase";
 import Videosection from "./videosection";
+import Likedvideos from "./likedvideos";
 
 
 //this main feed displays video & information from database
@@ -63,11 +64,20 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
   // console.log(servervideos)
   // console.log(userLikedVideos)
   const likedplaylist = servervideos.filter(video => video.id.includes(userLikedVideos))
-  // console.log(likedplaylist)
+
+
+  const like2 = servervideos.some(video => video.id.includes(userLikedVideos))
+  const like3 = []
+  servervideos.forEach(video => {
+    if (userLikedVideos.includes(video.id)) {
+      like3.push(video.id)
+    }
+  })
+  console.log(like3)
 
   const [numholder, setNumHolder] = useState(0);
 
-  console.log(serverpics)
+  // console.log(serverpics)
   const headerstyle = {}
   return (
     <>
@@ -83,12 +93,6 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
       <main>
 
 
-        <div className='headerholder'>
-
-          {serverpics[0] ?
-            <div>{serverpics[0].headline} </div>
-            : ''}
-        </div>
         <section>
           <Videosection serverpics={serverpics}
             servervideos={servervideos}
@@ -116,7 +120,7 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
           />
         </section>
         <section>
-          <Videosection serverpics={serverpics} sectiontitle={"Likes"} servervideos={likedplaylist} />
+          <Likedvideos serverpics={serverpics} sectiontitle={"Likes"} servervideos={like3} />
         </section>
       </main>
 

@@ -150,10 +150,13 @@ const Sidebar = ({ currentvid, userDisplayName, videosRef, videoId }) => {
 
   const shareHandler = () => {
     let urlbase = 'localhost:300/watch/'
-    let fullurl = urlbase + currentvid[0].id
+    let urlcode = currentvid[0].id
     console.log('sharing video')
-    console.log(fullurl)
+    //alert(fullurl)
+    const fullurl = `${window.location.hostname}/watch/${urlcode}`
     alert(fullurl)
+    document.execCommand('copy')
+    setSuccess('Link copied to clipboard!')
   }
 
 
@@ -192,9 +195,11 @@ const Sidebar = ({ currentvid, userDisplayName, videosRef, videoId }) => {
             <p> {currentvid[0].views} Views</p>
           </div>
           <div className="sidebar_icons">
+            <div className='alerts'>  {error && <Alert variant='danger'>{error}</Alert>}
+              {success && <Alert variant='success'>{success}</Alert>}</div>
+
             <div className="social_controls">
-              <div className='alerts'>  {error && <Alert variant='danger'>{error}</Alert>}
-                {success && <Alert variant='success'>{success}</Alert>}</div>
+
 
               {isliked ? (
                 <FavoriteIcon id="iconn" onClick={likeHandler} fontSize="large" />
