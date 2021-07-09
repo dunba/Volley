@@ -166,6 +166,31 @@ const VideoWatch = ({ match }) => {
 
     }
 
+    //update progress and timestamp
+    const [vidInfo, setVidInfo] = useState({ currentTime: null, duration: null, })
+
+
+    const timeUpdateHandler = (e) => {
+        const current = e.target.currentTime
+        const duration = e.target.duration
+        console.log(current)
+        console.log(duration)
+        setVidInfo({ ...vidInfo, currentTime: current, duration })
+
+    }
+
+    const getTime = (time) => {
+        return (
+            Math.floor(time / 60) + ':' + ('0' + Math.floor(time % 60)).slice(-2)
+        );
+    }
+
+    const dragHandler = (e) => {
+        videoRef.current.currentTime = e.target.value
+        setVidInfo({ ...vidInfo, currentTime: e.target.value })
+    }
+
+
     if (loading) return <ClipLoader />
 
     return (
@@ -178,13 +203,26 @@ const VideoWatch = ({ match }) => {
             <div className='mediacontainer'>
                 <div className='videoholder'>
                     {currentvid[0] ?
-                        <video src={currentvid[0].url} loop onclick={onVidPress} ref={videoRef}>Cannot Render Video</video> : <ClipLoader />}
+                        <video onLoadedMetadata={timeUpdateHandler} onTimeUpdate={timeUpdateHandler} src={currentvid[0].url} loop onclick={onVidPress} ref={videoRef}>Cannot Render Video</video> : <ClipLoader />}
 
-                    <div className='vid_controls'>
+                    <div className='vidcontrols'>
+                        <div className='pvpcontrols'>{playing ? <PauseIcon id='iconn' onClick={onVidPress} fontSize='large' /> : <PlayArrowIcon id='iconn' onClick={onVidPress} fontSize='large' />}
+                            {ismuted ? <VolumeMuteIcon onClick={onVolumePress} id='iconn' fontSize='large' /> : <VolumeUpIcon onClick={onVolumePress} id='iconn' fontSize='large' />}
+                            <StopIcon id='iconn' fontSize='large' onClick={stopHandler} />
+                        </div>
+                        <div className='sliderdiv'>                        <input type="range"
+                            id="inputslider"
+                            onChange={dragHandler}
+                            min={0}
+                            max={vidInfo.duration}
+                            step="0.1"
+                            value={vidInfo.currentTime} />
+                            {getTime(vidInfo.currentTime)}/{getTime(vidInfo.duration)}
+                        </div>
 
-                        {playing ? <PauseIcon id='iconn' onClick={onVidPress} fontSize='large' /> : <PlayArrowIcon id='iconn' onClick={onVidPress} fontSize='large' />}
-                        {ismuted ? <VolumeMuteIcon onClick={onVolumePress} id='iconn' fontSize='large' /> : <VolumeUpIcon onClick={onVolumePress} id='iconn' fontSize='large' />}
-                        <StopIcon id='iconn' fontSize='large' onClick={stopHandler} />
+
+
+
                     </div>
 
                 </div>

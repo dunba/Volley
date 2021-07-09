@@ -110,6 +110,26 @@ h6 {
   flex-direction: column;
   width: 70%;
 }
+.vidcontrols {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  margin: 0;
+  width: 100%;
+}
+.sliderdiv {
+  display: flex;
+  flex-direction: row;
+  padding: 2em 0em;
+  width: 8%;
+}
+
+.pvpcontrols {
+  padding: 1em;
+}
+#inputslider {
+  width: 100%;
+}
 
 .videoholder::-webkit-scrollbar {
   display: none;
@@ -204,16 +224,6 @@ h6 {
   scrollbar-width: none;
 }
 
-.vid_controls {
-  display: flex;
-  padding: 0.6em;
-  flex-direction: row;
-  height: 20px;
-  background-color: white;
-  margin: auto;
-  width: 100%;
-  justify-content: center;
-}
 .videosidebar {
   background-color: white;
   display: flex;
@@ -328,16 +338,7 @@ h6 {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-  .vid_controls {
-    display: flex;
-    padding: 0.6em;
-    flex-direction: row;
-    height: 20px;
-    background-color: white;
-    margin: auto;
-    width: 100%;
-    justify-content: center;
-  }
+
   .videosidebar {
     background-color: yellow;
     display: flex;
