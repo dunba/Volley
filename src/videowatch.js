@@ -14,6 +14,7 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 import VolumeMuteIcon from '@material-ui/icons/VolumeMute';
+import StopIcon from '@material-ui/icons/Stop';
 
 
 //this main feed displays video & information from database
@@ -157,6 +158,14 @@ const VideoWatch = ({ match }) => {
             setPlaying(true);
         }
     }
+    const stopHandler = () => {
+        console.log(videoRef.current.duration);
+        setPlaying(false)
+        videoRef.current.pause();
+        videoRef.current.currentTime = 0;
+
+    }
+
     if (loading) return <ClipLoader />
 
     return (
@@ -175,6 +184,7 @@ const VideoWatch = ({ match }) => {
 
                         {playing ? <PauseIcon id='iconn' onClick={onVidPress} fontSize='large' /> : <PlayArrowIcon id='iconn' onClick={onVidPress} fontSize='large' />}
                         {ismuted ? <VolumeMuteIcon onClick={onVolumePress} id='iconn' fontSize='large' /> : <VolumeUpIcon onClick={onVolumePress} id='iconn' fontSize='large' />}
+                        <StopIcon id='iconn' fontSize='large' onClick={stopHandler} />
                     </div>
 
                 </div>
