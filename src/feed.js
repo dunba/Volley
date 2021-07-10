@@ -7,6 +7,8 @@ import Nav2 from "./Nav2";
 import firebase from "./firebase";
 import Videosection from "./videosection";
 import Likedvideos from "./likedvideos";
+import { Carousel } from "react-bootstrap";
+import { motion } from "framer-motion";
 
 
 //this main feed displays video & information from database
@@ -60,9 +62,7 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
 
 
 
-  // console.log(todaysDate);
-  // console.log(servervideos)
-  // console.log(userLikedVideos)
+
   const likedplaylist = servervideos.filter(video => video.id.includes(userLikedVideos))
 
 
@@ -77,21 +77,87 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
 
   const [numholder, setNumHolder] = useState(0);
 
-  // console.log(serverpics)
-  const headerstyle = {}
+
+  const d = new Date();
+
+
+
   return (
     <>
 
-      <header className='feedheader' >
-        <p style={{ color: 'white' }}>{userDisplayName ? `HELLO ${userDisplayName}` : <ClipLoader />}</p>
-        <Nav2 likenum={userLikes} />
+      <motion.header className='feedheader' >
 
+        {serverpics && (
+          <Carousel fade slideshowSpeed={2000}>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src={serverpics[0].header}
+                alt="First slide"
+              />
+              <Carousel.Caption >
+                <h3>FEATURED</h3>
+                <h5>{serverpics[0].headline}</h5>
+                <Link to={`/watch/${serverpics[0].id}`}><a>WATCH NOW</a></Link>
+              </Carousel.Caption>
+            </Carousel.Item >
+            <Carousel.Item >
+              <img
+                className="d-block w-100"
+                src={serverpics[1].header}
+                alt="First slide"
+              />
+              <Carousel.Caption>
+                <h3>FEATURED</h3>
+                <h5>{serverpics[1].headline}</h5>
+                <Link to={`/watch/${serverpics[1].id}`}><a>WATCH NOW</a></Link>
+              </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src={serverpics[2].header}
+                alt="First slide"
+              />
+              <Carousel.Caption>
+                <h3>FEATURED</h3>
+                <h5>{serverpics[2].headline}</h5>
+                <Link to={`/watch/${serverpics[2].id}`}><a>WATCH NOW</a></Link>
+              </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src={serverpics[3].header}
+                alt="First slide"
+              />
+              <Carousel.Caption>
+                <h3>FEATURED</h3>
+                <h5>{serverpics[3].headline}</h5>
+                <Link to={`/watch/${serverpics[3].id}`}><a>WATCH NOW</a></Link>
+              </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item >
+              <img
+                className="d-block w-100"
+                src={serverpics[4].header}
+                alt="First slide"
+              />
+              <Carousel.Caption>
+                <h3>FEATURED</h3>
+                <h5>{serverpics[4].headline}</h5>
+                <Link to={`/watch/${serverpics[4].id}`}><a>WATCH NOW</a></Link>
+              </Carousel.Caption>
+            </Carousel.Item>
 
+          </Carousel>
+        )}
 
-      </header>
+      </motion.header>
 
       <main>
-
+        <Nav2 likenum={userLikes} />
+        <p style={{ color: 'black' }}>{userDisplayName ? `HELLO ${userDisplayName}` : <ClipLoader />}</p>
 
         <section>
           <Videosection serverpics={serverpics}

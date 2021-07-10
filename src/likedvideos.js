@@ -47,9 +47,9 @@ const Likedvideos = ({ type, servervideos, sectiontitle, serverpics }) => {
                 <h6>{sectiontitle}</h6>
                 <motion.div className="vidposting" animate={animation} >
 
-                    <Link to={`/likes`}>
-                        {servervideos.length} Liked Videos
-                    </Link>
+
+                    {servervideos.length} Liked Videos
+
 
 
                 </motion.div>

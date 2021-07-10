@@ -203,12 +203,12 @@ const VideoWatch = ({ match }) => {
             <div className='mediacontainer'>
                 <div className='videoholder'>
                     {currentvid[0] ?
-                        <video onLoadedMetadata={timeUpdateHandler} onTimeUpdate={timeUpdateHandler} src={currentvid[0].url} loop onclick={onVidPress} ref={videoRef}>Cannot Render Video</video> : <ClipLoader />}
+                        <video poster={currentvid[0].header} onLoadedMetadata={timeUpdateHandler} onTimeUpdate={timeUpdateHandler} src={currentvid[0].url} loop onclick={onVidPress} ref={videoRef}>Cannot Render Video</video> : <ClipLoader />}
 
                     <div className='vidcontrols'>
-                        <div className='pvpcontrols'>{playing ? <PauseIcon id='iconn' onClick={onVidPress} fontSize='large' /> : <PlayArrowIcon id='iconn' onClick={onVidPress} fontSize='large' />}
-                            {ismuted ? <VolumeMuteIcon onClick={onVolumePress} id='iconn' fontSize='large' /> : <VolumeUpIcon onClick={onVolumePress} id='iconn' fontSize='large' />}
-                            <StopIcon id='iconn' fontSize='large' onClick={stopHandler} />
+                        <div className='pvpcontrols'>{playing ? <PauseIcon id='iconn2' onClick={onVidPress} fontSize='large' /> : <PlayArrowIcon id='iconn2' onClick={onVidPress} fontSize='large' />}
+                            {ismuted ? <VolumeMuteIcon onClick={onVolumePress} id='iconn2' fontSize='large' /> : <VolumeUpIcon onClick={onVolumePress} id='iconn2' fontSize='large' />}
+                            <StopIcon id='iconn2' fontSize='large' onClick={stopHandler} />
                         </div>
                         <div className='sliderdiv'>                        <input type="range"
                             id="inputslider"
