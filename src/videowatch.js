@@ -15,7 +15,7 @@ import PauseIcon from '@material-ui/icons/Pause';
 import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 import VolumeMuteIcon from '@material-ui/icons/VolumeMute';
 import StopIcon from '@material-ui/icons/Stop';
-
+import { motion } from "framer-motion";
 
 //this main feed displays video & information from database
 const VideoWatch = ({ match }) => {
@@ -196,14 +196,12 @@ const VideoWatch = ({ match }) => {
     return (
 
         <div className='flexcontainer'>
-            <div onClick={() => history.push('/')} > <ArrowBackIcon />BACK</div>
-
+            {/* <div onClick={() => history.push('/')} > <ArrowBackIcon />BACK</div> */}
             {/* <button className='backbutton' >Back</button> */}
-
             <div className='mediacontainer'>
                 <div className='videoholder'>
                     {currentvid[0] ?
-                        <video poster={currentvid[0].header} onLoadedMetadata={timeUpdateHandler} onTimeUpdate={timeUpdateHandler} src={currentvid[0].url} loop onclick={onVidPress} ref={videoRef}>Cannot Render Video</video> : <ClipLoader />}
+                        <video id='fullscreenvideo' poster={currentvid[0].header} onLoadedMetadata={timeUpdateHandler} onTimeUpdate={timeUpdateHandler} src={currentvid[0].url} loop onclick={onVidPress} ref={videoRef}>Cannot Render Video</video> : <ClipLoader />}
 
                     <div className='vidcontrols'>
                         <div className='pvpcontrols'>{playing ? <PauseIcon id='iconn2' onClick={onVidPress} fontSize='large' /> : <PlayArrowIcon id='iconn2' onClick={onVidPress} fontSize='large' />}
@@ -226,18 +224,19 @@ const VideoWatch = ({ match }) => {
                     </div>
 
                 </div>
-
-                <div className='videosidebar'>
+                {/* 
+                <motion.div className='videosidebar'>
                     <Sidebar videoId={videoId} videosRef={videosRef} userDisplayName={userDisplayName} currentvid={currentvid} />
-                </div>
+                </motion.div> */}
 
 
             </div >
 
-            <Videosection type={'Recommended'}
+            {/* <Videosection type={'Recommended'}
                 sectiontitle={"International"}
                 servervideos={servervideos}
-            />        </div >
+            />         */}
+        </div >
 
 
     )

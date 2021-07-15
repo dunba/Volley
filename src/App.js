@@ -22,6 +22,7 @@ import VideoWatch from './videowatch'
 import Video from "./video";
 import Footer from './footer'
 import Search from './search'
+import { motion, AnimatePresence } from "framer-motion";
 
 function App() {
   const usersRef = firebase.firestore().collection("users");
@@ -88,50 +89,52 @@ function App() {
 
   return (
     <Router>
-      <AuthProvider>
-        <div className="App">
-          <Switch>
-            <Route exact component={ForgotPassword} path="/forgot-password" />
-            <Route exact path="/signup">
-              <SignUp />
-            </Route>
-            <Route exact path="/login">
-              <Login />
-            </Route>
-            {/* this separate div prevents the nav bar from showing up on the login / logout pages */}
-            <PrivateRoute exact path="/Setuserinfo">
-              <Setuserinfo />
-            </PrivateRoute>
-
-            <div>
-              <Nav likenum={userLikes} />
-              <PrivateRoute servervideos={servervideos} exact path="/watch">
-                <Watch servervideos={servervideos} />
+      <AnimatePresence>
+        <AuthProvider>
+          <div className="App">
+            <Switch>
+              <Route exact component={ForgotPassword} path="/forgot-password" />
+              <Route exact path="/signup">
+                <SignUp />
+              </Route>
+              <Route exact path="/login">
+                <Login />
+              </Route>
+              {/* this separate div prevents the nav bar from showing up on the login / logout pages */}
+              <PrivateRoute exact path="/Setuserinfo">
+                <Setuserinfo />
               </PrivateRoute>
 
-              <PrivateRoute exact path="/">
-                <Feed servervideos={servervideos} serverpics={serverpics} />
-              </PrivateRoute>
-              <PrivateRoute exact path="/user" ><User /></PrivateRoute>
-              <PrivateRoute path="/update-profile" component={UpdateProfile} />
-              <Route exact path="/table">
-                <PremTable />
-              </Route>
-              <Route exact path="/stats">
-                <Stats />
-              </Route>
-              <Route exact path="/likes">
-                <Likes />
-              </Route>
-              <Route path="/stats/:id" component={Playerdata} />
-              <Route path="/table/:id" component={Teamdata} />
-              <Route servervideos={servervideos} path='/watch/:id' component={VideoWatch} />
-              <Route exact path='/search' component={Search} />
-              <Footer />
-            </div>
-          </Switch>
-        </div>
-      </AuthProvider>
+              <div>
+                <Nav likenum={userLikes} />
+                <PrivateRoute servervideos={servervideos} exact path="/watch">
+                  <Watch servervideos={servervideos} />
+                </PrivateRoute>
+
+                <PrivateRoute exact path="/">
+                  <Feed servervideos={servervideos} serverpics={serverpics} />
+                </PrivateRoute>
+                <PrivateRoute exact path="/user" ><User /></PrivateRoute>
+                <PrivateRoute path="/update-profile" component={UpdateProfile} />
+                <Route exact path="/table">
+                  <PremTable />
+                </Route>
+                <Route exact path="/stats">
+                  <Stats />
+                </Route>
+                <Route exact path="/likes">
+                  <Likes />
+                </Route>
+                <Route path="/stats/:id" component={Playerdata} />
+                <Route path="/table/:id" component={Teamdata} />
+                <Route servervideos={servervideos} path='/watch/:id' component={VideoWatch} />
+                <Route exact path='/search' component={Search} />
+                <Footer />
+              </div>
+            </Switch>
+          </div>
+        </AuthProvider>
+      </AnimatePresence>
     </Router >
   );
 }

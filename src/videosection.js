@@ -103,11 +103,12 @@ const Videosection = ({ type, servervideos, sectiontitle, serverpics }) => {
     { width: 3000, itemsToShow: 8 },
 
   ]
-
+  const [isHover, setIsHover] = useState(false)
+  const transition = { duration: .6, ease: [0.43, .13, -.13, .96] }
 
 
   return (
-    <>
+    <div >
       <div className="videosection" ref={ref}>
         <h6>{sectiontitle}</h6>
         <motion.div className="reelholder" animate={animation} >
@@ -115,16 +116,16 @@ const Videosection = ({ type, servervideos, sectiontitle, serverpics }) => {
           <Carousel breakPoints={breakPoints} itemsToScroll={3} >
             {servervideos.map(pic => (
 
-              <div className="vidposting" >
+              <div className="vidposting"  >
                 <Link to={`/watch/${pic.id}`}>
-                  <img
+                  <motion.img whileHover={{ scale: 1.1 }} transition={transition}
                     key={pic.id}
                     alt={pic.description}
                     id="thumbnailonfeed"
                     src={pic.thumbnail}
                   />
                 </Link>
-                <div className="videodescription">{pic.description}</div>
+                {/* {isHover ? <div className="videodescription">{pic.description}</div> : ''} */}
               </div>
             ))}
 
@@ -136,7 +137,7 @@ const Videosection = ({ type, servervideos, sectiontitle, serverpics }) => {
 
       </div>
 
-    </>
+    </div>
   );
 };
 

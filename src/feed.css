@@ -1,3 +1,16 @@
+#gradientoverlay {
+  width: auto;
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
+}
 main {
   display: flex;
   flex-direction: column;
@@ -92,16 +105,13 @@ h6 {
 
 .flexcontainer {
   display: flex;
-  min-height: 100vh;
-  background: rgba(15, 37, 36, 0.957);
-  width: 100vw;
+  background: white;
   flex-direction: column;
-  padding-top: 10em;
 }
 .mediacontainer {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  min-width: 100vw;
 }
 
 .videoholder {
@@ -110,7 +120,7 @@ h6 {
   margin: auto;
   display: flex;
   flex-direction: column;
-  width: 70%;
+  min-height: 100vh;
 }
 .vidcontrols {
   display: flex;
@@ -160,7 +170,6 @@ h6 {
 }
 
 #thumbnailonfeed {
-  transition: all 0.2s ease-in-out;
   width: 20em;
   -webkit-box-shadow: 0px 7px 6px -4px #000000;
   box-shadow: 0px 7px 6px -4px #000000;
@@ -176,16 +185,11 @@ h6 {
   display: grid;
 }
 
-.vidposting:hover {
-  transform: scale(1.15);
-  transition: 0.3s cubic-bezier();
-}
-
 .videodescription {
-  visibility: hidden;
-  position: relative;
-  bottom: 10em;
-  background-color: yellow;
+  position: sticky;
+  bottom: 5em;
+  height: 5em;
+  background-color: rgba(255, 255, 255, 0.5);
   width: 100%;
 }
 

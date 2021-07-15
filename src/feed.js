@@ -77,20 +77,34 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
 
   const [numholder, setNumHolder] = useState(0);
 
+  const transition2 = { duration: 2, ease: [0.43, .13, -.13, .96] }
 
   const d = new Date();
-
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  }
 
 
   return (
-    <>
+    <motion.div variants={container} exit={{ opacity: 0 }}
+      initial="hidden"
+      animate="show">
 
       <motion.header className='feedheader' >
 
-        {serverpics && (
-          <Carousel fade slideshowSpeed={2000}>
+
+        <Carousel fade slideshowSpeed={2000}>
+          {serverpics[0] && (
             <Carousel.Item>
+              <div id='gradientoverlay'>WHAT IS THIS</div>
               <img
+                id='gradientoverlay'
                 className="d-block w-100"
                 src={serverpics[0].header}
                 alt="First slide"
@@ -101,8 +115,12 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
                 <Link to={`/watch/${serverpics[0].id}`}><a>WATCH NOW</a></Link>
               </Carousel.Caption>
             </Carousel.Item >
+          )}
+          {serverpics[1] && (
+
             <Carousel.Item >
               <img
+                id='gradientoverlay'
                 className="d-block w-100"
                 src={serverpics[1].header}
                 alt="First slide"
@@ -113,8 +131,11 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
                 <Link to={`/watch/${serverpics[1].id}`}><a>WATCH NOW</a></Link>
               </Carousel.Caption>
             </Carousel.Item>
+          )}
+          {serverpics[2] && (
             <Carousel.Item>
               <img
+                id='gradientoverlay'
                 className="d-block w-100"
                 src={serverpics[2].header}
                 alt="First slide"
@@ -125,8 +146,11 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
                 <Link to={`/watch/${serverpics[2].id}`}><a>WATCH NOW</a></Link>
               </Carousel.Caption>
             </Carousel.Item>
+          )}
+          {serverpics[3] && (
             <Carousel.Item>
               <img
+                id='gradientoverlay'
                 className="d-block w-100"
                 src={serverpics[3].header}
                 alt="First slide"
@@ -137,8 +161,11 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
                 <Link to={`/watch/${serverpics[3].id}`}><a>WATCH NOW</a></Link>
               </Carousel.Caption>
             </Carousel.Item>
+          )}
+          {serverpics[4] && (
             <Carousel.Item >
               <img
+                id='gradientoverlay'
                 className="d-block w-100"
                 src={serverpics[4].header}
                 alt="First slide"
@@ -149,15 +176,15 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
                 <Link to={`/watch/${serverpics[4].id}`}><a>WATCH NOW</a></Link>
               </Carousel.Caption>
             </Carousel.Item>
-
-          </Carousel>
-        )}
+          )}
+        </Carousel>
 
       </motion.header>
 
       <main>
         <Nav2 likenum={userLikes} />
         <p style={{ color: 'black' }}>{userDisplayName ? `HELLO ${userDisplayName}` : <ClipLoader />}</p>
+
 
         <section>
           <Videosection serverpics={serverpics}
@@ -191,7 +218,7 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
       </main>
 
 
-    </>
+    </motion.div>
   );
 };
 export default Feed;
