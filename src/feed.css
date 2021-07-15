@@ -123,19 +123,27 @@ h6 {
   min-height: 100vh;
 }
 .vidcontrols {
+  position: absolute;
+  top: 10em;
   display: flex;
   flex-direction: row;
   background-color: #37003c;
   margin: 0;
   width: 100%;
 }
+#fullscreenvideo {
+  min-width: 100vw;
+}
 .sliderdiv {
   display: flex;
   flex-direction: row;
   padding: 2em 0em;
-  width: 88%;
+  width: 70%;
   color: white;
   font-weight: bold;
+}
+.hoverrecs {
+  width: 20%;
 }
 
 .pvpcontrols {

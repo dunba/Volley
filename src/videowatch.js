@@ -16,7 +16,8 @@ import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 import VolumeMuteIcon from '@material-ui/icons/VolumeMute';
 import StopIcon from '@material-ui/icons/Stop';
 import { motion } from "framer-motion";
-
+import FullscreenIcon from '@material-ui/icons/Fullscreen';
+import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
 //this main feed displays video & information from database
 const VideoWatch = ({ match }) => {
     const history = useHistory();
@@ -98,6 +99,8 @@ const VideoWatch = ({ match }) => {
     }
     //this will run everytime the page loads to fetch user data
     useEffect(() => {
+        setIsHovering(false);
+
         fetchDocs();
         fetchUserData(currentUser.currentUser);
         console.log(currentvid)
@@ -189,39 +192,52 @@ const VideoWatch = ({ match }) => {
         videoRef.current.currentTime = e.target.value
         setVidInfo({ ...vidInfo, currentTime: e.target.value })
     }
-
-
+    const [isHovering, setIsHovering] = useState(null);
+    const handleMouseOver = () => {
+        isHovering ? setIsHovering(false) : setIsHovering(true)
+    }
+    function goFullscreen(id) {
+        var element = document.getElementById(id);
+        if (element.mozRequestFullScreen) {
+            element.mozRequestFullScreen();
+        } else if (element.webkitRequestFullScreen) {
+            element.webkitRequestFullScreen();
+        }
+    }
     if (loading) return <ClipLoader />
 
     return (
 
-        <div className='flexcontainer'>
+        <div className='flexcontainer' onMouseEnter={handleMouseOver} onMouseLeave={handleMouseOver}>
             {/* <div onClick={() => history.push('/')} > <ArrowBackIcon />BACK</div> */}
             {/* <button className='backbutton' >Back</button> */}
             <div className='mediacontainer'>
                 <div className='videoholder'>
                     {currentvid[0] ?
-                        <video id='fullscreenvideo' poster={currentvid[0].header} onLoadedMetadata={timeUpdateHandler} onTimeUpdate={timeUpdateHandler} src={currentvid[0].url} loop onclick={onVidPress} ref={videoRef}>Cannot Render Video</video> : <ClipLoader />}
+                        <video id='fullscreenvideo' poster={currentvid[0].header} onLoadedMetadata={timeUpdateHandler} onTimeUpdate={timeUpdateHandler} src={currentvid[0].url} loop onclick={onVidPress} ref={videoRef}><ClipLoader /></video> : <ClipLoader />}
+                    {isHovering ?
+                        <div className='vidcontrols'  >
+                            <div className='hoverrecs'> Recommended</div>
+                            <div className='pvpcontrols'>{playing ? <PauseIcon id='iconn2' onClick={onVidPress} fontSize='large' /> : <PlayArrowIcon id='iconn2' onClick={onVidPress} fontSize='large' />}
+                                {ismuted ? <VolumeMuteIcon onClick={onVolumePress} id='iconn2' fontSize='large' /> : <VolumeUpIcon onClick={onVolumePress} id='iconn2' fontSize='large' />}
+                                <FullscreenIcon id='iconn2' fontSize='large' />
+                                <StopIcon id='iconn2' fontSize='large' onClick={stopHandler} />
+                            </div>
+                            <div className='sliderdiv'>                        <input type="range"
+                                id="inputslider"
+                                onChange={dragHandler}
+                                min={0}
+                                max={vidInfo.duration}
+                                step="0.1"
+                                value={vidInfo.currentTime} />
+                                {getTime(vidInfo.currentTime)}/{getTime(vidInfo.duration)}
+                            </div>
 
-                    <div className='vidcontrols'>
-                        <div className='pvpcontrols'>{playing ? <PauseIcon id='iconn2' onClick={onVidPress} fontSize='large' /> : <PlayArrowIcon id='iconn2' onClick={onVidPress} fontSize='large' />}
-                            {ismuted ? <VolumeMuteIcon onClick={onVolumePress} id='iconn2' fontSize='large' /> : <VolumeUpIcon onClick={onVolumePress} id='iconn2' fontSize='large' />}
-                            <StopIcon id='iconn2' fontSize='large' onClick={stopHandler} />
-                        </div>
-                        <div className='sliderdiv'>                        <input type="range"
-                            id="inputslider"
-                            onChange={dragHandler}
-                            min={0}
-                            max={vidInfo.duration}
-                            step="0.1"
-                            value={vidInfo.currentTime} />
-                            {getTime(vidInfo.currentTime)}/{getTime(vidInfo.duration)}
-                        </div>
 
 
 
 
-                    </div>
+                        </div> : ''}
 
                 </div>
                 {/* 
@@ -232,10 +248,7 @@ const VideoWatch = ({ match }) => {
 
             </div >
 
-            {/* <Videosection type={'Recommended'}
-                sectiontitle={"International"}
-                servervideos={servervideos}
-            />         */}
+            {/*        */}
         </div >
 
 
