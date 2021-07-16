@@ -18,6 +18,8 @@ import StopIcon from '@material-ui/icons/Stop';
 import { motion } from "framer-motion";
 import FullscreenIcon from '@material-ui/icons/Fullscreen';
 import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
+import FullscreenExit from "@material-ui/icons/FullscreenExit";
+import Ticker from "react-ticker";
 //this main feed displays video & information from database
 const VideoWatch = ({ match }) => {
     const history = useHistory();
@@ -55,7 +57,8 @@ const VideoWatch = ({ match }) => {
 
     //this will fetch videos from the server
     const fetchDocs = () => {
-        console.log(videosRef);
+        setIsHovering(false);
+
         setLoading(true);
         videosRef.onSnapshot(snapshot => {
             const items = [];
@@ -98,12 +101,11 @@ const VideoWatch = ({ match }) => {
         }
     }
     //this will run everytime the page loads to fetch user data
-    useEffect(() => {
-        setIsHovering(false);
-
-        fetchDocs();
-        fetchUserData(currentUser.currentUser);
-        console.log(currentvid)
+    useEffect(async () => {
+        await setIsHovering(false);
+        await fetchDocs();
+        await fetchUserData(currentUser.currentUser);
+        await console.log(currentvid)
 
     }, [])
 
@@ -194,8 +196,24 @@ const VideoWatch = ({ match }) => {
     }
     const [isHovering, setIsHovering] = useState(null);
     const handleMouseOver = () => {
-        isHovering ? setIsHovering(false) : setIsHovering(true)
+        !isHovering ? setIsHovering(true) : setIsHovering(false)
     }
+
+    const [fullscreen, setFullscreen] = useState(false)
+    const [fullscreenMode, setFullscreenMode] = useState(false)
+    const fullScreenHandler = () => {
+        if (!fullscreen) {
+            setFullscreen(true)
+            // setFullscreenMode(true);
+
+
+        }
+        else {
+            setFullscreen(false)
+            // setFullscreenMode(false);
+        }
+    }
+
     function goFullscreen(id) {
         var element = document.getElementById(id);
         if (element.mozRequestFullScreen) {
@@ -204,6 +222,11 @@ const VideoWatch = ({ match }) => {
             element.webkitRequestFullScreen();
         }
     }
+
+    while (fullscreenMode) {
+        setIsHovering(true);
+    }
+
     if (loading) return <ClipLoader />
 
     return (
@@ -216,12 +239,13 @@ const VideoWatch = ({ match }) => {
                     {currentvid[0] ?
                         <video id='fullscreenvideo' poster={currentvid[0].header} onLoadedMetadata={timeUpdateHandler} onTimeUpdate={timeUpdateHandler} src={currentvid[0].url} loop onclick={onVidPress} ref={videoRef}><ClipLoader /></video> : <ClipLoader />}
                     {isHovering ?
-                        <div className='vidcontrols'  >
+                        <motion.div exit={{ opacity: 0 }} initial={{ opacity: 0 }} animate={{ opacity: 1, duration: 2 }} className='vidcontrols'  >
                             <div className='hoverrecs'> Recommended</div>
                             <div className='pvpcontrols'>{playing ? <PauseIcon id='iconn2' onClick={onVidPress} fontSize='large' /> : <PlayArrowIcon id='iconn2' onClick={onVidPress} fontSize='large' />}
                                 {ismuted ? <VolumeMuteIcon onClick={onVolumePress} id='iconn2' fontSize='large' /> : <VolumeUpIcon onClick={onVolumePress} id='iconn2' fontSize='large' />}
-                                <FullscreenIcon id='iconn2' fontSize='large' />
                                 <StopIcon id='iconn2' fontSize='large' onClick={stopHandler} />
+                                {fullscreen ? <FullscreenExitIcon id='iconn2' fontSize='large' onClick={fullScreenHandler} /> : <FullscreenIcon id='iconn2' fontSize='large' onClick={fullScreenHandler} />}
+
                             </div>
                             <div className='sliderdiv'>                        <input type="range"
                                 id="inputslider"
@@ -233,16 +257,22 @@ const VideoWatch = ({ match }) => {
                                 {getTime(vidInfo.currentTime)}/{getTime(vidInfo.duration)}
                             </div>
 
+                            <Ticker>{({ index }) => (
+                                <>
+                                    <h1>{currentvid[0].scorer}</h1>
+
+                                </>
+                            )}</Ticker>
 
 
 
-
-                        </div> : ''}
+                        </motion.div> : ''}
 
                 </div>
-                {/* 
-                <motion.div className='videosidebar'>
+
+                {/* <motion.div className='videosidebar'>
                     <Sidebar videoId={videoId} videosRef={videosRef} userDisplayName={userDisplayName} currentvid={currentvid} />
+
                 </motion.div> */}
 
 
