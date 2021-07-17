@@ -125,7 +125,6 @@ h6 {
 }
 .vidcontrols {
   position: absolute;
-  top: 10em;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -154,6 +153,11 @@ h6 {
 
 .pvpcontrols {
   padding: 1em;
+  display: flex;
+  position: absolute;
+  top: 20em;
+  align-self: center;
+  margin: auto;
 }
 .tickerdiv {
   width: 50%;
@@ -281,7 +285,7 @@ h6 {
   color: white;
   margin: 0.3em 0;
   cursor: pointer;
-  font-size: 10em;
+  font-size: 7em;
 }
 
 .headercontainer {
