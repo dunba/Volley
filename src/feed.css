@@ -1,5 +1,5 @@
 #gradientoverlay {
-  width: auto;
+  /* width: auto;
   mask-image: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0) 0%,
@@ -9,8 +9,9 @@
     to bottom,
     rgba(0, 0, 0, 0) 0%,
     rgba(0, 0, 0, 0.65) 100%
-  );
+  ); */
 }
+
 main {
   display: flex;
   flex-direction: column;
@@ -90,11 +91,11 @@ h6 {
   visibility: hidden;
 }
 .backbutton {
-  position: absolute;
-  top: 10.7em;
-  display: flex;
-  flex-direction: row;
-  left: 15%;
+  position: fixed;
+  top: 10em;
+  left: 050%;
+}
+.backbutton:hover {
   cursor: pointer;
 }
 .secondlinkstyle {
@@ -125,14 +126,16 @@ h6 {
 .vidcontrols {
   position: absolute;
   top: 10em;
+  height: 100vh;
   display: flex;
-  flex-direction: row;
-  background-color: #37003c;
+  flex-direction: column;
+  background-color: transparent;
   margin: 0;
   width: 100%;
 }
 #fullscreenvideo {
-  min-width: 100vw;
+  width: 100vw;
+  overflow: hidden;
 }
 .sliderdiv {
   display: flex;
@@ -140,17 +143,23 @@ h6 {
   padding: 2em 0em;
   width: 70%;
   color: white;
+  position: absolute;
+  bottom: 10em;
   font-weight: bold;
 }
 .hoverrecs {
-  width: 20%;
+  color: white;
+  width: 30%;
 }
 
 .pvpcontrols {
   padding: 1em;
 }
+.tickerdiv {
+  width: 50%;
+}
 #inputslider {
-  width: 100%;
+  width: 40%;
   --progress-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2) inset;
   --progress-flll-shadow: var(--progress-shadow);
   --fill-color: linear-gradient(to right, LightCyan, var(--primary-color));
@@ -194,9 +203,6 @@ h6 {
 }
 
 .videodescription {
-  position: sticky;
-  bottom: 5em;
-  height: 5em;
   background-color: rgba(255, 255, 255, 0.5);
   width: 100%;
 }
@@ -275,6 +281,7 @@ h6 {
   color: white;
   margin: 0.3em 0;
   cursor: pointer;
+  font-size: 10em;
 }
 
 .headercontainer {
@@ -345,17 +352,14 @@ h6 {
     flex-direction: column;
     margin: auto;
     background-color: rgb(0, 255, 255);
-    width: 100%;
+    width: 100vw;
+    overflow: hidden;
   }
 
   .videoholder {
-    position: relative;
     background-color: rgb(94, 250, 88);
-
     display: flex;
     flex-direction: row;
-    order: -1;
-    width: 80%;
   }
 
   .videoholder::-webkit-scrollbar {

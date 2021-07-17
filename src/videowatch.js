@@ -194,9 +194,14 @@ const VideoWatch = ({ match }) => {
         videoRef.current.currentTime = e.target.value
         setVidInfo({ ...vidInfo, currentTime: e.target.value })
     }
-    const [isHovering, setIsHovering] = useState(null);
+    const [isHovering, setIsHovering] = useState(false);
     const handleMouseOver = () => {
-        !isHovering ? setIsHovering(true) : setIsHovering(false)
+        if (!isHovering) {
+            setIsHovering(true);
+
+        } else {
+            setIsHovering(false)
+        }
     }
 
     const [fullscreen, setFullscreen] = useState(false)
@@ -232,41 +237,53 @@ const VideoWatch = ({ match }) => {
     return (
 
         <div className='flexcontainer' onMouseEnter={handleMouseOver} onMouseLeave={handleMouseOver}>
-            {/* <div onClick={() => history.push('/')} > <ArrowBackIcon />BACK</div> */}
-            {/* <button className='backbutton' >Back</button> */}
+            {/* <div > BACK</div> */}
             <div className='mediacontainer'>
                 <div className='videoholder'>
+
                     {currentvid[0] ?
                         <video id='fullscreenvideo' poster={currentvid[0].header} onLoadedMetadata={timeUpdateHandler} onTimeUpdate={timeUpdateHandler} src={currentvid[0].url} loop onclick={onVidPress} ref={videoRef}><ClipLoader /></video> : <ClipLoader />}
                     {isHovering ?
+
                         <motion.div exit={{ opacity: 0 }} initial={{ opacity: 0 }} animate={{ opacity: 1, duration: 2 }} className='vidcontrols'  >
-                            <div className='hoverrecs'> Recommended</div>
+                            <button className='backbutton' onClick={() => history.push('/')} ><ArrowBackIcon /></button>
+
                             <div className='pvpcontrols'>{playing ? <PauseIcon id='iconn2' onClick={onVidPress} fontSize='large' /> : <PlayArrowIcon id='iconn2' onClick={onVidPress} fontSize='large' />}
                                 {ismuted ? <VolumeMuteIcon onClick={onVolumePress} id='iconn2' fontSize='large' /> : <VolumeUpIcon onClick={onVolumePress} id='iconn2' fontSize='large' />}
                                 <StopIcon id='iconn2' fontSize='large' onClick={stopHandler} />
-                                {fullscreen ? <FullscreenExitIcon id='iconn2' fontSize='large' onClick={fullScreenHandler} /> : <FullscreenIcon id='iconn2' fontSize='large' onClick={fullScreenHandler} />}
 
                             </div>
-                            <div className='sliderdiv'>                        <input type="range"
-                                id="inputslider"
-                                onChange={dragHandler}
-                                min={0}
-                                max={vidInfo.duration}
-                                step="0.1"
-                                value={vidInfo.currentTime} />
-                                {getTime(vidInfo.currentTime)}/{getTime(vidInfo.duration)}
-                            </div>
+                            <div className='hoverrecs'> Recommended</div>
 
-                            <Ticker>{({ index }) => (
-                                <>
-                                    <h1>{currentvid[0].scorer}</h1>
 
-                                </>
-                            )}</Ticker>
+
+
+
 
 
 
                         </motion.div> : ''}
+                    <div className='sliderdiv'>
+                        {currentvid[0] ?
+                            <div className='tickerdiv'> <Ticker>{({ index }) => (
+                                <>
+                                    <p>{currentvid[0].description}</p>
+
+                                </>
+                            )}</Ticker>
+                                {currentvid[0].team}
+                            </div> : ''}
+
+                        <input type="range"
+                            id="inputslider"
+                            onChange={dragHandler}
+                            min={0}
+                            max={vidInfo.duration}
+                            step="0.1"
+                            value={vidInfo.currentTime} />
+                        {getTime(vidInfo.currentTime)}/{getTime(vidInfo.duration)}
+                    </div>
+
 
                 </div>
 

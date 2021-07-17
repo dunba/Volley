@@ -125,7 +125,7 @@ const Videosection = ({ type, servervideos, sectiontitle, serverpics }) => {
                     src={pic.thumbnail}
                   />
                 </Link>
-                {/* {isHover ? <div className="videodescription">{pic.description}</div> : ''} */}
+                <div className="videodescription">{pic.description}</div>
               </div>
             ))}
 

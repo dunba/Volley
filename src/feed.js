@@ -102,7 +102,6 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
         <Carousel fade slideshowSpeed={2000}>
           {serverpics[0] && (
             <Carousel.Item>
-              <div id='gradientoverlay'>WHAT IS THIS</div>
               <img
                 id='gradientoverlay'
                 className="d-block w-100"
