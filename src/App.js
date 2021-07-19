@@ -1,5 +1,4 @@
 import "./App.css";
-import PremTable from "./table";
 import Stats from "./stats";
 import Feed from "./feed";
 import Nav from "./Nav";
@@ -104,6 +103,7 @@ function App() {
               <PrivateRoute exact path="/Setuserinfo">
                 <Setuserinfo />
               </PrivateRoute>
+              <Route servervideos={servervideos} path='/watch/:id' component={VideoWatch} />
 
               <div>
                 <Nav likenum={userLikes} />
@@ -116,9 +116,7 @@ function App() {
                 </PrivateRoute>
                 <PrivateRoute exact path="/user" ><User /></PrivateRoute>
                 <PrivateRoute path="/update-profile" component={UpdateProfile} />
-                <Route exact path="/table">
-                  <PremTable />
-                </Route>
+
                 <Route exact path="/stats">
                   <Stats />
                 </Route>
@@ -127,7 +125,6 @@ function App() {
                 </Route>
                 <Route path="/stats/:id" component={Playerdata} />
                 <Route path="/table/:id" component={Teamdata} />
-                <Route servervideos={servervideos} path='/watch/:id' component={VideoWatch} />
                 <Route exact path='/search' component={Search} />
                 <Footer />
               </div>

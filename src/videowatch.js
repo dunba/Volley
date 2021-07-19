@@ -57,7 +57,7 @@ const VideoWatch = ({ match }) => {
 
     //this will fetch videos from the server
     const fetchDocs = () => {
-        setIsHovering(false);
+        setIsHovering(true);
 
         setLoading(true);
         videosRef.onSnapshot(snapshot => {
@@ -194,15 +194,7 @@ const VideoWatch = ({ match }) => {
         videoRef.current.currentTime = e.target.value
         setVidInfo({ ...vidInfo, currentTime: e.target.value })
     }
-    const [isHovering, setIsHovering] = useState(false);
-    const handleMouseOver = () => {
-        if (!isHovering) {
-            setIsHovering(true);
-
-        } else {
-            setIsHovering(false)
-        }
-    }
+    const [isHovering, setIsHovering] = useState(true);
 
     const [fullscreen, setFullscreen] = useState(false)
     const [fullscreenMode, setFullscreenMode] = useState(false)
@@ -236,25 +228,43 @@ const VideoWatch = ({ match }) => {
 
     return (
 
-        <div className='flexcontainer' onMouseEnter={handleMouseOver} onMouseLeave={handleMouseOver}>
+        <div className='flexcontainer' onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>
             {/* <div > BACK</div> */}
             <div className='mediacontainer'>
                 <div className='videoholder'>
-
+                    {/* poster={currentvid[0].header} */}
                     {currentvid[0] ?
-                        <video id='fullscreenvideo' poster={currentvid[0].header} onLoadedMetadata={timeUpdateHandler} onTimeUpdate={timeUpdateHandler} src={currentvid[0].url} loop onclick={onVidPress} ref={videoRef}><ClipLoader /></video> : <ClipLoader />}
+                        <video id='fullscreenvideo' onLoadedMetadata={timeUpdateHandler} onTimeUpdate={timeUpdateHandler} src={currentvid[0].url} loop onclick={onVidPress} ref={videoRef}><ClipLoader /></video> : <ClipLoader />}
                     {isHovering ?
 
                         <motion.div exit={{ opacity: 0 }} initial={{ opacity: 0 }} animate={{ opacity: 1, duration: 2 }} className='vidcontrols'  >
                             <button className='backbutton' onClick={() => history.push('/')} ><ArrowBackIcon /></button>
-
                             <div className='pvpcontrols'>{playing ? <PauseIcon id='iconn2' onClick={onVidPress} fontSize='large' /> : <PlayArrowIcon id='iconn2' onClick={onVidPress} fontSize='large' />}
                                 {ismuted ? <VolumeMuteIcon onClick={onVolumePress} id='iconn2' fontSize='large' /> : <VolumeUpIcon onClick={onVolumePress} id='iconn2' fontSize='large' />}
                                 <StopIcon id='iconn2' fontSize='large' onClick={stopHandler} />
 
                             </div>
                             <div className='hoverrecs'> Recommended</div>
+                            <div className='sliderdiv'>
+                                {currentvid[0] ?
+                                    <div className='tickerdiv'> <Ticker>{({ index }) => (
+                                        <>
+                                            <p>{currentvid[0].description}</p>
 
+                                        </>
+                                    )}</Ticker>
+                                        {currentvid[0].team}
+                                    </div> : ''}
+
+                                <input type="range"
+                                    id="inputslider"
+                                    onChange={dragHandler}
+                                    min={0}
+                                    max={vidInfo.duration}
+                                    step="0.1"
+                                    value={vidInfo.currentTime} />
+                                {getTime(vidInfo.currentTime)}/{getTime(vidInfo.duration)}
+                            </div>
 
 
 
@@ -263,34 +273,15 @@ const VideoWatch = ({ match }) => {
 
 
                         </motion.div> : ''}
-                    <div className='sliderdiv'>
-                        {currentvid[0] ?
-                            <div className='tickerdiv'> <Ticker>{({ index }) => (
-                                <>
-                                    <p>{currentvid[0].description}</p>
 
-                                </>
-                            )}</Ticker>
-                                {currentvid[0].team}
-                            </div> : ''}
-
-                        <input type="range"
-                            id="inputslider"
-                            onChange={dragHandler}
-                            min={0}
-                            max={vidInfo.duration}
-                            step="0.1"
-                            value={vidInfo.currentTime} />
-                        {getTime(vidInfo.currentTime)}/{getTime(vidInfo.duration)}
-                    </div>
 
 
                 </div>
 
-                {/* <motion.div className='videosidebar'>
+                <motion.div className='videosidebar'>
                     <Sidebar videoId={videoId} videosRef={videosRef} userDisplayName={userDisplayName} currentvid={currentvid} />
 
-                </motion.div> */}
+                </motion.div>
 
 
             </div >

@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as ReactBootStrap from 'react-bootstrap'
 import './stats.css'
+import PremTable from "./table";
+
 
 const Stats = () => {
     const [topscorers, setTopscorers] = useState(null)
@@ -33,6 +35,7 @@ const Stats = () => {
 
     return (
         <div className='flexcontainer'>
+            <PremTable />
             {topscorers && (
                 <div className='tablecontainer'>
                     <div>Select League</div>
