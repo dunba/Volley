@@ -1,81 +1,51 @@
-import axios from 'axios'
-import React from 'react'
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import * as ReactBootStrap from 'react-bootstrap'
-import './stats.css'
+import axios from "axios";
+import React from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import * as ReactBootStrap from "react-bootstrap";
+import "./stats.css";
 import PremTable from "./table";
-
+import Scorers from "./scorers";
 
 const Stats = () => {
-    const [topscorers, setTopscorers] = useState(null)
+  const [topscorers, setTopscorers] = useState(null);
 
-    const options2 = {
+  const options2 = {
+    method: "GET",
+    url: "https://v3.football.api-sports.io/players/topscorers?league=39&season=2020",
 
-        method: 'GET',
-        url: 'https://v3.football.api-sports.io/players/topscorers?league=39&season=2020',
+    headers: {
+      "x-rapidapi-key": process.env.REACT_APP_SECRET_KEY,
+      "x-rapidapi-host": "v3.football.api-sports.io",
+    },
+  };
 
-        headers: {
-            'x-rapidapi-key': process.env.REACT_APP_SECRET_KEY,
-            'x-rapidapi-host': 'v3.football.api-sports.io'
-        }
-    };
+  useEffect(() => {
+    axios
+      .request(options2)
+      .then(response => {
+        setTopscorers(response.data.response);
 
+        console.log(response.data.response);
+      })
+      .catch(err => console.error(err));
+  }, []);
+  const [renderedState, setRenderedState] = useState("scorers");
 
-    useEffect(() => {
-        axios
-            .request(options2)
-            .then(response => {
-                setTopscorers(response.data.response);
+  return (
+    <div className="flexcontainer">
+      <div className="statsheader">
+        Headers
+        <button onClick={() => setRenderedState("table")}>Table</button>
+        <button onClick={() => setRenderedState("scorers")}>Scorers</button>
+      </div>
+      <div className="displayedstats">
+        {renderedState === "table" && <PremTable />}
 
-                console.log(response.data.response);
-            })
-            .catch(err => console.error(err));
-    }, []);
+        {renderedState === "scorers" && <Scorers />}
+      </div>
+    </div>
+  );
+};
 
-    return (
-        <div className='flexcontainer'>
-            <PremTable />
-            {topscorers && (
-                <div className='tablecontainer'>
-                    <div>Select League</div>
-                    <ReactBootStrap.Table className='innertable'>
-                        <thead>
-                            <tr colSpan='4'><th>------- League Top Scorers</th></tr>
-                            <tr>
-                                <th>Player</th>
-                                <th>Goals</th>
-                                <th>Assists</th>
-                                <th> G+A</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            {
-                                topscorers.map((scorer, index2) => (
-
-                                    <tr key={index2}>
-                                        <td><Link to={`/stats/${scorer.player.id}`}>{scorer.player.name}</Link >
-                                        </td>
-                                        <td> {scorer.statistics[0].goals.total ?? (0)}
-                                        </td>
-                                        <td>{scorer.statistics[0].goals.assists ?? (0)}
-
-                                        </td>
-                                        <td>{scorer.statistics[0].goals.assists + scorer.statistics[0].goals.total ?? (0)}
-                                        </td>
-                                    </tr>
-                                ))
-                            }
-
-                        </tbody>
-                    </ReactBootStrap.Table>
-                </div>
-
-
-            )}
-        </div >
-    )
-}
-
-export default Stats
+export default Stats;

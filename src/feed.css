@@ -106,7 +106,7 @@ h6 {
 
 .flexcontainer {
   display: flex;
-  background: white;
+  background: rgb(32, 55, 82);
   flex-direction: column;
 }
 .mediacontainer {
@@ -285,7 +285,7 @@ h6 {
   color: white;
   margin: 0.3em 0;
   cursor: pointer;
-  font-size: 7em;
+  font-size: 3.5em;
 }
 
 .headercontainer {

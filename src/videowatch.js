@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Alert } from 'react-bootstrap'
+
 import { useHistory } from "react-router-dom";
 import ClipLoader from 'react-spinners/ClipLoader'
 import firebase from './firebase'
@@ -16,9 +18,8 @@ import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 import VolumeMuteIcon from '@material-ui/icons/VolumeMute';
 import StopIcon from '@material-ui/icons/Stop';
 import { motion } from "framer-motion";
-import FullscreenIcon from '@material-ui/icons/Fullscreen';
-import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
-import FullscreenExit from "@material-ui/icons/FullscreenExit";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import Ticker from "react-ticker";
 //this main feed displays video & information from database
 const VideoWatch = ({ match }) => {
@@ -27,12 +28,62 @@ const VideoWatch = ({ match }) => {
 
     const videoId = match.params.id;
 
+    const [error, setError] = useState('')
+    const [success, setSuccess] = useState('');
     const [servervideos, setServerVideos] = useState([]);
     const [loading, setLoading] = useState(false);
     const videosRef = firebase.firestore().collection("videos");
 
+    const [isliked, setIsLiked] = useState(false);
+    const likeHandler = () => {
+        if (isliked) {
+            setIsLiked(false);
+            console.log("unliked")
+            console.log(videoId);
+            serverUnlike(currentUser.currentUser, videoId, currentvid)
 
+        } else {
+            setIsLiked(true);
+            console.log("liked");
+            console.log(videoId);
+            serverLike(currentUser.currentUser, videoId, currentvid)
 
+        }
+    };
+
+    const serverLike = async (user, videoId) => {
+        if (!user) return;
+        const userRef = usersRef.doc(`/${user.uid}`);
+        const snapshot = await userRef.get()
+        if (snapshot.exists) {
+            try {
+                userRef.update({
+                    userlikes: firebase.firestore.FieldValue.arrayUnion(videoId),
+                })
+                setSuccess('videoliked')
+            } catch {
+                setError('Error liking video')
+            }
+        }
+
+    }
+
+    const serverUnlike = async (user, videoId) => {
+        if (!user) return;
+        const userRef = usersRef.doc(`/${user.uid}`);
+        const snapshot = await userRef.get()
+        if (snapshot.exists) {
+            try {
+                userRef.update({
+                    userlikes: firebase.firestore.FieldValue.arrayRemove(videoId),
+                })
+                setSuccess('videounliked')
+            } catch {
+                setError('Error to unLike video')
+            }
+        }
+
+    }
 
 
     const currentvid = servervideos.filter(video => video.id == videoId)
@@ -90,6 +141,9 @@ const VideoWatch = ({ match }) => {
         const userRef = usersRef.doc(`/${user.uid}`);
         const snapshot = await userRef.get()
         if (snapshot.exists) {
+            if (snapshot.data().userlikes.includes(videoId)) {
+                setIsLiked(true)
+            }
             console.log(snapshot.data().displayName)
             setUserDisplayName(snapshot.data().displayName)
             setLikeNum(snapshot.data().userlikes.length)
@@ -242,6 +296,18 @@ const VideoWatch = ({ match }) => {
                             <div className='pvpcontrols'>{playing ? <PauseIcon id='iconn2' onClick={onVidPress} fontSize='large' /> : <PlayArrowIcon id='iconn2' onClick={onVidPress} fontSize='large' />}
                                 {ismuted ? <VolumeMuteIcon onClick={onVolumePress} id='iconn2' fontSize='large' /> : <VolumeUpIcon onClick={onVolumePress} id='iconn2' fontSize='large' />}
                                 <StopIcon id='iconn2' fontSize='large' onClick={stopHandler} />
+                                {isliked ? (
+                                    <FavoriteIcon id="iconn2" onClick={likeHandler} fontSize="large" />
+                                ) : (
+                                    <FavoriteBorderIcon
+                                        onClick={likeHandler}
+                                        id="iconn2"
+                                        fontSize="large"
+                                    />
+                                )}
+                                <div className='alerts'>  {error && <Alert variant='danger'>{error}</Alert>}
+                                    {success && <Alert variant='success'>{success}</Alert>}</div>
+
 
                             </div>
                             <div className='hoverrecs'> Recommended</div>
