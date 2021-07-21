@@ -7,6 +7,7 @@ import './stats.css'
 import PremTable from "./table";
 import { Modal, Button } from 'react-bootstrap';
 import ClearIcon from '@material-ui/icons/Clear';
+import { motion, AnimatePresence } from 'framer-motion'
 
 const Scorers = () => {
     const [topscorers, setTopscorers] = useState(null)
@@ -41,14 +42,28 @@ const Scorers = () => {
     const handleShow = () => setShow(true);
 
     const [showModal, setShowModal] = useState(false);
+    const [srcnum, setSrcNum] = useState(0)
+    const modalHandler = (e) => {
+        console.log(e)
+        setShowModal(true)
 
+
+
+    }
+
+    const backdrop = {
+        visible: { opacity: 1 },
+        hidden: { opacity: 0 }
+    }
     return (
         <div className='flexcontainer'>
             {topscorers && (
                 <div className='tablecontainer'>
                     <div>Select League</div>
-                    {showModal && (<div>{topscorers[0].player.name}<ClearIcon onClick={() => setShowModal(false)} />
-                        <img src={topscorers[0].player.photo} /></div>)}
+                    <AnimatePresence exitBeforeEnter>
+                        {showModal && (<motion.div variants={backdrop} exit={{ opacity: 0 }} initial='hidden' animate='visible' className='playermodal'>{topscorers[srcnum].player.name}
+                            <img src={topscorers[srcnum].player.photo} /><ClearIcon onClick={() => setShowModal(false)} /></motion.div>)}
+                    </AnimatePresence>
                     <ReactBootStrap.Table className='innertable'>
                         <thead>
                             <tr colSpan='4'><th>------- League Top Scorers</th></tr>
@@ -65,7 +80,7 @@ const Scorers = () => {
                                 topscorers.map((scorer, index2) => (
                                     // <Link to={`/stats/${scorer.player.id}`}>
                                     <tr key={index2}>
-                                        <td><a href='#' onClick={() => setShowModal(true)}>{scorer.player.name}</a>
+                                        <td><a href='#' onClick={() => { setSrcNum(topscorers.indexOf(scorer)); setShowModal(true) }}>{scorer.player.name}</a>
 
                                         </td>
                                         <td> {scorer.statistics[0].goals.total ?? (0)}
