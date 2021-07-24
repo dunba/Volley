@@ -61,6 +61,7 @@ const Scorers = () => {
                 <div className='tablecontainer'>
                     <div>Select League</div>
                     <AnimatePresence exitBeforeEnter>
+
                         {showModal && (<motion.div variants={backdrop} exit={{ opacity: 0 }} initial='hidden' animate='visible' className='playermodal'>{topscorers[srcnum].player.name}
                             <img src={topscorers[srcnum].player.photo} /><ClearIcon onClick={() => setShowModal(false)} /></motion.div>)}
                     </AnimatePresence>

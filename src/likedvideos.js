@@ -37,19 +37,34 @@ const Likedvideos = ({ type, servervideos, sectiontitle, serverpics }) => {
         { width: 3000, itemsToShow: 8 },
 
     ]
+    const transition = { duration: .6, ease: [0.43, .13, -.13, .96] }
 
 
 
 
     return (
-        <div>
+        <div >
             <div className="videosection" ref={ref}>
                 <h6>{sectiontitle}</h6>
-                <motion.div className="vidposting" animate={animation} >
+                <motion.div className="reelholder" animate={animation} >
 
+                    <Carousel breakPoints={breakPoints} itemsToScroll={3} >
+                        {servervideos.map(pic => (
 
-                    {servervideos.length} Liked Videos
+                            <div className="vidposting"  >
+                                <Link to={`/watch/${pic.data[0].id}`}>
+                                    <motion.img whileHover={{ scale: 1.1 }} transition={transition}
+                                        key={pic.data[0].id}
+                                        alt={pic.data[0].description}
+                                        id="thumbnailonfeed"
+                                        src={pic.data[0].thumbnail}
+                                    />
+                                </Link>
+                                <div className="videodescription">{pic.data[0].description}</div>
+                            </div>
+                        ))}
 
+                    </Carousel>
 
 
                 </motion.div>

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import './feed.css'
-import Nav2 from './Nav2'
 import firebase from "./firebase";
 import { useAuth } from "./AuthContext";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+const transition = { duration: .6, ease: [0.43, .13, -.13, .96] }
 
 
 
@@ -18,7 +20,7 @@ const Likes = ({ likenum }) => {
         const snapshot = await userRef.get();
         if (snapshot.exists) {
             // console.log(snapshot.data().displayName)
-            setUserLikes(snapshot.data().userlikes.length);
+            setUserLikes(snapshot.data().userlikes);
             //  history.push('/')
         } else {
         }
@@ -28,38 +30,22 @@ const Likes = ({ likenum }) => {
         fetchUserData(currentUser.currentUser);
     }, []);
 
-
-    if (userLikes <= 0) return (<div className='flexcontainer'>
-        <div className='headercontainer'><Nav2 likenum={userLikes} /></div>
-
-        <div>
-
-
-            <div>
-                No Liked Videos
-            </div>
-
-
-
-
-        </div>
-    </div>)
-
+    console.log(userLikes)
     return (
-        <div className='flexcontainer'>
-            <div className='headercontainer'></div>
+        <div className='likedcontainer'>
 
-            <div>
-
-
-                <div>
-                    liked videos go here
-                </div>
-
-
+            <div><div className='likedheading'>Liked Videos</div>
+                {userLikes && (
+                    userLikes.map(userlike => (
+                        <div className='likedlisting'> <Link to={`/watch/${userlike.data[0].id}`}><img id='likedimg' src={userlike.data[0].thumbnail} />
+                            <div>{userlike.data[0].description}</div></Link></div>
+                    ))
+                )}
 
 
             </div>
+
+
         </div>
     )
 }

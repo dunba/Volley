@@ -34,56 +34,7 @@ const VideoWatch = ({ match }) => {
     const [loading, setLoading] = useState(false);
     const videosRef = firebase.firestore().collection("videos");
 
-    const [isliked, setIsLiked] = useState(false);
-    const likeHandler = () => {
-        if (isliked) {
-            setIsLiked(false);
-            console.log("unliked")
-            console.log(videoId);
-            serverUnlike(currentUser.currentUser, videoId, currentvid)
 
-        } else {
-            setIsLiked(true);
-            console.log("liked");
-            console.log(videoId);
-            serverLike(currentUser.currentUser, videoId, currentvid)
-
-        }
-    };
-
-    const serverLike = async (user, videoId) => {
-        if (!user) return;
-        const userRef = usersRef.doc(`/${user.uid}`);
-        const snapshot = await userRef.get()
-        if (snapshot.exists) {
-            try {
-                userRef.update({
-                    userlikes: firebase.firestore.FieldValue.arrayUnion(videoId),
-                })
-                setSuccess('videoliked')
-            } catch {
-                setError('Error liking video')
-            }
-        }
-
-    }
-
-    const serverUnlike = async (user, videoId) => {
-        if (!user) return;
-        const userRef = usersRef.doc(`/${user.uid}`);
-        const snapshot = await userRef.get()
-        if (snapshot.exists) {
-            try {
-                userRef.update({
-                    userlikes: firebase.firestore.FieldValue.arrayRemove(videoId),
-                })
-                setSuccess('videounliked')
-            } catch {
-                setError('Error to unLike video')
-            }
-        }
-
-    }
 
 
     const currentvid = servervideos.filter(video => video.id == videoId)
@@ -141,18 +92,17 @@ const VideoWatch = ({ match }) => {
         const userRef = usersRef.doc(`/${user.uid}`);
         const snapshot = await userRef.get()
         if (snapshot.exists) {
-            if (snapshot.data().userlikes.includes(videoId)) {
-                setIsLiked(true)
+            for (let i = 0; i < snapshot.data().userlikes.length; i++) {
+                if (snapshot.data().userlikes[i].id === videoId) {
+                    setIsLiked(true)
+                }
             }
             console.log(snapshot.data().displayName)
             setUserDisplayName(snapshot.data().displayName)
             setLikeNum(snapshot.data().userlikes.length)
             //  history.push('/')
         }
-        else {
 
-
-        }
     }
     //this will run everytime the page loads to fetch user data
     useEffect(async () => {
@@ -164,10 +114,59 @@ const VideoWatch = ({ match }) => {
     }, [])
 
 
+    const [isliked, setIsLiked] = useState(false);
 
 
+    const serverLike = async (user, videoId, currentvid) => {
+        if (!user) return;
+        const userRef = usersRef.doc(`/${user.uid}`);
+        const snapshot = await userRef.get()
+        if (snapshot.exists) {
+            try {
+                userRef.update({
+                    userlikes: firebase.firestore.FieldValue.arrayUnion({ id: videoId, data: currentvid }),
+                })
+                setSuccess('videoliked')
+            } catch {
+                setError('Error liking video')
+            }
+        }
+
+    }
+
+    const serverUnlike = async (user, videoId, currentvid) => {
+        if (!user) return;
+        const userRef = usersRef.doc(`/${user.uid}`);
+        const snapshot = await userRef.get()
+        if (snapshot.exists) {
+            try {
+                userRef.update({
+                    userlikes: firebase.firestore.FieldValue.arrayRemove({ id: videoId, data: currentvid }),
+                })
+                setSuccess('videounliked')
+            } catch {
+                setError('Error to unLike video')
+            }
+        }
+
+    }
 
 
+    const likeHandler = () => {
+        if (isliked) {
+            setIsLiked(false);
+            console.log("unliked")
+            console.log(videoId);
+            serverUnlike(currentUser.currentUser, videoId, currentvid)
+
+        } else {
+            setIsLiked(true);
+            console.log("liked");
+            console.log(videoId);
+            serverLike(currentUser.currentUser, videoId, currentvid)
+
+        }
+    };
 
 
 
@@ -232,8 +231,7 @@ const VideoWatch = ({ match }) => {
     const timeUpdateHandler = (e) => {
         const current = e.target.currentTime
         const duration = e.target.duration
-        console.log(current)
-        console.log(duration)
+
         setVidInfo({ ...vidInfo, currentTime: current, duration })
 
     }
@@ -344,10 +342,6 @@ const VideoWatch = ({ match }) => {
 
                 </div>
 
-                <motion.div className='videosidebar'>
-                    <Sidebar videoId={videoId} videosRef={videosRef} userDisplayName={userDisplayName} currentvid={currentvid} />
-
-                </motion.div>
 
 
             </div >

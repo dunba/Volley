@@ -62,18 +62,12 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
 
 
 
-
+  console.log(userLikedVideos)
   const likedplaylist = servervideos.filter(video => video.id.includes(userLikedVideos))
 
 
   const like2 = servervideos.some(video => video.id.includes(userLikedVideos))
-  const like3 = []
-  servervideos.forEach(video => {
-    if (userLikedVideos.includes(video.id)) {
-      like3.push(video.id)
-    }
-  })
-  console.log(like3)
+
 
   const [numholder, setNumHolder] = useState(0);
 
@@ -212,7 +206,7 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
           />
         </section>
         <section>
-          <Likedvideos serverpics={serverpics} sectiontitle={"Likes"} servervideos={like3} />
+          <Likedvideos serverpics={serverpics} sectiontitle={"Likes"} servervideos={userLikedVideos} />
         </section>
       </main>
 
