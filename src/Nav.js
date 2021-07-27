@@ -92,7 +92,7 @@ const Nav = ({ likenum }) => {
                 </div>
                 {isNavExpanded ? <div className='account'>
                     <ul >
-                        <li  ><NavLink exact to="/update-profile" >Account</NavLink></li>
+                        <li  ><NavLink exact to="/user" >Account</NavLink></li>
                         <li onClick={handleLogout}><a href='#'>Sign Out</a></li>
                     </ul>
 

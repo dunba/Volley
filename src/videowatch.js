@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Alert } from 'react-bootstrap'
-
+import HomeIcon from '@material-ui/icons/Home';
 import { useHistory } from "react-router-dom";
 import ClipLoader from 'react-spinners/ClipLoader'
 import firebase from './firebase'
@@ -290,7 +290,7 @@ const VideoWatch = ({ match }) => {
                     {isHovering ?
 
                         <motion.div exit={{ opacity: 0 }} initial={{ opacity: 0 }} animate={{ opacity: 1, duration: 2 }} className='vidcontrols'  >
-                            <button className='backbutton' onClick={() => history.push('/')} ><ArrowBackIcon /></button>
+                            <div className='backbutton' onClick={() => history.push('/')} ><ArrowBackIcon /></div>
                             <div className='pvpcontrols'>{playing ? <PauseIcon id='iconn2' onClick={onVidPress} fontSize='large' /> : <PlayArrowIcon id='iconn2' onClick={onVidPress} fontSize='large' />}
                                 {ismuted ? <VolumeMuteIcon onClick={onVolumePress} id='iconn2' fontSize='large' /> : <VolumeUpIcon onClick={onVolumePress} id='iconn2' fontSize='large' />}
                                 <StopIcon id='iconn2' fontSize='large' onClick={stopHandler} />
@@ -308,7 +308,6 @@ const VideoWatch = ({ match }) => {
 
 
                             </div>
-                            <div className='hoverrecs'> Recommended</div>
                             <div className='sliderdiv'>
                                 {currentvid[0] ?
                                     <div className='tickerdiv'> <Ticker>{({ index }) => (

@@ -13,7 +13,6 @@ const Picholder = ({ goalvids, clickHandler, servervideos }) => {
 
             Recommended<div className='sidepanelholder'>
                 {servervideos ?
-
                     servervideos.map(pic => (<div className='sidepanel'><Link to={`/watch/${pic.id}`}><img alt={pic.description} onClick={clickHandler} mycustomattribute={pic.id} id='thumbnail' src={pic.thumbnail} /></Link>
                         <div class="overlay">
                             <div class="text">{pic.scorer}</div>

@@ -40,6 +40,17 @@ const Likedvideos = ({ type, servervideos, sectiontitle, serverpics }) => {
     const transition = { duration: .6, ease: [0.43, .13, -.13, .96] }
 
 
+    if (servervideos.length == 0) {
+        return (<div >
+            <div className="videosection" ref={ref}>
+                <h6>{sectiontitle}</h6>
+                No Liked Videos.
+
+
+            </div>
+
+        </div>)
+    }
 
 
     return (
@@ -49,20 +60,20 @@ const Likedvideos = ({ type, servervideos, sectiontitle, serverpics }) => {
                 <motion.div className="reelholder" animate={animation} >
 
                     <Carousel breakPoints={breakPoints} itemsToScroll={3} >
-                        {servervideos.map(pic => (
-
-                            <div className="vidposting"  >
-                                <Link to={`/watch/${pic.data[0].id}`}>
-                                    <motion.img whileHover={{ scale: 1.1 }} transition={transition}
-                                        key={pic.data[0].id}
-                                        alt={pic.data[0].description}
-                                        id="thumbnailonfeed"
-                                        src={pic.data[0].thumbnail}
-                                    />
-                                </Link>
-                                <div className="videodescription">{pic.data[0].description}</div>
-                            </div>
-                        ))}
+                        {servervideos ?
+                            servervideos.map(pic => (
+                                <div className="vidposting"  >
+                                    <Link to={`/watch/${pic.data[0].id}`}>
+                                        <motion.img whileHover={{ scale: 1.1 }} transition={transition}
+                                            key={pic.data[0].id}
+                                            alt={pic.data[0].description}
+                                            id="thumbnailonfeed"
+                                            src={pic.data[0].thumbnail}
+                                        />
+                                    </Link>
+                                    <div className="videodescription">{pic.data[0].description}</div>
+                                </div>
+                            )) : <ClipLoader />}
 
                     </Carousel>
 
@@ -72,7 +83,7 @@ const Likedvideos = ({ type, servervideos, sectiontitle, serverpics }) => {
 
             </div>
 
-        </div>
+        </div >
     )
 }
 

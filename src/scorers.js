@@ -82,7 +82,6 @@ const Scorers = () => {
                                     // <Link to={`/stats/${scorer.player.id}`}>
                                     <tr key={index2}>
                                         <td><a href='#' onClick={() => { setSrcNum(topscorers.indexOf(scorer)); setShowModal(true) }}>{scorer.player.name}</a>
-
                                         </td>
                                         <td> {scorer.statistics[0].goals.total ?? (0)}
                                         </td>

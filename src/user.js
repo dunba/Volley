@@ -45,9 +45,10 @@ const User = () => {
             {error && ({ error })}
             <h2>WELCOME,{ }</h2>
             <h2>your name is {currentUser ? JSON.stringify(currentUser.displayName) : ''}</h2>
+            <Link to="/update-profile">Update Profile</Link>
+
 
             <button onClick={handleLogout}>Log Out</button>
-            <Link to="/update-profile">Update Profile</Link>
         </div>
     )
 }

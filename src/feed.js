@@ -73,7 +73,7 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
 
   const transition2 = { duration: 2, ease: [0.43, .13, -.13, .96] }
 
-  const d = new Date();
+
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -84,7 +84,10 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
     }
   }
 
+  const date = new Date();
+  const [month, day, year] = [date.getMonth(), date.getDate(), date.getFullYear()];
 
+  const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSeconds()];
   return (
     <motion.div variants={container} exit={{ opacity: 0 }}
       initial="hidden"

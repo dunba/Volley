@@ -16,7 +16,7 @@ const Footer = () => {
                         <ul className='sitenav'>
                             <li><NavLink exact to="/">Home</NavLink></li>
                             <li><NavLink exact to="/stats">Stats</NavLink></li>
-                            <li><NavLink exact to="/update-profile">User Account</NavLink></li>
+                            <li><NavLink exact to="/user">User Account</NavLink></li>
                         </ul>
                     </div>
 
@@ -29,7 +29,6 @@ const Footer = () => {
                         </ul>
                     </div>
                 </div>
-                <div className='copyright'>© Copyright 2021 Dunba</div>
             </footer>
         </>
     )
