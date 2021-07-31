@@ -111,6 +111,7 @@ const VideoWatch = ({ match }) => {
           }),
         });
         setSuccess("videoliked");
+        await setTimeout(()=>setSuccess(null),3000)
       } catch {
         setError("Error liking video");
       }
@@ -130,6 +131,7 @@ const VideoWatch = ({ match }) => {
           }),
         });
         setSuccess("videounliked");
+        await setTimeout(()=>setSuccess(null),3000)
       } catch {
         setError("Error to unLike video");
       }
@@ -232,7 +234,7 @@ const VideoWatch = ({ match }) => {
     }
   };
 
-  const shareHandler = () => {
+  const  shareHandler = async () => {
     let urlbase = 'localhost:300/watch/'
     let urlcode = currentvid[0].id
     console.log('sharing video')
@@ -241,6 +243,7 @@ const VideoWatch = ({ match }) => {
     alert(fullurl)
     document.execCommand('copy')
     setSuccess('Link copied to clipboard!')
+    await setTimeout(()=>setSuccess(''),3000)
   }
 
 
