@@ -23,6 +23,7 @@
 }
 .likedheading {
   padding: 5em;
+  color: white;
 }
 #likedimg {
   width: 20em;
@@ -111,8 +112,11 @@ h6 {
 }
 .backbutton {
   position: fixed;
-  top: 10em;
-  left: 050%;
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  top: 2.2em;
+  left: 50%;
 }
 .backbutton:hover {
   cursor: pointer;
@@ -144,27 +148,31 @@ h6 {
 }
 .vidcontrols {
   position: absolute;
-  height: 100vh;
+  min-height: 100vh;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: transparent;
-  margin: 0;
+  background-color: rgba(255, 255, 255, 0.08);
+  margin: auto;
   width: 100%;
 }
 #fullscreenvideo {
   min-height: 100vh;
   max-height: 100vh;
-  overflow: hidden;
+  overflow: none;
 }
 .sliderdiv {
-  display: flex;
-  flex-direction: row;
-  padding: 2em 0em;
-  width: 70%;
+  width: 100%;
   color: white;
   position: absolute;
-  bottom: 10em;
+  bottom: 3em;
   font-weight: bold;
+}
+.timestamps {
+  width: 100%;
+  padding: 0 5em;
+  display: flex;
+  justify-content: space-between;
 }
 .hoverrecs {
   color: white;
@@ -179,18 +187,28 @@ h6 {
   align-self: center;
   margin: auto;
 }
+.tickerholder {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  bottom: 0em;
+  color: white;
+  justify-content: space-around;
+}
 .tickerdiv {
-  width: 50%;
+  padding: 0 5em;
+  width: 60%;
+  color: white;
 }
 #inputslider {
-  width: 40%;
-  --progress-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2) inset;
-  --progress-flll-shadow: var(--progress-shadow);
-  --fill-color: linear-gradient(to right, LightCyan, var(--primary-color));
-  --thumb-shadow: 0 0 4px rgba(0, 0, 0, 0.3),
-    -3px 9px 9px rgba(255, 255, 255, 0.33) inset,
-    -1px 3px 2px rgba(255, 255, 255, 0.33) inset,
-    0 0 0 99px var(--primary-color) inset;
+  width: 100%;
+}
+.sliderholder {
+  padding: 0 5em;
+}
+#shareicon:hover {
+  cursor: pointer;
 }
 
 .videoholder::-webkit-scrollbar {
@@ -227,7 +245,7 @@ h6 {
 }
 
 .videodescription {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgb(255, 255, 255);
   width: 100%;
 }
 

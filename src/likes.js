@@ -35,12 +35,12 @@ const Likes = ({ likenum }) => {
         <div className='flexcontainer'>
 
             <div><div className='likedheading'>Liked Videos</div>
-                {userLikes && (userLikes.length == 0 ? <div><strong>0</strong> Liked Videos</div> : '')}
+                {userLikes && (userLikes.length == 0 ? <div style={{ color: 'white' }}><strong>No</strong> Liked Videos</div> : '')}
                 {userLikes && (
 
                     userLikes.map(userlike => (
                         <div className='likedlisting'> <Link to={`/watch/${userlike.data[0].id}`}><motion.img whileHover={{ scale: 1.1 }} transition={transition} id='likedimg' src={userlike.data[0].thumbnail} />
-                            <div>{userlike.data[0].description}</div></Link></div>
+                        </Link><div style={{ color: 'white' }}>{userlike.data[0].description}</div></div>
                     ))
                 )}
 
