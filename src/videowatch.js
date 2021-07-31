@@ -280,7 +280,7 @@ const VideoWatch = ({ match }) => {
 
     return (
 
-        <div className='flexcontainer' onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>
+        <div style={{ backgroundColor: 'black' }} onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>
             {/* <div > BACK</div> */}
             <div className='mediacontainer'>
                 <div className='videoholder'>
@@ -290,7 +290,7 @@ const VideoWatch = ({ match }) => {
                     {isHovering ?
 
                         <motion.div exit={{ opacity: 0 }} initial={{ opacity: 0 }} animate={{ opacity: 1, duration: 2 }} className='vidcontrols'  >
-                            <div className='backbutton' onClick={() => history.push('/')} ><ArrowBackIcon /></div>
+                            <div style={{ color: 'white' }} className='backbutton' onClick={() => history.push('/')} ><ArrowBackIcon />BACK</div>
                             <div className='pvpcontrols'>{playing ? <PauseIcon id='iconn2' onClick={onVidPress} fontSize='large' /> : <PlayArrowIcon id='iconn2' onClick={onVidPress} fontSize='large' />}
                                 {ismuted ? <VolumeMuteIcon onClick={onVolumePress} id='iconn2' fontSize='large' /> : <VolumeUpIcon onClick={onVolumePress} id='iconn2' fontSize='large' />}
                                 <StopIcon id='iconn2' fontSize='large' onClick={stopHandler} />
