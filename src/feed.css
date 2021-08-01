@@ -147,14 +147,22 @@ h6 {
   flex-direction: column;
 }
 .vidcontrols {
+  background: rgba(0, 0, 0, 0.3);
   position: absolute;
   min-height: 100vh;
   max-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.1);
   margin: auto;
   width: 100%;
+}
+.vignette {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 400px rgba(0, 0, 0, 0.9) inset;
 }
 #fullscreenvideo {
   min-height: 100vh;

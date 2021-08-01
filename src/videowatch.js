@@ -281,6 +281,8 @@ const VideoWatch = ({ match }) => {
               animate={{ opacity: 1, duration: 2 }}
               className="vidcontrols"
             >
+                <div className="vignette"></div>
+
               <div
                 style={{ color:"white" }}
                 className="backbutton"
