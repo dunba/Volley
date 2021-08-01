@@ -4,6 +4,7 @@ import firebase from "./firebase";
 import { useAuth } from "./AuthContext";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import Nav2 from "./Nav2";
 const transition = { duration: .6, ease: [0.43, .13, -.13, .96] }
 
 
@@ -34,7 +35,10 @@ const Likes = ({ likenum }) => {
     return (
         <div className='flexcontainer'>
 
-            <div><div className='likedheading'>Liked Videos</div>
+
+            <div>
+                {userLikes && (
+                    <div className='likedheading'><Nav2 likenum={userLikes.length} />Liked Videos</div>)}
                 {userLikes && (userLikes.length == 0 ? <div style={{ color: 'white' }}><strong>No</strong> Liked Videos</div> : '')}
                 {userLikes && (
 

@@ -22,6 +22,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import Ticker from "react-ticker";
 import ShareIcon from "@material-ui/icons/Share";
+import InfoIcon from '@material-ui/icons/Info';
 
 //this main feed displays video & information from database
 const VideoWatch = ({ match }) => {
@@ -38,19 +39,8 @@ const VideoWatch = ({ match }) => {
 
   const currentvid = servervideos.filter(video => video.id == videoId);
 
-  const [currenttype, setCurrentType] = useState(null);
-  const fetchCurrentType = video => {
-    if (video.club === true) {
-      // return 'club'
-      console.log("club");
-    } else if (video.international) {
-      //  return 'international'
-      console.log("international");
-    } else if (video.interview) {
-      //  return 'interview'
-      console.log("interview");
-    }
-  };
+
+
 
   //this will fetch videos from the server
   const fetchDocs = () => {
@@ -204,6 +194,7 @@ const VideoWatch = ({ match }) => {
   const [vidInfo, setVidInfo] = useState({ currentTime: null, duration: null });
 
   const timeUpdateHandler = e => {
+      setLoading(false)
     const current = e.target.currentTime;
     const duration = e.target.duration;
 
@@ -246,7 +237,10 @@ const VideoWatch = ({ match }) => {
     await setTimeout(()=>setSuccess(''),3000)
   }
 
-
+const [isPopped,setIsPopped]=useState(false)
+const popupHandler =()=>{
+    isPopped?setIsPopped(false):setIsPopped(true);
+}
   if (loading) return <ClipLoader />;
 
   return (
@@ -260,7 +254,8 @@ const VideoWatch = ({ match }) => {
         >
           {/* poster={currentvid[0].header} */}
           {currentvid[0] ? (
-            <video
+            <video 
+            onCanPlay={()=>setLoading(false)}
               id="fullscreenvideo"
               onLoadedMetadata={timeUpdateHandler}
               onTimeUpdate={timeUpdateHandler}
@@ -282,15 +277,26 @@ const VideoWatch = ({ match }) => {
               className="vidcontrols"
             >
                 <div className="vignette"></div>
-
-              <div
+<div className='videoheader'><div style={{color:'white', fontWeight:'bold'}}>VOLLEY</div>              <div
                 style={{ color:"white" }}
                 className="backbutton"
                 onClick={() => history.goBack()}
               >
                 <ArrowBackIcon />
                 BACK
-              </div>
+              </div><div style={{color:'white', fontWeight:'bold'}}><InfoIcon id='infoicon' onClick={popupHandler}/></div></div>
+
+            {isPopped&&(
+              <motion.div className='infopopup' exit={{ opacity: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, duration: 2 }}>
+                  <span>{currentvid[0].description}</span>
+                  <span>Player:{currentvid[0].scorer}</span>
+                 <span>Team:{currentvid[0].team}</span>
+                 <span>Copyright:{currentvid[0].copyright}</span>
+                 
+              </motion.div>
+)}
               <div className="pvpcontrols">
                 {playing ? (
                   <PauseIcon
@@ -366,7 +372,7 @@ const VideoWatch = ({ match }) => {
                     <Ticker speed={5} mode='smooth'>
                       {({ index }) => (
                         <>
-                          <p>{currentvid[0].description}</p>
+                          <p><strong>© {currentvid[0].copyright}</strong> - Provided Under Exclusive License</p>
                         </>
                       )}
                     </Ticker>
