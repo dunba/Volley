@@ -28,3 +28,4 @@ Ideas for Future Improvement:
 - Liked videos array alignment doesn't look properly aligned.
 - Build shop page.
 - Build comments section and forum.
+  -Ability to notify end user when something featuring their favorite team is uploaded.
