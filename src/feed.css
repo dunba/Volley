@@ -80,6 +80,29 @@ h6 {
 .headerholder {
   margin-bottom: 20em;
 }
+#carouselheadline {
+  font-weight: 100;
+}
+#carouselwatchnow {
+  font-weight: bold;
+  margin-top: 0.5em;
+  font-size: 0.8em;
+  color: black;
+  background: rgb(205, 190, 50);
+  box-shadow: 0 8px 32px 0 rgba(23, 34, 8, 0.7);
+  padding: 0.6em;
+  border-radius: 5px;
+  margin: 3em 0;
+}
+#carouselwatchnow:hover {
+  font-weight: bold;
+  color: rgb(98, 52, 98);
+}
+#carouselwatchnow:visited {
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+}
 
 .feedheader {
   position: relative;

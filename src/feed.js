@@ -107,8 +107,8 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
               />
               <Carousel.Caption >
                 <h3>FEATURED</h3>
-                <h5>{serverpics[0].headline}</h5>
-                <Link to={`/watch/${serverpics[0].id}`}><a>WATCH NOW</a></Link>
+                <h5 id='carouselheadline'>{serverpics[0].headline}</h5>
+                <Link to={`/watch/${serverpics[0].id}`}><a id='carouselwatchnow'>WATCH NOW</a></Link>
               </Carousel.Caption>
             </Carousel.Item >
           )}
@@ -123,8 +123,8 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
               />
               <Carousel.Caption>
                 <h3>FEATURED</h3>
-                <h5>{serverpics[1].headline}</h5>
-                <Link to={`/watch/${serverpics[1].id}`}><a>WATCH NOW</a></Link>
+                <h5 id='carouselheadline'>{serverpics[1].headline}</h5>
+                <Link to={`/watch/${serverpics[1].id}`}><a id='carouselwatchnow'>WATCH NOW</a></Link>
               </Carousel.Caption>
             </Carousel.Item>
           )}
@@ -138,8 +138,8 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
               />
               <Carousel.Caption>
                 <h3>FEATURED</h3>
-                <h5>{serverpics[2].headline}</h5>
-                <Link to={`/watch/${serverpics[2].id}`}><a>WATCH NOW</a></Link>
+                <h5 id='carouselheadline'>{serverpics[2].headline}</h5>
+                <Link to={`/watch/${serverpics[2].id}`}><a id='carouselwatchnow'>WATCH NOW</a></Link>
               </Carousel.Caption>
             </Carousel.Item>
           )}
@@ -153,8 +153,8 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
               />
               <Carousel.Caption>
                 <h3>FEATURED</h3>
-                <h5>{serverpics[3].headline}</h5>
-                <Link to={`/watch/${serverpics[3].id}`}><a>WATCH NOW</a></Link>
+                <h5 id='carouselheadline'>{serverpics[3].headline}</h5>
+                <Link to={`/watch/${serverpics[3].id}`}><a id='carouselwatchnow'>WATCH NOW</a></Link>
               </Carousel.Caption>
             </Carousel.Item>
           )}
@@ -168,8 +168,8 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
               />
               <Carousel.Caption>
                 <h3>FEATURED</h3>
-                <h5>{serverpics[4].headline}</h5>
-                <Link to={`/watch/${serverpics[4].id}`}><a>WATCH NOW</a></Link>
+                <h5 id='carouselheadline'>{serverpics[4].headline}</h5>
+                <Link to={`/watch/${serverpics[4].id}`}><a id='carouselwatchnow'>WATCH NOW</a></Link>
               </Carousel.Caption>
             </Carousel.Item>
           )}

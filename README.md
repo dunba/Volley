@@ -2,7 +2,7 @@ A fullstack video streaming web application built on React and Firebase.
 
 Problem:
 
-- In their self interest, all of the top soccer leagues around the world have sold out their media coverage rights to several different companies who have either erected paywalls to recoup some acquisition costs, or are technologically incompetent in meeting the demands of a 21st century audience, making it nearly impossible for the average soccer consumer to access live games and highlights.
+- In their self interest, all the top soccer leagues around the world have sold out their media coverage rights to several different companies who have either erected paywalls to recoup some acquisition costs, or are technologically incompetent in meeting the demands of a 21st century audience, making it nearly impossible for the average soccer consumer to access live games and highlights.
   A ten-country study carried out by Ampere Analysis on behalf of video software provider Synamedia, found that 51 per cent still use pirate services to watch live sport on a monthly basis, despite 89 per cent of respondents owning a subscription to a pay-TV or over-the-top (OTT) platform. The report found that 42 per cent of those who regularly use illegal streaming services watch sports fixtures on a daily basis, which is 60 per cent higher than the average fan.' source:
   https://www.sportspromedia.com/news/live-sport-piracy-service-pay-tv-ott-platform-subscription-study
 
@@ -13,7 +13,7 @@ Problem:
 Mission:
 
 - Volley aims to become a major content aggregator and serve as the home for soccer fans worldwide to watch and share highlights and short clips of their favorite players, teams, and leagues, with friends across the globe.
-- A Future evolution of Volley would introduce E-Commerce capabilities, helping fans get apparel and memorabilia of their favorites.
+- A future evolution of Volley would introduce an e-commerce store, helping fans get apparel and memorabilia of their favorites.
 
 Project's Current Features:
 
@@ -28,4 +28,4 @@ Ideas for Future Improvement:
 - Liked videos array alignment doesn't look properly aligned.
 - Build shop page.
 - Build comments section and forum.
-  -Ability to notify end user when something featuring their favorite team is uploaded.
+- Ability to notify end user when something featuring their favorite team is uploaded.
