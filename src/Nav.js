@@ -83,7 +83,7 @@ const Nav = ({ likenum }) => {
                     </div> */}
                     <div className='navdiv'>
                         <ul className='navlist'>    <li><NavLink className='linkstyle' exact to="/"><OndemandVideo /> </NavLink></li>
-                            <li><NavLink className='linkstyle' to="/stats"><TrendingUpIcon /> </NavLink></li>
+                            {/* <li><NavLink className='linkstyle' to="/stats"><TrendingUpIcon /> </NavLink></li> */}
                             <li className='linkstyle'><PersonIcon id='iconlistener' onMouseOver={expandNav} onMouseOut={closeNav} /></li>
                         </ul>
 
