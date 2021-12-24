@@ -49,6 +49,7 @@ nav {
 
 .linkstyle:hover {
   color: #9a40e9;
+  cursor: pointer;
 }
 .navlist li {
   display: inline;

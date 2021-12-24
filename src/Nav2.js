@@ -20,7 +20,7 @@ const Nav2 = ({ loggedInUser, likenum }) => {
         <div className='headercontainer'>
             <div className='secondlinkstyle'><NavLink exact to="/"><HomeIcon fontSize='large' /></NavLink></div>
             <div className='secondlinkstyle'> <NavLink exact to="/likes"><FavoriteBorderIcon fontSize='large' /></NavLink><p id='likenumber'>{likenum}</p></div>
-            <div className='secondlinkstyle'><NavLink fontSize='large' exact to='/search'><SearchIcon /></NavLink></div>
+            {/* <div className='secondlinkstyle'><NavLink fontSize='large' exact to='/search'><SearchIcon /></NavLink></div> */}
 
         </div>
     )

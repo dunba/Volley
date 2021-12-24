@@ -22,7 +22,7 @@ const Login = () => {
             setError('')
             setLoading(true)
             await login(emailRef.current.value, passwordRef.current.value)
-            history.push('/setuserinfo')
+            history.push('/')
         } catch {
             setError('Failed to sign in')
         }
@@ -38,24 +38,12 @@ const Login = () => {
 
 
 
-    return (<div>
+    return (<div style={{
+        backgroundImage: `url("https://images.pond5.com/professional-soccer-stadium-087802383_prevstill.jpeg")`
+    }}>
 
 
-        <div>
-
-            <video autoPlay muted loop style={{
-                position: 'absolute',
-                width: '100%',
-                left:
-                    '50%',
-                top: '50%',
-                height: '100%',
-                objectFit: 'cover',
-                transform: 'translate(-50%,-50%)',
-                zIndex: '-1'
-            }}>
-                <source src={videobg} type='video/mp4' />
-            </video>
+        <div >
 
             <div className='formdiv'>
 

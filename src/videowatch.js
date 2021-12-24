@@ -82,7 +82,7 @@ const VideoWatch = ({ match }) => {
   useEffect(async () => {
     await setIsHovering(false);
     await fetchDocs();
-    await fetchUserData(currentUser.currentUser);
+    // await fetchUserData(currentUser.currentUser);
     await console.log(currentvid);
   }, []);
 

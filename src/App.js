@@ -34,9 +34,9 @@ function App() {
 
 
   //this gives a notification of the number of likes = true based on the database
-  //   useEffect(() => {
-  //     setLikenum(likedlist.length);
-  //   }, [likedlist]);
+  // useEffect(() => {
+  //   setLikenum(likedlist.length);
+  // }, [likedlist]);
 
   const [servervideos, setServerVideos] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -80,7 +80,7 @@ function App() {
   useEffect(() => {
 
     fetchDocs();
-    //fetchUserData(currentUser.currentUser.uid);
+    // fetchUserData(currentUser.currentUser.uid);
 
 
   }, []);
