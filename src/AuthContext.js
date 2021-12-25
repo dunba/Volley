@@ -4,6 +4,7 @@ import firebase from "./firebase";
 
 
 export const AuthContext = React.createContext();
+const usersRef = firebase.firestore().collection("users");
 
 export function useAuth() {
     return useContext(AuthContext)
@@ -13,9 +14,19 @@ export function useAuth() {
 export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
     const [loading, setLoading] = useState(true)
+    ////
+
+
+
+
+
+
+    ////
 
     function signup(email, password) {
         return auth.createUserWithEmailAndPassword(email, password)
+
+
 
     }
 

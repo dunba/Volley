@@ -35,7 +35,7 @@ const Nav = ({ likenum }) => {
 
     const [isNavExpanded, setIsNavExpanded] = useState(false);
     const expandNav = () => {
-        setIsNavExpanded(true);
+        isNavExpanded ? setIsNavExpanded(false) : setIsNavExpanded(true);
     }
     const closeNav = () => {
         setTimeout(() => setIsNavExpanded(false), 4000)
@@ -84,7 +84,7 @@ const Nav = ({ likenum }) => {
                     <div className='navdiv'>
                         <ul className='navlist'>    <li><NavLink className='linkstyle' exact to="/"><OndemandVideo /> </NavLink></li>
                             {/* <li><NavLink className='linkstyle' to="/stats"><TrendingUpIcon /> </NavLink></li> */}
-                            <li className='linkstyle'><PersonIcon id='iconlistener' onMouseOver={expandNav} onMouseOut={closeNav} /></li>
+                            <li className='linkstyle'><PersonIcon id='iconlistener' onClick={expandNav} /></li>
                         </ul>
 
                     </div>
@@ -92,7 +92,7 @@ const Nav = ({ likenum }) => {
                 </div>
                 {isNavExpanded ? <div className='account'>
                     <ul >
-                        <li  ><NavLink exact to="/user" >Account</NavLink></li>
+                        <li  ><NavLink exact to="/user" onClick={() => setIsNavExpanded(false)}>Account</NavLink></li>
                         <li onClick={handleLogout}><a href='#'>Sign Out</a></li>
                     </ul>
 

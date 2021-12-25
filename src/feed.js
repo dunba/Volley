@@ -13,6 +13,9 @@ import { motion } from "framer-motion";
 
 //this main feed displays video & information from database
 const Feed = ({ functiontester, servervideos, serverpics }) => {
+  const todaysDate = new Date();
+  var today = todaysDate.toString();
+
   const filteredvid = servervideos.filter(video => video.active);
 
   const [currentvid, setCurrentVid] = useState(filteredvid[0]);
@@ -63,6 +66,9 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
 
 
   console.log(userLikedVideos)
+  console.log(todaysDate)
+  console.log(today)
+
   const likedplaylist = servervideos.filter(video => video.id.includes(userLikedVideos))
 
 
@@ -180,6 +186,8 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
       <main>
         <Nav2 likenum={userLikes} />
         <p style={{ color: 'black' }}>{userDisplayName ? `HELLO ${userDisplayName}` : <ClipLoader />}</p>
+        <p style={{ color: 'black' }}>{todaysDate ? `Today's Date is ${todaysDate}` : <ClipLoader />}</p>
+        <p>{todaysDate.date}</p>
 
 
         <section>

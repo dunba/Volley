@@ -5,13 +5,14 @@ import { useState } from 'react'
 import './home.css'
 import { Link, useHistory } from 'react-router-dom';
 import { Card, Form, Button, Alert } from 'react-bootstrap'
-
+import firebase from "./firebase";
 import { useAuth } from './AuthContext'
 
 
 
 const SignUp = () => {
   const videobg = 'https://firebasestorage.googleapis.com/v0/b/premier-league-809fb.appspot.com/o/PLBackground.mp4?alt=media&token=f66cd986-59fb-47e3-bd10-118fc83652e8'
+  const firstNameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
@@ -19,18 +20,25 @@ const SignUp = () => {
   const [loading, setLoading] = useState(false)
   const { signup } = useAuth()
   const history = useHistory();
+
+  ///
   async function handleSubmit(e) {
     e.preventDefault();
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError('Passwords do not match');
     }
-    signup(emailRef.current.value, passwordRef.current.value)
+    signup(emailRef.current.value, passwordRef.current.value).set({
+      email: emailRef.current.value,
+      timecreated: new Date(),
+      displayName: firstNameRef.current.value,
+      userlikes: [],
+    });
 
     try {
       setError('')
       setLoading(true)
       await signup(emailRef.current.value, passwordRef.current.value)
-      history.push('/setuserinfo')
+      history.push('/')
     } catch {
       setError('Failed to create an account')
     }
@@ -70,6 +78,10 @@ const SignUp = () => {
             <h2 className='text-center mb-4'>Sign Up</h2>
             {error && <Alert variant='danger'>{error}</Alert>}
             <Form onSubmit={handleSubmit}>
+              <Form.Group id='name'>
+                <Form.Label>Name</Form.Label>
+                <Form.Control type='name' ref={firstNameRef} required></Form.Control>
+              </Form.Group>
               <Form.Group id='email'>
                 <Form.Label>Email</Form.Label>
                 <Form.Control type='email' ref={emailRef} required></Form.Control>
