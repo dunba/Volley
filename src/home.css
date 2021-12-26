@@ -1,24 +1,22 @@
 .formdiv {
   background-color: rgba(255, 255, 255);
-  width: 32%;
+
   display: block;
-  margin: auto;
-  border-radius: 6%;
-  margin-top: 20em;
+  border-radius: 6px;
+  position: absolute;
+  top: 25%;
+  left: 43.75%;
 }
 
 .bgdiv {
-  background: color
-    url("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F20%2F2018%2F11%2Fal-wakrah-stadium-1-1.jpg")
-    others;
+  background-color: rgb(0, 0, 0);
+  height: 100vh;
 }
 
 form {
   display: flex;
   flex-direction: column;
   margin: auto;
-  padding-top: 3em;
-  padding-bottom: 6em;
 }
 
 .formsubmit {

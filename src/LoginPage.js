@@ -38,37 +38,48 @@ const Login = () => {
 
 
 
-    return (<div style={{
-        backgroundImage: `url("https://images.pond5.com/professional-soccer-stadium-087802383_prevstill.jpeg")`
-    }}>
+    return (<div>
 
 
-        <div >
+        <div  >
+            <video autoPlay muted loop style={{
+                position: 'absolute',
+                width: '100%',
+                left:
+                    '50%',
+                top: '50%',
+                height: '100%',
+                objectFit: 'cover',
+                transform: 'translate(-50%,-50%)',
+                zIndex: '-1'
+            }}>
+                <source src={videobg} type='video/mp4' />
+            </video>
 
             <div className='formdiv'>
-
                 <Card>
+                    <Card.Body>  <h1>VOLLEY</h1>
+                    </Card.Body>
                     <Card.Body>
-                        <h2 className='text-center mb-4'>Login</h2>
                         {error && <Alert variant='danger'>{error}</Alert>}
                         <Form onSubmit={handleSubmit}>
                             <Form.Group id='email'>
-                                <Form.Label>Email</Form.Label>
-                                <Form.Control type='email' ref={emailRef} required></Form.Control>
+                                <Form.Control type='email' ref={emailRef} required placeholder='Email address'></Form.Control>
                             </Form.Group>
 
-                            <Form.Group id='password'>
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control type='password' ref={passwordRef} required></Form.Control>
+                            <Form.Group id='password' >
+                                <Form.Control type='password' ref={passwordRef} placeholder='Password' required></Form.Control>
                             </Form.Group>
 
-                            <Button id='submit' type='submit' disabled={loading} className='w-100'>Login</Button>
+                            <Button id='submit' type='submit' disabled={loading} className='w-100'>Log In</Button>
                         </Form>
-                        <div> Not a member? <Link to='/signup'>Sign Up Now</Link></div>
-                        <Link to='/forgot-password'> <div>Forgot Password?</div></Link>
+
+
 
                     </Card.Body>
+                    <Card.Body>      <Link to='/forgot-password'> <div>Forgot Password?</div></Link></Card.Body>
 
+                    <Card.Footer>         <div> Don't have an account? <Link to='/signup'>Sign Up</Link></div></Card.Footer>
                 </Card>
 
 
