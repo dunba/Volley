@@ -74,7 +74,7 @@ const Nav = ({ likenum }) => {
                 <div className='navholder'>
 
 
-                    <div className='linkstyle'><NavLink className='linkstyle' exact to="/">Volley </NavLink></div>
+                    <div className='linkstyle'><NavLink className='linkstyle' exact to="/" onClick={() => setIsNavExpanded(false)}>Volley </NavLink></div>
                     {/* <div className='headercontainer'>
                         <div className='secondlinkstyle'><NavLink exact to="/"><HomeIcon fontSize='large' /></NavLink></div>
                         <div className='secondlinkstyle'> <NavLink exact to="/likes"><FavoriteBorderIcon fontSize='large' /></NavLink><p id='likenumber'>{likenum}</p></div>
@@ -82,7 +82,7 @@ const Nav = ({ likenum }) => {
 
                     </div> */}
                     <div className='navdiv'>
-                        <ul className='navlist'>    <li><NavLink className='linkstyle' exact to="/"><OndemandVideo /> </NavLink></li>
+                        <ul className='navlist'>    <li><NavLink className='linkstyle' exact to="/" onClick={() => setIsNavExpanded(false)}><OndemandVideo /> </NavLink></li>
                             {/* <li><NavLink className='linkstyle' to="/stats"><TrendingUpIcon /> </NavLink></li> */}
                             <li className='linkstyle'><PersonIcon id='iconlistener' onClick={expandNav} /></li>
                         </ul>
