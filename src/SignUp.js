@@ -27,18 +27,12 @@ const SignUp = () => {
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError('Passwords do not match');
     }
-    signup(emailRef.current.value, passwordRef.current.value).set({
-      email: emailRef.current.value,
-      timecreated: new Date(),
-      displayName: firstNameRef.current.value,
-      userlikes: [],
-    });
-
+    // signup(emailRef.current.value, passwordRef.current.value);
     try {
       setError('')
       setLoading(true)
       await signup(emailRef.current.value, passwordRef.current.value)
-      history.push('/')
+      history.push('/setuserinfo')
     } catch {
       setError('Failed to create an account')
     }
@@ -74,34 +68,33 @@ const SignUp = () => {
       <div className='formdiv'>
 
         <Card>
+          <Card.Body>  <h1>VOLLEY</h1>
+          </Card.Body>
           <Card.Body>
-            <h2 className='text-center mb-4'>Sign Up</h2>
+
             {error && <Alert variant='danger'>{error}</Alert>}
             <Form onSubmit={handleSubmit}>
-              <Form.Group id='name'>
-                <Form.Label>Name</Form.Label>
-                <Form.Control type='name' ref={firstNameRef} required></Form.Control>
-              </Form.Group>
+
               <Form.Group id='email'>
-                <Form.Label>Email</Form.Label>
-                <Form.Control type='email' ref={emailRef} required></Form.Control>
+                <Form.Control type='email' placeholder='Email' ref={emailRef} required></Form.Control>
               </Form.Group>
 
               <Form.Group id='password'>
-                <Form.Label>Password</Form.Label>
-                <Form.Control type='password' ref={passwordRef} required></Form.Control>
+
+                <Form.Control type='password' placeholder='Password' ref={passwordRef} required></Form.Control>
               </Form.Group>
 
               <Form.Group id='password-confirm'>
-                <Form.Label>Confirm Password</Form.Label>
-                <Form.Control type='password' ref={passwordConfirmRef} required></Form.Control>
+                <Form.Control type='password' placeholder='Confirm Password' ref={passwordConfirmRef} required></Form.Control>
               </Form.Group>
 
               <Button id='submit' type='submit' disabled={loading} className='w-100'>Sign Up</Button>
             </Form>
-            <span>Already a member? <Link to='/login'>Log in</Link></span>
           </Card.Body>
+          <Card.Body>
+            <span>Already a member? <Link to='/login'>Log in</Link></span>
 
+          </Card.Body>
         </Card>
       </div>
     </div>

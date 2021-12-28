@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Link, useHistory } from "react-router-dom";
 import "./setuserinfo.css";
 import firebase from "./firebase";
 import { motion } from "framer-motion";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Setuserinfo = () => {
   const currentUser = useAuth();
@@ -58,11 +59,12 @@ const Setuserinfo = () => {
       history.push("/");
     } else {
       setError("Please Enter User Data");
+
     }
   };
   //this will run everytime the page loads to fetch user data
   useEffect(() => {
-    fetchUserData(currentUser.currentUser);
+    // fetchUserData(currentUser.currentUser);
   }, []);
 
   // this runs when the submit button is entered.
@@ -76,26 +78,31 @@ const Setuserinfo = () => {
     console.log("submit");
   };
 
-  if (userDisplayName) return (
-    <div className="flexcontainer">
-      Welcome {userDisplayName}
-    </div>
+  if (!userDisplayName) {
+    return (
+      <div className="flexcontainer">
+        <div className='formdiv'>
+          <Card>
+            <Card.Body>  <h3>What is your name?</h3>
+              <Form onSubmit={handleSubmit}>
+                <Form.Group id='nickname'>
+                  <Form.Control type='text' placeholder='Name' ref={displaynameRef} required></Form.Control>
+                </Form.Group>
+                <Button id='submit' type='submit' disabled={loading} className='w-100'>Submit</Button>
+              </Form>
+            </Card.Body>
+          </Card>
+        </div>
+      </div>
 
-  )
-
-
-
-
-
-
-
-
-
-
+    )
+  }
   return (
     <div className="flexcontainer">
-      <div>WELCOME {userDisplayName}</div>
-      <Card className="setusercard">
+      Welcome {userDisplayName}
+
+      {/* <div>WELCOME {userDisplayName}</div> */}
+      {/* <Card className="setusercard">
         <Card.Body>
           <h2 className="text-center mb-4">Enter Username.</h2>
           {error && <Alert variant="danger">{error}</Alert>}
@@ -121,7 +128,7 @@ const Setuserinfo = () => {
             </Button>
           </Form>
         </Card.Body>
-      </Card>
+      </Card> */}
     </div>
   );
 };
