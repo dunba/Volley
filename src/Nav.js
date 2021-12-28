@@ -82,7 +82,7 @@ const Nav = ({ likenum }) => {
 
                     </div> */}
                     <div className='navdiv'>
-                        <ul className='navlist'>    <li><NavLink className='linkstyle' exact to="/" onClick={() => setIsNavExpanded(false)}><OndemandVideo /> </NavLink></li>
+                        <ul className='navlist'>   {/*    <li><NavLink className='linkstyle' exact to="/" onClick={() => setIsNavExpanded(false)}><OndemandVideo /> </NavLink></li> */}
                             {/* <li><NavLink className='linkstyle' to="/stats"><TrendingUpIcon /> </NavLink></li> */}
                             <li className='linkstyle'><PersonIcon id='iconlistener' onClick={expandNav} /></li>
                         </ul>
