@@ -22,6 +22,8 @@ nav {
   width: 10.5em;
   text-align: center;
   padding-right: 3em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
   right: 5em;
   top: 4em;
   box-shadow: 2px 3px 17px rgba(0, 0, 0, 0.2);

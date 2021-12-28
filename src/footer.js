@@ -9,14 +9,14 @@ const Footer = () => {
     return (
         <>
             <footer>
-                <div className='copyright'>Volley</div>
+                {/* <div className='copyright'>Volley</div> */}
                 <div className='sectionholder'>
                     <div>
                         <p id='navleader'>Site Navigation</p>
                         <ul className='sitenav'>
                             <li><NavLink exact to="/">Home</NavLink></li>
-                            <li><NavLink exact to="/stats">Stats</NavLink></li>
-                            <li><NavLink exact to="/user">User Account</NavLink></li>
+                            {/* <li><NavLink exact to="/stats">Stats</NavLink></li> */}
+                            {/* <li><NavLink exact to="/user">User Account</NavLink></li> */}
                         </ul>
                     </div>
 
