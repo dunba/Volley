@@ -185,8 +185,8 @@ const Feed = ({ functiontester, servervideos, serverpics }) => {
 
       <main>
         <Nav2 likenum={userLikes} />
-        <p style={{ color: 'black' }}>{userDisplayName ? `HELLO ${userDisplayName}` : <ClipLoader />}</p>
-        <p style={{ color: 'black' }}>{todaysDate ? `Today's Date is ${todaysDate}` : <ClipLoader />}</p>
+        {/* <p style={{ color: 'black' }}>{userDisplayName ? `HELLO ${userDisplayName}` : <ClipLoader />}</p> */}
+        {/* <p style={{ color: 'black' }}>{todaysDate ? `Today's Date is ${todaysDate}` : <ClipLoader />}</p> */}
         <p>{todaysDate.date}</p>
 
 
